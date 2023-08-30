@@ -2,8 +2,8 @@
 <resources>
     <color name="blue">#4095E5</color>
     <color name="black_v">#6C6C6C</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="yellow">#FFF81D</color>
+
 </resources>
