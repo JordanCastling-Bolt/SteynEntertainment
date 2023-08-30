@@ -23,6 +23,10 @@ class RegisterActivity : AppCompatActivity() {
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.fab2.setOnClickListener {
+            finish()
+        }
         val factory = RegisterViewModelFactory()
 
         val usernameEditText = binding.username // Change these IDs to match your layout
@@ -31,18 +35,7 @@ class RegisterActivity : AppCompatActivity() {
         val signUpButton = binding.login // Change the ID to your Sign Up button
 
         registerViewModel = ViewModelProvider(this, factory).get(RegisterViewModel::class.java)
-        val navigateToLoginButton: Button = findViewById(R.id.login_2)
 
-        navigateToLoginButton.setOnClickListener(View.OnClickListener {
-            // Create an Intent to start LoginActivity
-            val intent = Intent(this, LoginActivity::class.java)
-
-            // Start LoginActivity
-            startActivity(intent)
-
-            // Optionally, you could add a finish() call to close the current activity
-            finish()
-        })
         // Observe form state changes
         registerViewModel.registerFormState.observe(this@RegisterActivity, Observer {
             val registerState = it ?: return@Observer
