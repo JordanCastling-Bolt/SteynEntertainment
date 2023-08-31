@@ -27,7 +27,6 @@
         android:id="@+id/username"
         android:layout_width="350dp"
         android:layout_height="65dp"
-        android:layout_marginTop="134dp"
 
         android:background="@drawable/rounded_border"
         android:gravity="center"
@@ -44,6 +43,7 @@
         android:id="@+id/password"
         android:layout_width="350dp"
         android:layout_height="65dp"
+        android:layout_marginTop="132dp"
         android:background="@drawable/rounded_border"
         android:gravity="center"
         android:hint="@string/prompt_password"
@@ -53,7 +53,9 @@
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/forgotPassword"
         app:layout_constraintEnd_toEndOf="@+id/login_1"
-        app:layout_constraintStart_toStartOf="@+id/login_1" />
+        app:layout_constraintStart_toStartOf="@+id/login_1"
+        app:layout_constraintTop_toTopOf="@+id/login_1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/login"
@@ -85,24 +87,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/login_2"
-        android:layout_width="113dp"
-        android:layout_height="61dp"
-        android:text="@string/action_sign_in"
-        android:textColor="@color/yellow"
-        app:layout_constraintBottom_toTopOf="@+id/username"
-        app:layout_constraintEnd_toStartOf="@+id/signUp"
-        app:layout_constraintStart_toStartOf="@+id/login_1"
-        app:layout_constraintTop_toTopOf="@+id/login_1" />
-
-    <Button
         android:id="@+id/signUp"
         android:layout_width="113dp"
         android:layout_height="61dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="222dp"
         android:text="@string/action_sign_up"
-        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="@+id/login_1"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="@+id/login_1"
         app:layout_constraintTop_toTopOf="@+id/login_1" />
 
     <ImageView
@@ -118,13 +111,12 @@
 
     <Button
         android:id="@+id/forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="317dp"
-        android:layout_marginBottom="46dp"
+        android:layout_width="203dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="223dp"
         android:text="@string/forgot_password"
-        app:layout_constraintBottom_toBottomOf="@+id/login_1"
-        app:layout_constraintEnd_toEndOf="@+id/login_1"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toStartOf="@+id/signUp"
         app:layout_constraintStart_toStartOf="@+id/login_1"
         app:layout_constraintTop_toTopOf="@+id/login_1" />
 

@@ -14,7 +14,6 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.ActivityLoginBinding
-import androidx.fragment.app.FragmentManager
 import android.content.Intent
 import com.example.steynentertainment.ui.forgot_password.ForgotPasswordActivity
 import com.example.steynentertainment.ui.register.RegisterActivity
@@ -35,13 +34,10 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
         val signUp = binding.signUp
-        val forgotPassword = binding.forgotPassword
 
-        if (forgotPassword != null) {
-            forgotPassword.setOnClickListener {
-                val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
-                startActivity(intent)
-            }
+        binding.forgotPassword?.setOnClickListener {
+            val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
+            startActivity(intent)
         }
 
         if (signUp != null) {
