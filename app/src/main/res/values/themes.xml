@@ -12,10 +12,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:textColorHint">@color/hintTextColor_light</item>
     </style>
     <!-- Base application theme. -->
     <style name="Base.Theme.SteynEntertainment" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/my_dark_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
     </style>
 </resources>
