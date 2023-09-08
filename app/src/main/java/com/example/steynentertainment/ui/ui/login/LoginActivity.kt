@@ -15,6 +15,9 @@ import android.widget.Toast
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.ActivityLoginBinding
 import android.content.Intent
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.example.steynentertainment.MainActivity
 import com.example.steynentertainment.ui.forgot_password.ForgotPasswordActivity
 import com.example.steynentertainment.ui.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -31,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,7 +47,6 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
-        val signUp = binding.signUp
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))  // Replace with your web client ID
@@ -61,13 +64,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        if (signUp != null) {
-            signUp.setOnClickListener {
-                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-                startActivity(intent)
-            }
+        binding.signUp?.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
         }
-
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -96,8 +96,14 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
                 setResult(Activity.RESULT_OK)
+
+                // Start MainActivity here
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+
                 finish()  // Complete and destroy login activity once successful
             }
+
         })
 
 
@@ -120,6 +126,7 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
+                            this.context, // passing context
                             username.text.toString(),
                             password.text.toString()
                         )
@@ -129,7 +136,11 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                loginViewModel.login(
+                    this.context, // passing context
+                    username.text.toString(),
+                    password.text.toString()
+                )
             }
         }
     }
@@ -160,6 +171,13 @@ class LoginActivity : AppCompatActivity() {
                     // Successfully signed in
                     val user = auth.currentUser
                     updateUiWithUser(LoggedInUserView(user!!.displayName!!))
+
+                    // Navigate to MainActivity
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
+                    // Complete and destroy login activity
+                    finish()
                 } else {
                     // Sign-in failed
                     showLoginFailed(R.string.login_failed)
@@ -174,13 +192,22 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
-        // TODO : initiate successful logged in experience
+
+        // Initiate successful logged-in experience
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+
+        // Navigate to MainActivity
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+
+        // Complete and destroy login activity
+        finish()
     }
+
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
