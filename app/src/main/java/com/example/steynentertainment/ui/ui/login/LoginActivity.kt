@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val username = binding.username
+        val username = binding.txtEmail
         val password = binding.password
         val login = binding.login
         val loading = binding.loading

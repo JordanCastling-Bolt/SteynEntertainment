@@ -5,28 +5,47 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.steynentertainment.R
-import com.example.steynentertainment.ui.data.RegisterRepository
-import com.example.steynentertainment.ui.data.Result
-import com.example.steynentertainment.ui.register.RegisteredUserView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 
-class RegisterViewModel(private val registerRepository: RegisterRepository) : ViewModel() {
+class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 
     private val _registerForm = MutableLiveData<RegisterFormState>()
     val registerFormState: LiveData<RegisterFormState> = _registerForm
 
-    private val _registerResult = MutableLiveData<Any>()
-    val registerResult: LiveData<Any> = _registerResult
+    private val _registerResult = MutableLiveData<RegisterResult>()
+    val registerResult: LiveData<RegisterResult> = _registerResult
 
-    fun register(username: String, password: String, confirmPassword: String) {
-        // Add your asynchronous job for registration here
-        val result = registerRepository.register(username, password, confirmPassword)
+    private val _navigateToLogin = MutableLiveData<Boolean>()
+    val navigateToLogin: LiveData<Boolean> get() = _navigateToLogin
 
-        if (result is Result.Success) {  // Specify type
-            _registerResult.value = RegisteredUserView(displayName = result.data.displayName)
-        } else {
-            _registerResult.value = RegisterResult(error = R.string.register_failed)
+    fun register(email: String, firstName: String, lastName: String, password: String) {
+        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val user = mAuth.currentUser
+
+                val profileUpdates = UserProfileChangeRequest.Builder()
+                    .setDisplayName("$firstName $lastName")
+                    // .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg")) // Optional, if you want to set a profile picture
+                    .build()
+
+                user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        _registerResult.value = RegisterResult.Success(RegisteredUserView(displayName = "$firstName $lastName"))
+                        _navigateToLogin.value = true // Trigger navigation
+                    } else {
+                        _registerResult.value = RegisterResult.Error(R.string.failed_to_update_profile)
+                    }
+                }
+            } else {
+                _registerResult.value = RegisterResult.Error(R.string.register_failed)
+            }
         }
     }
+
+
 
     fun registerDataChanged(username: String, password: String, confirmPassword: String) {
         if (!isUserNameValid(username)) {

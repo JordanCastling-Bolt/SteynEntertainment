@@ -11,20 +11,17 @@ class LoginDataSource {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        var result: Result<LoggedInUser>? = null
-
+    fun login(username: String, password: String, callback: (Result<LoggedInUser>) -> Unit) {
         auth.signInWithEmailAndPassword(username, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val firebaseUser = auth.currentUser
                     val user = LoggedInUser(firebaseUser!!.uid, firebaseUser.email!!)
-                    result = Result.Success(user)
+                    callback(Result.Success(user))
                 } else {
-                    result = Result.Error(IOException("Error logging in", task.exception))
+                    callback(Result.Error(IOException("Error logging in", task.exception)))
                 }
             }
-        return result ?: Result.Error(IOException("Unknown error occurred"))
     }
 
     fun logout() {

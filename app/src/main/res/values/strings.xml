@@ -37,4 +37,5 @@
     <string name="reset_password">Reset Password</string>
     <string name="retypeEmailAddress">Re-Type Email Address</string>
     <string name="web_client_id">272896532211-ij5hohp6hk5cnniv2qv45cog3ohrltt7.apps.googleusercontent.com</string>
+    <string name="failed_to_update_profile">Failed to update profile</string>
 </resources>

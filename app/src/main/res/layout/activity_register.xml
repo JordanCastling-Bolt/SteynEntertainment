@@ -55,7 +55,7 @@
             app:layout_constraintVertical_bias="0.039" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/txtEmail"
             android:layout_width="350dp"
             android:layout_height="65dp"
 
@@ -73,7 +73,7 @@
             tools:visibility="visible" />
 
         <EditText
-            android:id="@+id/txt_firstName"
+            android:id="@+id/txtFirstName"
             android:layout_width="350dp"
             android:layout_height="65dp"
 
@@ -86,11 +86,11 @@
             app:layout_constraintEnd_toEndOf="@+id/login_1"
             app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toStartOf="@+id/login_1"
-            app:layout_constraintTop_toBottomOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail"
             tools:visibility="visible" />
 
         <EditText
-            android:id="@+id/txt_lastName"
+            android:id="@+id/txtLastName"
             android:layout_width="350dp"
             android:layout_height="65dp"
 
@@ -103,7 +103,7 @@
             app:layout_constraintEnd_toEndOf="@+id/login_1"
             app:layout_constraintHorizontal_bias="0.405"
             app:layout_constraintStart_toStartOf="@+id/login_1"
-            app:layout_constraintTop_toBottomOf="@+id/txt_firstName"
+            app:layout_constraintTop_toBottomOf="@+id/txtFirstName"
             tools:visibility="visible" />
 
         <EditText
@@ -122,7 +122,7 @@
             app:layout_constraintEnd_toEndOf="@+id/login_1"
             app:layout_constraintHorizontal_bias="0.378"
             app:layout_constraintStart_toStartOf="@+id/login_1"
-            app:layout_constraintTop_toBottomOf="@+id/txt_lastName" />
+            app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
 
         <EditText
             android:id="@+id/retypePassword"
@@ -140,7 +140,7 @@
             app:layout_constraintEnd_toEndOf="@+id/login_1"
             app:layout_constraintHorizontal_bias="0.405"
             app:layout_constraintStart_toStartOf="@+id/login_1"
-            app:layout_constraintTop_toBottomOf="@+id/txt_lastName" />
+            app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
 
         <Button
             android:id="@+id/login"
