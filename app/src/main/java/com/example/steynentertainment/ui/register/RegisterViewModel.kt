@@ -20,21 +20,17 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
     val navigateToLogin: LiveData<Boolean> get() = _navigateToLogin
 
     fun register(email: String, firstName: String, lastName: String, password: String) {
-        val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
-
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val user = mAuth.currentUser
+                val user = firebaseAuth.currentUser
 
                 val profileUpdates = UserProfileChangeRequest.Builder()
                     .setDisplayName("$firstName $lastName")
-                    // .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg")) // Optional, if you want to set a profile picture
                     .build()
 
                 user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        _registerResult.value = RegisterResult.Success(RegisteredUserView(displayName = "$firstName $lastName"))
-                        _navigateToLogin.value = true // Trigger navigation
+                        sendEmailVerification()
                     } else {
                         _registerResult.value = RegisterResult.Error(R.string.failed_to_update_profile)
                     }
@@ -45,8 +41,6 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
         }
     }
 
-
-
     fun registerDataChanged(username: String, password: String, confirmPassword: String) {
         if (!isUserNameValid(username)) {
             _registerForm.value = RegisterFormState(usernameError = R.string.invalid_username)
@@ -56,6 +50,17 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
             _registerForm.value = RegisterFormState(confirmPasswordError = R.string.password_mismatch)
         } else {
             _registerForm.value = RegisterFormState(isDataValid = true)
+        }
+    }
+    private fun sendEmailVerification() {
+        val user = firebaseAuth.currentUser
+        user?.sendEmailVerification()?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _registerResult.value = RegisterResult.Success(RegisteredUserView(displayName = "${user.displayName}"))
+                _navigateToLogin.value = true // Trigger navigation
+            } else {
+                _registerResult.value = RegisterResult.Error(R.string.failed_to_send_verification_email)
+            }
         }
     }
 
