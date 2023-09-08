@@ -36,6 +36,7 @@
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
+        android:textColor="@color/black"
         android:theme="@style/Theme.SteynEntertainment"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="@+id/login_1"
@@ -55,6 +56,8 @@
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
+        android:textColor="@color/black"
+        android:theme="@style/Theme.SteynEntertainment"
         app:layout_constraintBottom_toTopOf="@+id/forgotPassword"
         app:layout_constraintEnd_toEndOf="@+id/login_1"
         app:layout_constraintStart_toStartOf="@+id/login_1"
@@ -74,6 +77,50 @@
         app:layout_constraintEnd_toEndOf="@+id/login_1"
         app:layout_constraintStart_toStartOf="@+id/login_1"
         app:layout_constraintTop_toBottomOf="@+id/login_1" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/google_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:contentDescription="@string/google_login"
+        android:theme="@style/Theme.SteynEntertainment"
+        app:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintEnd_toStartOf="@+id/facebook_fab"
+        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/ic_google_logo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/facebook_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="84dp"
+        android:contentDescription="@string/facebook_login"
+        android:theme="@style/Theme.SteynEntertainment"
+        app:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintEnd_toStartOf="@+id/twitter_fab"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/ic_facebook_logo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/twitter_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="28dp"
+        android:contentDescription="@string/twitter_login"
+        android:theme="@style/Theme.SteynEntertainment"
+        app:backgroundTint="?attr/colorBackgroundFloating"
+        app:fabSize="auto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/ic_twitter_logo" />
 
     <ProgressBar
         android:id="@+id/loading"
