@@ -1,6 +1,7 @@
 package com.example.steynentertainment.ui.data
 
 import com.example.steynentertainment.ui.data.model.LoggedInUser
+import com.google.firebase.auth.FirebaseAuth
 import java.io.IOException
 
 /**
@@ -8,17 +9,22 @@ import java.io.IOException
  */
 class LoginDataSource {
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        try {
-            // TODO: handle loggedInUser authentication
-            val fakeUser = LoggedInUser(java.util.UUID.randomUUID().toString(), "Jane Doe")
-            return Result.Success(fakeUser)
-        } catch (e: Throwable) {
-            return Result.Error(IOException("Error logging in", e))
-        }
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    fun login(username: String, password: String, callback: (Result<LoggedInUser>) -> Unit) {
+        auth.signInWithEmailAndPassword(username, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val firebaseUser = auth.currentUser
+                    val user = LoggedInUser(firebaseUser!!.uid, firebaseUser.email!!)
+                    callback(Result.Success(user))
+                } else {
+                    callback(Result.Error(IOException("Error logging in", task.exception)))
+                }
+            }
     }
 
     fun logout() {
-        // TODO: revoke authentication
+        auth.signOut()
     }
 }

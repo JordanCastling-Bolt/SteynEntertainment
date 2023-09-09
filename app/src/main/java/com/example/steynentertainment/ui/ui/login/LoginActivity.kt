@@ -14,43 +14,60 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.ActivityLoginBinding
-import androidx.fragment.app.FragmentManager
 import android.content.Intent
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.example.steynentertainment.MainActivity
 import com.example.steynentertainment.ui.forgot_password.ForgotPasswordActivity
 import com.example.steynentertainment.ui.register.RegisterActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val username = binding.username
+        auth = FirebaseAuth.getInstance()
+
+        val username = binding.txtEmail
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
-        val signUp = binding.signUp
-        val forgotPassword = binding.forgotPassword
 
-        if (forgotPassword != null) {
-            forgotPassword.setOnClickListener {
-                val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
-                startActivity(intent)
-            }
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.web_client_id))  // Replace with your web client ID
+            .requestEmail()
+            .build()
+
+        val googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        binding.googleFab?.setOnClickListener {
+            signIn(googleSignInClient)
         }
 
-        if (signUp != null) {
-            signUp.setOnClickListener {
-                val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-                startActivity(intent)
-            }
+        binding.forgotPassword?.setOnClickListener {
+            val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
+            startActivity(intent)
         }
 
+        binding.signUp?.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -79,8 +96,14 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
                 setResult(Activity.RESULT_OK)
+
+                // Start MainActivity here
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+
                 finish()  // Complete and destroy login activity once successful
             }
+
         })
 
 
@@ -103,6 +126,7 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
+                            this.context, // passing context
                             username.text.toString(),
                             password.text.toString()
                         )
@@ -112,21 +136,78 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                loginViewModel.login(
+                    this.context, // passing context
+                    username.text.toString(),
+                    password.text.toString()
+                )
             }
         }
+    }
+    private fun signIn(googleSignInClient: GoogleSignInClient) {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogle(account)
+            } catch (e: ApiException) {
+                // Google Sign-In failed
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Successfully signed in
+                    val user = auth.currentUser
+                    updateUiWithUser(LoggedInUserView(user!!.displayName!!))
+
+                    // Navigate to MainActivity
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
+                    // Complete and destroy login activity
+                    finish()
+                } else {
+                    // Sign-in failed
+                    showLoginFailed(R.string.login_failed)
+                }
+            }
+    }
+
+    companion object {
+        private const val RC_SIGN_IN = 9001
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
-        // TODO : initiate successful logged in experience
+
+        // Initiate successful logged-in experience
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+
+        // Navigate to MainActivity
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+
+        // Complete and destroy login activity
+        finish()
     }
+
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
