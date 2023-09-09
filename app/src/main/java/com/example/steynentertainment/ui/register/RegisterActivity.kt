@@ -79,7 +79,7 @@ class RegisterActivity : AppCompatActivity() {
                 is RegisterResult.Success -> {
                     Toast.makeText(
                         applicationContext,
-                        "Registration was successful! Please verify your email with the link that was just sent to you.",
+                        "Registration was successful! Please verify your email.",
                         Toast.LENGTH_LONG
                     ).show()
                 }
