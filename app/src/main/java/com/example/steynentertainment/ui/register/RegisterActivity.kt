@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -25,6 +26,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var registerViewModel: RegisterViewModel
     private val _registerResult = MutableLiveData<RegisterResult>()
     val registerResult: LiveData<RegisterResult> = _registerResult
+    private lateinit var progressBar: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,6 +40,8 @@ class RegisterActivity : AppCompatActivity() {
         val firebaseAuth = FirebaseAuth.getInstance()
         val factory = RegisterViewModelFactory(firebaseAuth)
 
+        progressBar = binding.loading
+
         val usernameEditText = binding.txtEmail
         val passwordEditText = binding.password
         val confirmPasswordEditText = binding.retypePassword
@@ -45,6 +50,9 @@ class RegisterActivity : AppCompatActivity() {
         val signUpButton = binding.login
 
         signUpButton.setOnClickListener {
+            // Show progress bar
+            progressBar.visibility = View.VISIBLE
+
             val email = usernameEditText.text.toString()
             val firstName = firstNameEditText.text.toString()
             val lastName = lastNameEditText.text.toString()
@@ -52,6 +60,7 @@ class RegisterActivity : AppCompatActivity() {
 
             registerViewModel.register(email, firstName, lastName, password)
         }
+
 
         registerViewModel = ViewModelProvider(this, factory).get(RegisterViewModel::class.java)
 
@@ -75,6 +84,9 @@ class RegisterActivity : AppCompatActivity() {
         registerViewModel.registerResult.observe(this@RegisterActivity, Observer {
             val registerResult = it ?: return@Observer
 
+            // Hide progress bar when result received
+            progressBar.visibility = View.GONE
+
             when (registerResult) {
                 is RegisterResult.Success -> {
                     Toast.makeText(
@@ -92,6 +104,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         })
+
 
         registerViewModel.navigateToLogin.observe(this@RegisterActivity, Observer { navigate ->
             if (navigate) {
