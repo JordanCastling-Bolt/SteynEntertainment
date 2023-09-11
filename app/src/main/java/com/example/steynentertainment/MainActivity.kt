@@ -57,6 +57,15 @@ class MainActivity : AppCompatActivity() {
         // Setup action bar and bottom navigation
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+// Conditionally disable or hide navigation items
+        if (isLimitedAccess) {
+        val menu = navView.menu
+        menu.findItem(R.id.navigation_members)?.isVisible = false // hide Members tab
+        menu.findItem(R.id.navigation_profile)?.isVisible = false // hide Profile tab
+        }
     }
 }
+
+
 
