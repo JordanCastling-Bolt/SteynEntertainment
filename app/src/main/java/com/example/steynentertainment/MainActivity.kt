@@ -9,11 +9,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.steynentertainment.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.NavGraph
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var isLimitedAccess: Boolean = false // Declare it here to make it accessible throughout the class
+    private var isLimitedAccess: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,46 +24,39 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         isLimitedAccess = intent.getBooleanExtra("LIMITED_ACCESS", false)
-
-        val navView: BottomNavigationView = binding.navView
+        val isAdmin = intent.getBooleanExtra("IS_ADMIN", false)
+        Toast.makeText(this, "isAdmin: $isAdmin", Toast.LENGTH_SHORT).show() // Debug line
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        val navInflater = navController.navInflater
+        val graph = navInflater.inflate(R.navigation.mobile_navigation).apply {
+            // Conditionally set the start destination
+            setStartDestination(
+                if (isAdmin) {
+                    R.id.fragment_admin_home
+                } else {
+                    R.id.navigation_home
+                }
+            )
+        }
+
+        navController.graph = graph // Set the modified NavGraph to the NavController
+
+        val navView: BottomNavigationView = binding.navView
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_events, R.id.navigation_members, R.id.navigation_aboutUs, R.id.navigation_profile
+                R.id.navigation_home,
+                R.id.navigation_events,
+                R.id.navigation_members,
+                R.id.navigation_aboutUs,
+                R.id.navigation_profile,
+                R.id.fragment_admin_home
             )
         )
+
+        // Setup action bar and bottom navigation
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        // Handle item selection
-        navView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    true // Navigate to Home Fragment
-                }
-                R.id.navigation_members -> {
-                    if (isLimitedAccess) {
-                        Toast.makeText(this, "Access to Members is limited.", Toast.LENGTH_SHORT).show()
-                        false // Cancel the navigation
-                    } else {
-                        true // Navigate to Members Fragment
-                    }
-                }
-                R.id.navigation_profile -> {
-                    if (isLimitedAccess) {
-                        Toast.makeText(this, "Access to Profile is limited.", Toast.LENGTH_SHORT).show()
-                        false // Cancel the navigation
-                    } else {
-                        true // Navigate to Profile Fragment
-                    }
-                }
-                else -> {
-                    true // This would mean that other items should not be restricted
-                }
-            }
-        }
     }
 }
+

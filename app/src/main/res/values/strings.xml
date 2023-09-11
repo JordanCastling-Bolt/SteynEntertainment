@@ -40,4 +40,6 @@
     <string name="web_client_id">272896532211-ij5hohp6hk5cnniv2qv45cog3ohrltt7.apps.googleusercontent.com</string>
     <string name="failed_to_update_profile">Failed to update profile</string>
     <string name="failed_to_send_verification_email">Failed to send verification email</string>
+    <string name="firestore_error">Could not add user information</string>
+    <string name="firestore_success">Add user information successfully</string>
 </resources>
