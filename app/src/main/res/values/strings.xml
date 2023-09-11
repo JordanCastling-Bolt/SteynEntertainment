@@ -24,6 +24,7 @@
     <string name="google_login">"Google Login"</string>
     <string name="facebook_login">"Facebook Login"</string>
     <string name="twitter_login">"Twitter Login"</string>
+    <string name="preview">Preview</string>
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>
     <string name="previous">Previous</string>

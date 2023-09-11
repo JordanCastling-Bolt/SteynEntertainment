@@ -131,7 +131,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="463dp"
         android:layout_marginBottom="965dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,6 +169,18 @@
         app:layout_constraintEnd_toStartOf="@+id/signUp"
         app:layout_constraintStart_toStartOf="@+id/login_1"
         app:layout_constraintTop_toTopOf="@+id/login_1" />
+
+    <Button
+        android:id="@+id/btn_preview"
+        android:layout_width="118dp"
+        android:layout_height="57dp"
+        android:text="@string/preview"
+        app:layout_constraintBottom_toBottomOf="@+id/login_1"
+        app:layout_constraintEnd_toStartOf="@+id/login"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
