@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "272896532211",
+    "project_id": "steynentertainment-800ea",
+    "storage_bucket": "steynentertainment-800ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272896532211:android:304fcef5e3de0c6b7aa186",
+        "android_client_info": {
+          "package_name": "com.example.steynentertainment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272896532211-v7sejeniuf3hbpfcf81cf51un9pvnc4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.steynentertainment",
+            "certificate_hash": "b9d5b93c60326dfbc15f1c0abbbe783f484257bc"
+          }
+        },
+        {
+          "client_id": "272896532211-ij5hohp6hk5cnniv2qv45cog3ohrltt7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxSIYsNiPlWxVLrgHwCCioSF8USO5ZxSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272896532211-6p2i64p812jee1qhaadgp302dgjli4cj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

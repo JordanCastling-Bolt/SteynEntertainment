@@ -1,69 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ui.ui.login.LoginActivity">
+    tools:context=".ui.ui.login.LoginActivity"
+    android:theme="@style/Theme.SteynEntertainment">
+
+    <TextView
+        android:id="@+id/login_1"
+        android:layout_width="365dp"
+        android:layout_height="322dp"
+        android:background="@drawable/rounded_border"
+        android:backgroundTint="@color/black_v"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:id="@+id/txtEmail"
+        android:layout_width="350dp"
+
+        android:layout_height="65dp"
+        android:background="@drawable/rounded_border"
+        android:gravity="center"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/black"
+        android:theme="@style/Theme.SteynEntertainment"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="@+id/login_1"
+        app:layout_constraintStart_toStartOf="@+id/login_1"
+        app:layout_constraintTop_toTopOf="@+id/login_1"
+        tools:visibility="visible" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="350dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="132dp"
+        android:background="@drawable/rounded_border"
+        android:gravity="center"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        android:textColor="@color/black"
+        android:theme="@style/Theme.SteynEntertainment"
+        app:layout_constraintBottom_toTopOf="@+id/forgotPassword"
+        app:layout_constraintEnd_toEndOf="@+id/login_1"
+        app:layout_constraintStart_toStartOf="@+id/login_1"
+        app:layout_constraintTop_toTopOf="@+id/login_1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="57dp"
         android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
+        android:background="@drawable/rounded_border"
+        android:backgroundTint="@color/black"
         android:enabled="false"
         android:text="@string/action_sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/login_1"
+        app:layout_constraintEnd_toEndOf="@+id/login_1"
+        app:layout_constraintStart_toStartOf="@+id/login_1"
+        app:layout_constraintTop_toBottomOf="@+id/login_1" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/google_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:contentDescription="@string/google_login"
+        android:theme="@style/Theme.SteynEntertainment"
+        app:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintEnd_toStartOf="@+id/facebook_fab"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/ic_google_logo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/facebook_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="84dp"
+        android:contentDescription="@string/facebook_login"
+        android:theme="@style/Theme.SteynEntertainment"
+        app:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintEnd_toStartOf="@+id/twitter_fab"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/ic_facebook_logo" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/twitter_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="28dp"
+        android:contentDescription="@string/twitter_login"
+        android:theme="@style/Theme.SteynEntertainment"
+        app:backgroundTint="?attr/colorBackgroundFloating"
+        app:fabSize="auto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/ic_twitter_logo" />
 
     <ProgressBar
         android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="42dp"
+        android:layout_height="64dp"
         android:layout_gravity="center"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="64dp"
-        android:visibility="gone"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="463dp"
+        android:layout_marginBottom="965dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="113dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="222dp"
+        android:text="@string/action_sign_up"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toEndOf="@+id/login_1"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="@+id/login_1"
+        app:layout_constraintTop_toTopOf="@+id/login_1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="183dp"
+        android:layout_height="274dp"
+        android:background="@drawable/rounded_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:srcCompat="@drawable/steynent_212x300" />
+
+    <Button
+        android:id="@+id/forgotPassword"
+        android:layout_width="203dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="223dp"
+        android:text="@string/forgot_password"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toStartOf="@+id/signUp"
+        app:layout_constraintStart_toStartOf="@+id/login_1"
+        app:layout_constraintTop_toTopOf="@+id/login_1" />
+
+    <Button
+        android:id="@+id/btn_preview"
+        android:layout_width="118dp"
+        android:layout_height="57dp"
+        android:text="@string/preview"
+        app:layout_constraintBottom_toBottomOf="@+id/login_1"
+        app:layout_constraintEnd_toStartOf="@+id/login"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
