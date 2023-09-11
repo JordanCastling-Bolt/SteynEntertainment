@@ -1,6 +1,7 @@
 package com.example.steynentertainment.ui.ui.login
 
 import android.app.Activity
+import android.app.ProgressDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -27,12 +28,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,22 +97,24 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {
             val loginResult = it ?: return@Observer
 
-            loading.visibility = View.GONE
+            // Hide ProgressBar
+            binding.loading.visibility = View.GONE
+
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
+                // Show ProgressBar
+                binding.loading.visibility = View.VISIBLE
+
                 updateUiWithUser(loginResult.success)
                 setResult(Activity.RESULT_OK)
-
-                // Start MainActivity here
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-
-                finish()  // Complete and destroy login activity once successful
+                // Check user role and navigate to the corresponding MainActivity
+                checkUserRoleAndNavigate(auth.currentUser!!.uid)
             }
 
         })
+
 
 
         username.afterTextChanged {
@@ -149,10 +154,49 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+    private fun checkUserRoleAndNavigate(uid: String) {
+        val docRef = db.collection("Users").document(uid)
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null && document.exists()) {
+                val role = document.getString("role")
+                if (role != null) {
+                    navigateToActivityBasedOnRole(role)
+                } else {
+                    // Handle the case where the "role" field is not present in the Firestore document
+                    // For example, you could navigate to a default activity or show an error message.
+                }
+            } else {
+                // Handle missing document case
+                // For example, you could show an error message.
+            }
+        }.addOnFailureListener {
+            // Handle error
+            // For example, you could log the error or show an error message.
+        }
+    }
+
+    private fun navigateToActivityBasedOnRole(role: String) {
+        // Show ProgressBar
+        binding.loading.visibility = View.VISIBLE
+
+        val intent = Intent(this, MainActivity::class.java)
+        if (role == "admin") {
+            intent.putExtra("IS_ADMIN", true)
+        } else {
+            intent.putExtra("IS_ADMIN", false)
+        }
+
+        startActivity(intent)
+
+        // Hide ProgressBar
+        binding.loading.visibility = View.GONE
+    }
+
     private fun navigateToLimitedMainActivity() {
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
         intent.putExtra("LIMITED_ACCESS", true)
         startActivity(intent)
+        binding.loading.visibility = View.GONE
     }
 
     private fun signIn(googleSignInClient: GoogleSignInClient) {
@@ -179,22 +223,51 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    // Show ProgressBar
+                    binding.loading.visibility = View.VISIBLE
+
                     // Successfully signed in
                     val user = auth.currentUser
-                    updateUiWithUser(LoggedInUserView(user!!.displayName!!))
-
-                    // Navigate to MainActivity
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-
-                    // Complete and destroy login activity
-                    finish()
-                } else {
+                    checkIfUserExistsOrCreate(user!!.uid, acct)  // new function
+                }
+                else {
                     // Sign-in failed
                     showLoginFailed(R.string.login_failed)
                 }
             }
     }
+
+    // New function to check if the user already exists or create a new one if not
+    private fun checkIfUserExistsOrCreate(uid: String, acct: GoogleSignInAccount) {
+        val docRef = db.collection("Users").document(uid)
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null && document.exists()) {
+                // User exists, proceed to navigate
+                val role = document.getString("role")
+                if (role != null) {
+                    navigateToActivityBasedOnRole(role)
+                }
+            } else {
+                // User doesn't exist, create a new document
+                val newUser = hashMapOf(
+                    "email" to acct.email,
+                    "firstName" to acct.givenName,
+                    "lastName" to acct.familyName,
+                    "role" to "user"  // You can assign a default role
+                )
+                db.collection("Users").document(uid).set(newUser).addOnSuccessListener {
+                    // Successfully created new user, now proceed to navigate
+                    val role = document.getString("role")
+                    if (role != null) {
+                        navigateToActivityBasedOnRole(role)
+                    }
+                }.addOnFailureListener { e ->
+                    // Handle failure
+                }
+            }
+        }
+    }
+
 
     companion object {
         private const val RC_SIGN_IN = 9001
@@ -210,13 +283,7 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
-
-        // Navigate to MainActivity
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-
         // Complete and destroy login activity
-        finish()
     }
 
 
