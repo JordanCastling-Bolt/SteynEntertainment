@@ -50,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
-        val btnPreview = binding.btnPreview
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))  // Replace with your web client ID
@@ -59,9 +58,6 @@ class LoginActivity : AppCompatActivity() {
 
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        binding.btnPreview?.setOnClickListener {
-            navigateToLimitedMainActivity()
-        }
 
         binding.googleFab?.setOnClickListener {
             signIn(googleSignInClient)
@@ -114,8 +110,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
         })
-
-
 
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
@@ -180,22 +174,14 @@ class LoginActivity : AppCompatActivity() {
         binding.loading.visibility = View.VISIBLE
 
         val intent = Intent(this, MainActivity::class.java)
-        if (role == "admin") {
-            intent.putExtra("IS_ADMIN", true)
-        } else {
-            intent.putExtra("IS_ADMIN", false)
-        }
+        intent.putExtra("IS_MEMBER", role == "member")
+
+        // Add an extra for full access
+        intent.putExtra("LIMITED_ACCESS", false)
 
         startActivity(intent)
 
         // Hide ProgressBar
-        binding.loading.visibility = View.GONE
-    }
-
-    private fun navigateToLimitedMainActivity() {
-        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-        intent.putExtra("LIMITED_ACCESS", true)
-        startActivity(intent)
         binding.loading.visibility = View.GONE
     }
 
@@ -204,6 +190,7 @@ class LoginActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -268,7 +255,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
     companion object {
         private const val RC_SIGN_IN = 9001
     }
@@ -285,7 +271,6 @@ class LoginActivity : AppCompatActivity() {
         ).show()
         // Complete and destroy login activity
     }
-
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()

@@ -11,11 +11,10 @@ import com.example.steynentertainment.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.NavGraph
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var isLimitedAccess: Boolean = false
+    private var isLimitedAccess: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,21 +22,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        isLimitedAccess = intent.getBooleanExtra("LIMITED_ACCESS", false)
-        val isAdmin = intent.getBooleanExtra("IS_ADMIN", false)
-        Toast.makeText(this, "isAdmin: $isAdmin", Toast.LENGTH_SHORT).show() // Debug line
+        val isMember = intent.getBooleanExtra("IS_MEMBER", false)
+        Toast.makeText(this, "isMember: $isMember", Toast.LENGTH_SHORT).show() // Debug line
+
+        if (intent.hasExtra("LIMITED_ACCESS")) {
+            isLimitedAccess = intent.getBooleanExtra("LIMITED_ACCESS", true)
+        }
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val navInflater = navController.navInflater
         val graph = navInflater.inflate(R.navigation.mobile_navigation).apply {
-            // Conditionally set the start destination
-            setStartDestination(
-                if (isAdmin) {
-                    R.id.fragment_admin_home
-                } else {
-                    R.id.navigation_home
-                }
-            )
+            // Always set the start destination to fragment_home
+            setStartDestination(R.id.navigation_home)
         }
 
         navController.graph = graph // Set the modified NavGraph to the NavController
@@ -49,8 +45,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_events,
                 R.id.navigation_members,
                 R.id.navigation_aboutUs,
-                R.id.navigation_profile,
-                R.id.fragment_admin_home
+                R.id.navigation_profile
             )
         )
 
@@ -58,14 +53,11 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-// Conditionally disable or hide navigation items
+        // Conditionally disable or hide navigation items
         if (isLimitedAccess) {
-        val menu = navView.menu
-        menu.findItem(R.id.navigation_members)?.isVisible = false // hide Members tab
-        menu.findItem(R.id.navigation_profile)?.isVisible = false // hide Profile tab
+            val menu = navView.menu
+            menu.findItem(R.id.navigation_members)?.isVisible = false // hide Members tab
+            menu.findItem(R.id.navigation_profile)?.isVisible = false // hide Profile tab
         }
     }
 }
-
-
-

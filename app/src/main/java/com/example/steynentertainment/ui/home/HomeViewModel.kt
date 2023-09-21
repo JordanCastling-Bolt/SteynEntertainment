@@ -10,4 +10,17 @@ class HomeViewModel : ViewModel() {
         value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
+
+    // LiveData for navigation to LoginActivity
+    private val _navigateToLogin = MutableLiveData<Boolean?>()
+    val navigateToLogin: MutableLiveData<Boolean?> get() = _navigateToLogin
+
+    fun onLoginClicked() {
+        _navigateToLogin.value = true
+    }
+
+    // Call this once navigation is done to reset the LiveData
+    fun onLoginNavigated() {
+        _navigateToLogin.value = null
+    }
 }
