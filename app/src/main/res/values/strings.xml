@@ -32,6 +32,10 @@
     <string name="lorem_ipsum">
 
     </string>
+
+    <string name="homeMessage">"Welcome to South Africa's Leading Entertainment Hub"</string>
+
+
     <string name="register_failed" />
     <string name="password_mismatch">Passwords Don\'t Match</string>
     <string name="title_activity_forgot_password">Forgot Password</string>
