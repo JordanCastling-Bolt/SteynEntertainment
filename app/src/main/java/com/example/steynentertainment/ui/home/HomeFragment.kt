@@ -1,20 +1,20 @@
 package com.example.steynentertainment.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.steynentertainment.databinding.FragmentHomeBinding
+import com.example.steynentertainment.ui.ui.login.LoginActivity
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -32,6 +32,20 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+        // Set up login button with ViewModel
+        binding.btnLogin.setOnClickListener {
+            homeViewModel.onLoginClicked()
+        }
+
+        // Observe navigation event
+        homeViewModel.navigateToLogin.observe(viewLifecycleOwner) { shouldNavigate ->
+            if (shouldNavigate == true) {
+                val intent = Intent(activity, LoginActivity::class.java)
+                startActivity(intent)
+                homeViewModel.onLoginNavigated() // Reset the LiveData
+            }
+        }
+
         return root
     }
 
