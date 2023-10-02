@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+
     android:background="@color/black"
     tools:context=".ui.get_in_touch.GetInTouchFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/getInTouch"
@@ -23,6 +24,7 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
@@ -157,23 +159,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/yourName" />
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/sendMessageBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:background="@drawable/rounded_border"
-                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="@string/send_message"
                     android:textAllCaps="false"
-                    android:textStyle="italic"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/btnTextSize"
-                    app:layout_constraintEnd_toBottomOf="@+id/messageText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="563dp" />
+                    android:textStyle="italic"
+                    tools:layout_editor_absoluteX="88dp"
+                    tools:layout_editor_absoluteY="562dp"
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/subjectTextV"
