@@ -83,11 +83,17 @@
                              4 Siemert Road,\n
                              New Doornfontein,\n
                              Johannesburg</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rock_daisies_text">Reflecting the present and curating the future, Steyn Entertainment – the company
                                     behind Rocking the Daisies – is committed to developing, supporting and
                                     cultivating quality, multi-sensory cultural experiences, in the interest of
                                     maintaining that R100-laundry type joy through music and love.</string>
-
+    <string name="get_in_touch_header">get in touch</string>
+    <string name="get_in_touch_body">Looking to start a project? Let us know how we can help you</string>
+    <string name="your_name">Your Name</string>
+    <string name="email_address">E-mail Address</string>
+    <string name="subject_text">Subject</string>
+    <string name="message_text">Message</string>
+    <string name="send_message">Send a Message</string>
+    <string name="email_info_text">info@steynentertainment.com</string>
 </resources>

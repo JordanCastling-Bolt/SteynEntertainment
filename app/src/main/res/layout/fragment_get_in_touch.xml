@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".ui.get_in_touch.GetInTouchFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/getInTouch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.SteynEntertainment"
+            tools:context=".ui.get_in_touch.GetInTouchFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:id="@+id/getInTouchV"
+                    android:layout_width="374dp"
+                    android:layout_height="480dp"
+                    android:layout_marginTop="140dp"
+                    android:background="@drawable/rounded_border"
+                    android:backgroundTint="@color/yellow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.567"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/findUsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/get_in_touch_body"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/headerTextSize"
+                    android:textStyle="italic"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <TextView
+                    android:id="@+id/yourName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="55dp"
+                    android:text="Your Name"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/headerTextSize"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/findUsText" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nameLayout"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/getInTouchV">
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailText"
+                    android:layout_width="325dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/emailTextV" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/messageText"
+                    android:layout_width="325dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/messageTextV" />
+
+                <TextView
+                    android:id="@+id/emailTextV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="7dp"
+                    android:text="@string/email_address"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/headerTextSize"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+
+                <TextView
+                    android:id="@+id/email_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/email_info_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/headerTextSize"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/getInTouchV" />
+
+                <TextView
+                    android:id="@+id/messageTextV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/message_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/headerTextSize"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/subjectText" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subjectText"
+                    android:layout_width="325dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEditText"
+                    android:layout_width="325dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/yourName" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sendMessageBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:background="@drawable/rounded_border"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/send_message"
+                    android:textAllCaps="false"
+                    android:textStyle="italic"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/btnTextSize"
+                    app:layout_constraintEnd_toBottomOf="@+id/messageText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="563dp" />
+
+                <TextView
+                    android:id="@+id/subjectTextV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/subject_text"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/headerTextSize"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toEndOf="@+id/getInTouchV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/emailText" />
+
+                <TextView
+                    android:id="@+id/getInTouchHeaderText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/get_in_touch_header"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/headerTextSize"
+                    android:textStyle="italic"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="27dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

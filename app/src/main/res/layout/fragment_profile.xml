@@ -115,6 +115,7 @@
                 android:id="@+id/txtFirstName"
                 android:layout_width="350dp"
                 android:layout_height="57dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="125dp"
                 android:background="@drawable/rounded_border"
                 android:gravity="center"
@@ -122,14 +123,15 @@
                 android:selectAllOnFocus="true"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@id/txtEmail"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/changeImage"
-                tools:layout_editor_absoluteX="16dp"
                 tools:visibility="visible" />
 
             <EditText
                 android:id="@+id/txtLastName"
                 android:layout_width="350dp"
                 android:layout_height="57dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="465dp"
                 android:background="@drawable/rounded_border"
                 android:gravity="center"
@@ -137,8 +139,8 @@
                 android:inputType="text"
                 android:selectAllOnFocus="true"
                 android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="16dp"
                 tools:visibility="visible" />
 
             <EditText
@@ -199,7 +201,6 @@
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/diamondImageView"
                 tools:layout_editor_absoluteX="16dp" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
