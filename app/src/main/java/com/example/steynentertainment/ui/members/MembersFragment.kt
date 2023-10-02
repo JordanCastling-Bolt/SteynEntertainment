@@ -13,9 +13,12 @@ class MembersFragment : Fragment() {
 
     private var _binding: FragmentMembersBinding? = null
 
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,13 +28,11 @@ class MembersFragment : Fragment() {
         val membersViewModel =
             ViewModelProvider(this).get(MembersViewModel::class.java)
 
+
+
         _binding = FragmentMembersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        membersViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 
