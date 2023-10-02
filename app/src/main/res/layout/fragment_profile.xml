@@ -89,7 +89,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/change_profile_text_size"
                 app:backgroundTint="@color/black_v"
-                app:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userImage" />
@@ -165,9 +164,6 @@
                 android:id="@+id/updateInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="32dp"
                 android:background="@drawable/rounded_border"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
@@ -175,11 +171,8 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/btnTextSize"
-                app:gravity="center"
-                app:layout_constraintEnd_toBottomOf="@+id/updatePassword"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/updatePassword" />
+                tools:layout_editor_absoluteX="104dp"
+                tools:layout_editor_absoluteY="589dp" />
 
             <ImageView
                 android:id="@+id/diamondImageView"
@@ -195,10 +188,12 @@
                 android:id="@+id/view_rewards_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="transparent"
                 android:text="View my Rewards"
                 android:textAllCaps="false"
+                android:backgroundTint="@color/white"
                 android:textColor="@color/black"
+                android:textColorLink="@color/white"
+                app:iconTint="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/diamondImageView"
                 tools:layout_editor_absoluteX="16dp" />
 
