@@ -3,12 +3,13 @@ package com.example.steynentertainment
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.steynentertainment.databinding.ActivityMainBinding
-import com.example.steynentertainment.ui.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -37,34 +38,21 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // Handle item selection
-        navView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    true // Navigate to Home Fragment
-                }
-                R.id.navigation_members -> {
-                    if (isLimitedAccess) {
+        // Attach OnDestinationChangedListener to handle limited access
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (isLimitedAccess) {
+                when (destination.id) {
+                    R.id.navigation_members -> {
                         Toast.makeText(this, "Access to Members is limited.", Toast.LENGTH_SHORT).show()
-                        false // Cancel the navigation
-                    } else {
-                        true // Navigate to Members Fragment
+                        navController.navigate(R.id.navigation_home)
                     }
-                }
-                R.id.navigation_profile -> {
-                    if (isLimitedAccess) {
+                    R.id.navigation_profile -> {
                         Toast.makeText(this, "Access to Profile is limited.", Toast.LENGTH_SHORT).show()
-                        false // Cancel the navigation
-                    } else {
-                        //Toast.makeText(this, "Access to Profile is limited.", Toast.LENGTH_SHORT).show()
-
-                        true // Navigate to Profile Fragment
-                        //Toast.makeText(this, "Access to Profile is limited.", Toast.LENGTH_SHORT).show()
-
+                        navController.navigate(R.id.navigation_home)
                     }
-                }
-                else -> {
-                    true // This would mean that other items should not be restricted
+                    else -> {
+                        // Do nothing for other destinations
+                    }
                 }
             }
         }

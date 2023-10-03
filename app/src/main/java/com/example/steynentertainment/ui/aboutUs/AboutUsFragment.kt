@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.steynentertainment.databinding.FragmentAboutusBinding
@@ -22,16 +21,14 @@ class AboutUsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val aboutUsViewModel =
-            ViewModelProvider(this).get(AboutUsViewModel::class.java)
+        // Initialize the ViewModel
+        val aboutUsViewModel = ViewModelProvider(this).get(AboutUsViewModel::class.java)
 
+        // Inflate the layout using data binding
         _binding = FragmentAboutusBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.aboutUsText
-        aboutUsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        // No need to set text programmatically as it should be already in XML layout
         return root
     }
 
