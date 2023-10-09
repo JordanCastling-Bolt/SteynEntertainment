@@ -1,207 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fillViewport="true">
+    android:id="@+id/constraintLayout2"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="662dp">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".ui.profile.ProfileFragment"
-        android:theme="@style/Theme.SteynEntertainment">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            android:id="@+id/ConstraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="184dp"
-                android:layout_height="178dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginStart="127dp"
-                android:layout_marginEnd="124dp"
-                android:background="@drawable/rounded_border"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/steynent_212x300" />
-
-            <TextView
-                android:id="@+id/profile_view"
-                android:layout_width="374dp"
-                android:layout_height="453dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/rounded_border"
-                android:backgroundTint="@color/black_v"
-                app:layout_constraintBottom_toBottomOf="@id/userImage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.578"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:layout_constraintVertical_bias="0.023" />
-
-            <ImageView
-                android:id="@+id/userImage"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="186dp"
-                android:background="@drawable/circular_border"
-                android:foregroundGravity="center"
-                app:layout_constraintBottom_toTopOf="@id/changeImage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/changeImage"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="80dp"
-                android:background="@color/black_v"
-                android:gravity="center"
-                android:text="@string/changeImageBtn"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/change_profile_text_size"
-                app:backgroundTint="@color/black_v"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/userImage" />
-
-            <EditText
-                android:id="@+id/txtEmail"
-                android:layout_width="350dp"
-                android:layout_height="57dp"
-                android:layout_marginTop="155dp"
-                android:background="@drawable/rounded_border"
-                android:gravity="center"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/profile_view"
-                app:layout_constraintHorizontal_bias="0.458"
-                app:layout_constraintStart_toStartOf="@+id/profile_view"
-                app:layout_constraintTop_toTopOf="@+id/profile_view"
-                tools:visibility="visible" />
-
-            <EditText
-                android:id="@+id/txtFirstName"
-                android:layout_width="350dp"
-                android:layout_height="57dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="125dp"
-                android:background="@drawable/rounded_border"
-                android:gravity="center"
-                android:hint="@string/first_name"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/txtEmail"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/changeImage"
-                tools:visibility="visible" />
-
-            <EditText
-                android:id="@+id/txtLastName"
-                android:layout_width="350dp"
-                android:layout_height="57dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="465dp"
-                android:background="@drawable/rounded_border"
-                android:gravity="center"
-                android:hint="@string/last_name"
-                android:inputType="text"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible" />
-
-            <EditText
-                android:id="@+id/updatePassword"
-                android:layout_width="350dp"
-                android:layout_height="57dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/rounded_border"
-                android:gravity="center"
-                android:hint="@string/prompt_password"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/profile_view"
-                app:layout_constraintHorizontal_bias="0.458"
-                app:layout_constraintStart_toStartOf="@+id/profile_view"
-                app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/updateInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:background="@drawable/rounded_border"
-                android:foreground="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:text="@string/updateMyInfo"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/btnTextSize"
-                tools:layout_editor_absoluteX="104dp"
-                tools:layout_editor_absoluteY="589dp" />
-
-            <ImageView
-                android:id="@+id/diamondImageView"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="5dp"
-                android:foregroundGravity="center"
-                app:layout_constraintTop_toBottomOf="@+id/profile_view"
-                app:srcCompat="@drawable/diamond_image"
-                tools:layout_editor_absoluteX="149dp" />
-
-            <Button
-                android:id="@+id/view_rewards_btn"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="View my Rewards"
-                android:textAllCaps="false"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:textColorLink="@color/white"
-                app:iconTint="@color/white"
-                app:layout_constraintTop_toBottomOf="@+id/diamondImageView"
-                tools:layout_editor_absoluteX="16dp" />
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="184dp"
+                    android:layout_height="178dp"
+                    android:layout_marginStart="127dp"
+                    android:layout_marginEnd="124dp"
+                    android:background="@drawable/rounded_border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/steynent_212x300" />
+
+                <TextView
+                    android:id="@+id/profile_view"
+                    android:layout_width="374dp"
+                    android:layout_height="453dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/rounded_border"
+                    android:backgroundTint="@color/black_v"
+                    app:layout_constraintBottom_toBottomOf="@id/userImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.578"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                    app:layout_constraintVertical_bias="0.023" />
+
+                <ImageView
+                    android:id="@+id/userImage"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="186dp"
+                    android:background="@drawable/circular_border"
+                    android:foregroundGravity="center"
+                    app:layout_constraintBottom_toTopOf="@id/changeImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/changeImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black_v"
+                    android:text="@string/changeImageBtn"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/change_profile_text_size"
+                    app:backgroundTint="@color/black_v"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/userImage" />
+
+                <EditText
+                    android:id="@+id/txtEmail"
+                    android:layout_width="350dp"
+                    android:layout_height="@dimen/buttonHeight"
+                    android:layout_marginTop="175dp"
+                    android:background="@drawable/rounded_border"
+                    android:gravity="center"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:selectAllOnFocus="true"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_view"
+                    app:layout_constraintHorizontal_bias="0.458"
+                    app:layout_constraintStart_toStartOf="@+id/profile_view"
+                    app:layout_constraintTop_toTopOf="@+id/profile_view"
+                    tools:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/txtFirstName"
+                    android:layout_width="350dp"
+                    android:layout_height="@dimen/buttonHeight"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="120dp"
+                    android:background="@drawable/rounded_border"
+                    android:gravity="center"
+                    android:hint="@string/first_name"
+                    android:selectAllOnFocus="true"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/txtEmail"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/changeImage"
+                    tools:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/txtLastName"
+                    android:layout_width="350dp"
+                    android:layout_height="@dimen/buttonHeight"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="473dp"
+                    android:background="@drawable/rounded_border"
+                    android:gravity="center"
+                    android:hint="@string/last_name"
+                    android:inputType="text"
+                    android:selectAllOnFocus="true"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/updatePassword"
+                    android:layout_width="350dp"
+                    android:layout_height="@dimen/buttonHeight"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_border"
+                    android:gravity="center"
+                    android:hint="@string/prompt_password"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:selectAllOnFocus="true"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_view"
+                    app:layout_constraintHorizontal_bias="0.458"
+                    app:layout_constraintStart_toStartOf="@+id/profile_view"
+                    app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
+
+                <Button
+                    android:id="@+id/updateInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/buttonHeight"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="96dp"
+                    android:background="@drawable/rounded_border"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/updateMyInfo"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/btnTextSize"
+                    app:layout_constraintBottom_toTopOf="@+id/diamondImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/updatePassword"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/diamondImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="5dp"
+                    android:foregroundGravity="center"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_view"
+                    app:srcCompat="@drawable/diamond_image"
+                    tools:layout_editor_absoluteX="149dp" />
+
+                <Button
+                    android:id="@+id/view_rewards_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="@string/view_rewards"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textColorLink="@color/white"
+                    app:iconTint="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/diamondImageView"
+                    tools:layout_editor_absoluteX="103dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:menu="@menu/bottom_nav_menu"/>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

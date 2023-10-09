@@ -67,7 +67,7 @@
                              self\nexpression and good vibes meet.</string>
     <string name="city_text2">In The City</string>
     <string name="city_text3">No matter how different we are from each other, there is a rhythm that unifies us.
-                            It is in the neighbourhood hadeda alarm clock that weall love to hate it’s in the
+                            It is in the neighbourhood hadeda alarm clock that we all love to hate it’s in the
                             sounds of the ever-bustling streets, and the roaring laughter and chatter that comes
                             from our pubs, clubs and shebeens.\n\n
                             Music has the ability to unify people from all walks of life.  was established in 2012
@@ -96,4 +96,7 @@
     <string name="message_text">Message</string>
     <string name="send_message">Send a Message</string>
     <string name="email_info_text">info@steynentertainment.com</string>
+
+    <string name="view_rewards">View my rewards</string>
+
 </resources>

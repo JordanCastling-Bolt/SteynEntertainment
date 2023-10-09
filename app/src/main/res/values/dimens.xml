@@ -14,4 +14,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="btnTextSize">20sp</dimen>
     <dimen name="change_profile_text_size">12sp</dimen>
+
+    <dimen name="buttonHeight">50dp</dimen>
 </resources>
