@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    android:background="@color/black"
     tools:context=".ui.get_in_touch.GetInTouchFragment">
 
     <ScrollView
@@ -50,7 +48,7 @@
                     android:layout_marginTop="60dp"
                     android:text="@string/get_in_touch_body"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/headerTextSize"
                     android:textStyle="italic"
                     app:layout_constraintTop_toTopOf="parent"
@@ -120,7 +118,7 @@
                     android:layout_marginTop="30dp"
                     android:text="@string/email_info_text"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/headerTextSize"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -195,7 +193,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/get_in_touch_header"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/headerTextSize"
                     android:textStyle="italic"
                     app:layout_constraintTop_toTopOf="parent"
