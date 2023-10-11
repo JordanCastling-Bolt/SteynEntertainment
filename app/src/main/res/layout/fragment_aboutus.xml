@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -98,7 +97,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inTheCityBtn" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/inTheCityBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,10 +106,10 @@
                 android:autoLink="all"
                 android:text="in the city"
                 android:textColor="@color/yellow"
+                android:textStyle="bold"
                 android:textColorHighlight="@color/yellow"
                 android:textColorLink="@color/yellow"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/inTheCityImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +128,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/daisiesBtn" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/daisiesBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -144,12 +143,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inTheCityImage" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/contactUsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="548dp"
                 android:background="@drawable/rounded_border"
                 android:text="@string/contact_us_text"
                 android:textAllCaps="false"
@@ -159,8 +157,6 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rockingDaisiesImage" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

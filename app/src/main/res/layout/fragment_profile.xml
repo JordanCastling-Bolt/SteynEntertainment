@@ -158,7 +158,7 @@
                     app:layout_constraintStart_toStartOf="@+id/profile_view"
                     app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/updateInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/buttonHeight"
@@ -188,7 +188,7 @@
                     app:srcCompat="@drawable/diamond_image"
                     tools:layout_editor_absoluteX="149dp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/view_rewards_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -203,9 +203,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/diamondImageView"
                     tools:layout_editor_absoluteX="103dp" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
