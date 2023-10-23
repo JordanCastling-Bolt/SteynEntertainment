@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.steynentertainment.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 
@@ -15,6 +16,8 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 
     private val _registerResult = MutableLiveData<RegisterResult>()
     val registerResult: LiveData<RegisterResult> = _registerResult
+
+    private val db = FirebaseFirestore.getInstance()
 
     private val _navigateToLogin = MutableLiveData<Boolean>()
     val navigateToLogin: LiveData<Boolean> get() = _navigateToLogin
@@ -31,6 +34,24 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                 user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         sendEmailVerification()
+
+                        // Store user data in Firestore
+                        val userData = hashMapOf(
+                            "email" to email,
+                            "firstName" to firstName,
+                            "lastName" to lastName,
+                            "role" to "user"
+                        )
+                        db.collection("Users")
+                            .document(user.uid)
+                            .set(userData)
+                            .addOnSuccessListener {
+
+                            }
+                            .addOnFailureListener { e ->
+                                // Handle failure
+                                _registerResult.value = RegisterResult.Error(R.string.firestore_error)
+                            }
                     } else {
                         _registerResult.value = RegisterResult.Error(R.string.failed_to_update_profile)
                     }

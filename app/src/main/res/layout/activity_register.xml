@@ -58,7 +58,7 @@
             android:id="@+id/txtEmail"
             android:layout_width="350dp"
             android:layout_height="65dp"
-
+            android:autofillHints="emailAddress"
             android:layout_marginTop="48dp"
             android:background="@drawable/rounded_border"
             android:gravity="center"
@@ -76,7 +76,8 @@
             android:id="@+id/txtFirstName"
             android:layout_width="350dp"
             android:layout_height="65dp"
-
+            android:autofillHints="firstName"
+            android:inputType="textPersonName"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded_border"
             android:gravity="center"
@@ -93,7 +94,8 @@
             android:id="@+id/txtLastName"
             android:layout_width="350dp"
             android:layout_height="65dp"
-
+            android:autofillHints="lastName"
+            android:inputType="textPersonName"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded_border"
             android:gravity="center"
@@ -109,6 +111,7 @@
         <EditText
             android:id="@+id/password"
             android:layout_width="350dp"
+            android:autofillHints="password"
             android:layout_height="65dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded_border"
@@ -127,6 +130,7 @@
         <EditText
             android:id="@+id/retypePassword"
             android:layout_width="350dp"
+            android:autofillHints="password"
             android:layout_height="65dp"
             android:layout_marginTop="80dp"
             android:background="@drawable/rounded_border"
@@ -158,65 +162,6 @@
             app:layout_constraintTop_toBottomOf="@+id/retypePassword"
             app:layout_constraintVertical_bias="0.168" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/google_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:contentDescription="@string/google_login"
-            android:theme="@style/Theme.SteynEntertainment"
-            app:backgroundTint="?attr/colorBackgroundFloating"
-            app:layout_constraintEnd_toStartOf="@+id/facebook_fab"
-            app:layout_constraintHorizontal_bias="0.252"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login"
-            app:maxImageSize="40dp"
-            app:srcCompat="@drawable/ic_google_logo" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/facebook_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="84dp"
-            android:contentDescription="@string/facebook_login"
-            android:theme="@style/Theme.SteynEntertainment"
-            app:backgroundTint="?attr/colorBackgroundFloating"
-            app:layout_constraintEnd_toStartOf="@+id/twitter_fab"
-            app:layout_constraintTop_toBottomOf="@+id/login"
-            app:maxImageSize="40dp"
-            app:srcCompat="@drawable/ic_facebook_logo" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/twitter_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="28dp"
-            android:contentDescription="@string/twitter_login"
-            android:theme="@style/Theme.SteynEntertainment"
-            app:backgroundTint="?attr/colorBackgroundFloating"
-            app:fabSize="auto"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login"
-            app:maxImageSize="40dp"
-            app:srcCompat="@drawable/ic_twitter_logo" />
-
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="42dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="463dp"
-            android:layout_marginBottom="965dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="184dp"
@@ -228,6 +173,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/steynent_212x300" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="51dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.344"
+            app:layout_constraintStart_toEndOf="@+id/login"
+            app:layout_constraintTop_toBottomOf="@+id/retypePassword"
+            app:layout_constraintVertical_bias="0.15" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
