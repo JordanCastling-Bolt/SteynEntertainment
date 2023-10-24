@@ -122,7 +122,7 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/rocking_daisies"
-                app:layout_constraintBottom_toTopOf="@+id/contactUsBtn"
+                app:layout_constraintBottom_toTopOf="@+id/getInBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,14 +144,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/inTheCityImage" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/contactUsBtn"
+                android:id="@+id/getInBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
-                android:text="@string/contact_us_text"
+                android:text="@string/get_intouch_text"
                 android:textAllCaps="false"
                 android:textColor="@color/yellow"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
