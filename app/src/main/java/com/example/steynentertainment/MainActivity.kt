@@ -1,8 +1,10 @@
 package com.example.steynentertainment
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -58,6 +60,10 @@ class MainActivity : AppCompatActivity() {
             val menu = navView.menu
             menu.findItem(R.id.navigation_members)?.isVisible = false // hide Members tab
             menu.findItem(R.id.navigation_profile)?.isVisible = false // hide Profile tab
+
+            //Make sure the sign-in button disappears when the user is signed in
+            val siginbutton = findViewById<Button>(R.id.btnLogin)
+            siginbutton.isVisible = true
         }
     }
 }

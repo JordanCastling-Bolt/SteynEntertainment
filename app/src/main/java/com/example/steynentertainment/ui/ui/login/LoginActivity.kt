@@ -17,7 +17,9 @@ import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.ActivityLoginBinding
 import android.content.Intent
 import android.os.Build
+import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import com.example.steynentertainment.MainActivity
 import com.example.steynentertainment.ui.forgot_password.ForgotPasswordActivity
 import com.example.steynentertainment.ui.register.RegisterActivity
