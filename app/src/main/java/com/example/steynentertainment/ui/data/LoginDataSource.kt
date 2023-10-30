@@ -17,17 +17,26 @@ class LoginDataSource {
                 if (task.isSuccessful) {
                     val firebaseUser = auth.currentUser
                     val isEmailVerified = firebaseUser?.isEmailVerified ?: false
-                    val user = LoggedInUser(
-                        userId = firebaseUser!!.uid,
-                        displayName = firebaseUser.email!!,
-                        isEmailVerified = isEmailVerified  // Add this line
-                    )
-                    callback(Result.Success(user))
+
+                    // Check if firebaseUser is not null before proceeding
+                    if (firebaseUser != null) {
+                        val user = LoggedInUser(
+                            firebaseUser = firebaseUser,
+                            userId = firebaseUser.uid,
+                            displayName = firebaseUser.email!!,
+                            isEmailVerified = isEmailVerified
+                        )
+                        callback(Result.Success(user))
+                    } else {
+                        // Handle the case where firebaseUser is null
+                        callback(Result.Error(IOException("Firebase user is null")))
+                    }
                 } else {
                     callback(Result.Error(IOException("Error logging in", task.exception)))
                 }
             }
     }
+
 
     fun logout() {
         auth.signOut()

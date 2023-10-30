@@ -13,8 +13,6 @@ class LoginRepository(val dataSource: LoginDataSource) {
     // in-memory cache of the loggedInUser object
     var user: LoggedInUser? = null
         private set
-    val firebaseUser = FirebaseAuth.getInstance().currentUser
-    val isEmailVerified = firebaseUser?.isEmailVerified ?: false
 
     val isLoggedIn: Boolean
         get() = user != null

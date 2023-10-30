@@ -135,7 +135,7 @@ class RegisterActivity : AppCompatActivity() {
             val firstName = firstNameEditText.text.toString()
             val lastName = lastNameEditText.text.toString()
             val password = passwordEditText.text.toString()
-            registerViewModel.register(email, firstName, lastName, password, areTermsAccepted)
+            registerViewModel.register(email, firstName, lastName, password)
         }
 
 

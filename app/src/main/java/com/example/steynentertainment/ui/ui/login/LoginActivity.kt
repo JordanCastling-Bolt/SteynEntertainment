@@ -1,24 +1,23 @@
 package com.example.steynentertainment.ui.ui.login
 
 import android.app.Activity
-import android.app.ProgressDialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.steynentertainment.MainActivity
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.ActivityLoginBinding
-import android.content.Intent
-import android.os.Build
-import androidx.annotation.RequiresApi
-import com.example.steynentertainment.MainActivity
 import com.example.steynentertainment.ui.forgot_password.ForgotPasswordActivity
 import com.example.steynentertainment.ui.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -29,6 +28,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -240,7 +240,10 @@ class LoginActivity : AppCompatActivity() {
                     "email" to acct.email,
                     "firstName" to acct.givenName,
                     "lastName" to acct.familyName,
-                    "role" to "user"  // You can assign a default role
+                    "role" to "user",
+                    "terms_accepted" to false,
+                    "yearlyPayments" to 0,
+                    "subscribed" to "no"
                 )
                 db.collection("Users").document(uid).set(newUser).addOnSuccessListener {
                     // Successfully created new user, now proceed to navigate

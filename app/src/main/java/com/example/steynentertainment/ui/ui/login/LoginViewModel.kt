@@ -16,6 +16,7 @@ import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 
+
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
@@ -42,22 +43,27 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
             val bundle = Bundle()
 
             if (result is Result.Success) {
-                if (result.data.isEmailVerified) {
-                    _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-                    bundle.putString(FirebaseAnalytics.Param.METHOD, "Google")
-                    firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
-                } else {
-                    _loginResult.value = LoginResult(error = R.string.email_not_verified)
+                val loggedInUser = result.data
+                val firebaseUser = loggedInUser.firebaseUser  // Now you have the FirebaseUser
+
+                _loginResult.value = LoginResult(success = LoggedInUserView(displayName = firebaseUser.displayName ?: ""))
+                bundle.putString(FirebaseAnalytics.Param.METHOD, "Google")
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
+
+                if (!firebaseUser.isEmailVerified) {
+                    firebaseUser.sendEmailVerification()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                _loginResult.value = LoginResult(error = R.string.email_not_verified_resend)
+                            } else {
+                                _loginResult.value = LoginResult(error = R.string.email_resend_failed)
+                            }
+                        }
                     bundle.putString(FirebaseAnalytics.Param.METHOD, "Google")
                     firebaseAnalytics.logEvent("login_fail_email_not_verified", bundle)
                 }
-
-                // Log successful login
-                bundle.putString(FirebaseAnalytics.Param.METHOD, "Google")
-                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
             } else {
                 _loginResult.value = LoginResult(error = R.string.login_failed)
-
                 // Log login failure
                 bundle.putString(FirebaseAnalytics.Param.METHOD, "Google")
                 firebaseAnalytics.logEvent("login_fail", bundle)
