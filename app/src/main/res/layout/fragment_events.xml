@@ -4,115 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".ui.events.EventsFragment">
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="180dp"
-        android:layout_height="106dp"
+        android:layout_height="100dp"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="125dp"
-        android:src="@tools:sample/avatars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/steynent_solid_logo" />
 
-    <ImageView
-        android:id="@+id/imgRTD"
-        android:layout_width="110dp"
-        android:layout_height="112dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        tools:src="@color/white" />
-
-    <Button
-        android:id="@+id/btnViewRTD"
-        android:layout_width="111dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="View The Dets"
-        android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgRTD" />
-
-    <Button
-        android:id="@+id/btnViewINT"
-        android:layout_width="111dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="View The Dets"
-        android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgINT" />
-
-    <Button
-        android:id="@+id/btnViewEventsTour"
-        android:layout_width="111dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="View The Dets"
-        android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEventsTouring" />
-
-    <ImageView
-        android:id="@+id/imgINT"
-        android:layout_width="110dp"
-        android:layout_height="112dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnViewRTD"
-        tools:src="@color/white" />
-
-    <ImageView
-        android:id="@+id/imgEventsTouring"
-        android:layout_width="110dp"
-        android:layout_height="112dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnViewINT"
-        tools:src="@color/white" />
-
-    <TextView
-        android:id="@+id/txtRTDPreview"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@+id/imgRTD"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4">
 
-    <TextView
-        android:id="@+id/txtINTPreview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@+id/imgINT"
-        app:layout_constraintTop_toBottomOf="@+id/btnViewRTD" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txtEventsTourPreview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@+id/imgEventsTouring"
-        app:layout_constraintTop_toBottomOf="@+id/btnViewINT" />
+            <ImageView
+                android:id="@+id/imgRTD"
+                android:layout_width="110dp"
+                android:layout_height="112dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/white" />
+
+            <ImageView
+                android:id="@+id/imgITC"
+                android:layout_width="110dp"
+                android:layout_height="112dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewRTD"
+                tools:src="@color/white" />
+
+            <ImageView
+                android:id="@+id/imgEventsTour"
+                android:layout_width="110dp"
+                android:layout_height="112dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewITC"
+                tools:src="@color/white" />
+
+            <Button
+                android:id="@+id/btnViewRTD"
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border"
+                android:text="View The Dets"
+                android:textSize="9sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgRTD" />
+
+            <Button
+                android:id="@+id/btnViewITC"
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border"
+                android:text="View The Dets"
+                android:textSize="9sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgITC" />
+
+            <Button
+                android:id="@+id/btnViewEventsTour"
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border"
+                android:text="View The Dets"
+                android:textSize="9sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgEventsTour" />
+
+
+            <TextView
+                android:id="@+id/txtRTDPreview"
+                android:layout_width="244dp"
+                android:layout_height="148dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtITCPreview"
+                android:layout_width="249dp"
+                android:layout_height="144dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewRTD" />
+
+            <TextView
+                android:id="@+id/txtEventsTourPreview"
+                android:layout_width="248dp"
+                android:layout_height="145dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewITC" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
