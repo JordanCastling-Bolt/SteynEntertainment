@@ -22,7 +22,7 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
     private val _navigateToLogin = MutableLiveData<Boolean>()
     val navigateToLogin: LiveData<Boolean> get() = _navigateToLogin
 
-    fun register(email: String, firstName: String, lastName: String, password: String) {
+    fun register(email: String, firstName: String, lastName: String, password: String, termsAccepted: Boolean) {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val user = firebaseAuth.currentUser
@@ -40,7 +40,8 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                             "email" to email,
                             "firstName" to firstName,
                             "lastName" to lastName,
-                            "role" to "user"
+                            "role" to "user",
+                            "terms_Accepted" to termsAccepted
                         )
                         db.collection("Users")
                             .document(user.uid)

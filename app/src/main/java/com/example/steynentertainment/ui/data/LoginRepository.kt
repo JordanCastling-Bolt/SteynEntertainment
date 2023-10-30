@@ -1,6 +1,7 @@
 package com.example.steynentertainment.ui.data
 
 import com.example.steynentertainment.ui.data.model.LoggedInUser
+import com.google.firebase.auth.FirebaseAuth
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -12,6 +13,8 @@ class LoginRepository(val dataSource: LoginDataSource) {
     // in-memory cache of the loggedInUser object
     var user: LoggedInUser? = null
         private set
+    val firebaseUser = FirebaseAuth.getInstance().currentUser
+    val isEmailVerified = firebaseUser?.isEmailVerified ?: false
 
     val isLoggedIn: Boolean
         get() = user != null

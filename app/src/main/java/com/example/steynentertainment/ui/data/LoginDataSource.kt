@@ -16,7 +16,12 @@ class LoginDataSource {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val firebaseUser = auth.currentUser
-                    val user = LoggedInUser(firebaseUser!!.uid, firebaseUser.email!!)
+                    val isEmailVerified = firebaseUser?.isEmailVerified ?: false
+                    val user = LoggedInUser(
+                        userId = firebaseUser!!.uid,
+                        displayName = firebaseUser.email!!,
+                        isEmailVerified = isEmailVerified  // Add this line
+                    )
                     callback(Result.Success(user))
                 } else {
                     callback(Result.Error(IOException("Error logging in", task.exception)))
