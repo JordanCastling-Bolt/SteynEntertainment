@@ -33,11 +33,11 @@
                     android:id="@+id/getInTouchV"
                     android:layout_width="374dp"
                     android:layout_height="480dp"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginTop="156dp"
                     android:background="@drawable/rounded_border"
                     android:backgroundTint="@color/yellow"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.567"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -144,8 +144,8 @@
                     android:layout_width="325dp"
                     android:layout_height="46dp"
                     android:layout_marginTop="400dp"
-                    android:layout_marginEnd="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -160,7 +160,8 @@
                 <Button
                     android:id="@+id/sendMessageBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/rounded_border"
                     android:gravity="center"
                     android:text="@string/send_message"
@@ -168,8 +169,9 @@
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/btnTextSize"
                     android:textStyle="italic"
-                    tools:layout_editor_absoluteX="88dp"
-                    tools:layout_editor_absoluteY="562dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/messageText"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
@@ -195,7 +197,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:textSize="@dimen/headerTextSize"
-                    android:textStyle="italic"
+                    android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:layout_editor_absoluteX="27dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>

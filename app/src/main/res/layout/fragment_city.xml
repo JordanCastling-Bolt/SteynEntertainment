@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".CityFragment">
+    tools:context=".ui.in_the_city.CityFragment">
 
     <ScrollView
         android:id="@+id/cityScrollV"
@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:visibility="visible"
                 tools:src="@drawable/in_the_city" />
 
             <TextView
@@ -38,13 +39,6 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/newsMoreTextSize" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/city_margin_top"
-                tools:src="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/cityText2"
@@ -60,31 +54,34 @@
                 android:id="@+id/cityText3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginTop="@dimen/city_margin_top"
                 android:text="@string/city_text3"
+                android:textAlignment="center"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/cityText4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autoLink="all"
                 android:layout_marginTop="@dimen/city_margin_top"
+                android:autoLink="all"
                 android:text="@string/city_text4"
                 android:textAlignment="center"
                 android:textColor="@color/black" />
         </LinearLayout>
     </ScrollView>
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/contactUsBtn1"
+        android:id="@+id/getInTouchBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/rounded_border"
+        android:text="@string/get_intouch_text"
         android:textAllCaps="false"
         android:textColor="@color/yellow"
-        android:text="@string/get_intouch_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/cityScrollV">
     </com.google.android.material.button.MaterialButton>
 </androidx.constraintlayout.widget.ConstraintLayout>

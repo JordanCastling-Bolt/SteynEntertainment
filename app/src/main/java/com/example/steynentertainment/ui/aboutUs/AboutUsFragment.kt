@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentAboutusBinding
-import com.example.steynentertainment.ui.get_in_touch.GetInTouchFragment
+import com.google.android.material.button.MaterialButton
 
 class AboutUsFragment : Fragment() {
 
@@ -18,32 +18,46 @@ class AboutUsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Initialize the ViewModel
-        val aboutUsViewModel = ViewModelProvider(this).get(AboutUsViewModel::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        // Inflate the layout using data binding
-        _binding = FragmentAboutusBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        // Inflate the layout
+        val view = inflater.inflate(R.layout.fragment_aboutus, container, false)
 
+        // Get reference to the daisies button
+        val daisiesButton = view.findViewById<MaterialButton>(R.id.daisiesBtn)
+        val inTheCityButton = view.findViewById<MaterialButton>(R.id.inTheCityBtn)
+        val getInTouchButton = view.findViewById<MaterialButton>(R.id.getInTouchBtn)
+        val eventToursButton = view.findViewById<MaterialButton>(R.id.eventsAndTouringBtn)
 
+        // Set click listener on the button
+        daisiesButton.setOnClickListener {
 
-       // binding.getInTouchBtn.setOnClickListener {
-         //   findNavController().navigate(R.id.) // Assuming the ID for GetInTouchFragment in your navigation graph is "navigation_get_in_touch"
-       // }
+            // Navigate to RockingTheDiasiesFragment
+            findNavController().navigate(R.id.action_aboutUs_to_rockingTheDaisies)
+        }
 
+        // Set click listener in the city button
+        inTheCityButton.setOnClickListener {
 
+            // Navigate to InTheCityFragment
+            findNavController().navigate(R.id.action_aboutUs_to_inTheCity)
+        }
 
+        // Set click listener in the EventsAndTours button
+        eventToursButton.setOnClickListener {
 
+            // Navigate to EventsAndTouringFragment
+            findNavController().navigate(R.id.action_aboutUs_to_eventsAndTouring)
+        }
 
+        // Set click listener on get in touch button
+        getInTouchButton.setOnClickListener {
 
-        return root
+            // Navigate to GetInTouchFragment
+            findNavController().navigate(R.id.action_aboutUs_to_getInTouch)
+        }
+        return view
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

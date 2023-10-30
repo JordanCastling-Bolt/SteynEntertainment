@@ -91,7 +91,7 @@
     <string name="get_in_touch_header">get in touch</string>
     <string name="get_in_touch_body">Looking to start a project? Let us know how we can help you</string>
     <string name="your_name">Your Name</string>
-    <string name="email_address">E-mail Address</string>
+    <string name="email_address">E-mail</string>
     <string name="subject_text">Subject</string>
     <string name="message_text">Message</string>
     <string name="send_message">Send a Message</string>
@@ -99,5 +99,7 @@
 
     <string name="view_rewards">View my rewards</string>
     <string name="title_get_in_touch">Get In Touch</string>
+    <string name="events_touring">Events and Touring</string>
+    <string name="events_and_touring">Events and touring</string>
 
 </resources>
