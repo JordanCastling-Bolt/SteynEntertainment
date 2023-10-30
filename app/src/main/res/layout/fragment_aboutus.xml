@@ -106,10 +106,10 @@
                 android:autoLink="all"
                 android:text="in the city"
                 android:textColor="@color/yellow"
+                android:textStyle="bold"
                 android:textColorHighlight="@color/yellow"
                 android:textColorLink="@color/yellow"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/inTheCityImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,7 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/rocking_daisies"
-                app:layout_constraintBottom_toTopOf="@+id/getInTouchBtn"
+                app:layout_constraintBottom_toTopOf="@+id/getInBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,11 +144,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/inTheCityImage" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/getInTouchBtn"
+                android:id="@+id/getInBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="48dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
                 android:text="@string/get_intouch_text"
                 android:textAllCaps="false"
@@ -157,7 +156,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rockingDaisiesImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
