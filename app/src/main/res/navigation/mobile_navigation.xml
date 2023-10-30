@@ -33,4 +33,9 @@
         android:name="com.example.steynentertainment.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_get_in_touch"
+        android:name="com.example.steynentertainment.ui.get_in_touch.GetInTouchFragment"
+        android:label="@string/title_get_in_touch"
+        tools:layout="@layout/fragment_get_in_touch" />
 </navigation>

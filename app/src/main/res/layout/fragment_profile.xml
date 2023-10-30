@@ -24,7 +24,7 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="4dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
@@ -38,7 +38,6 @@
                     android:layout_width="184dp"
                     android:layout_height="274dp"
                     android:layout_marginStart="127dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="124dp"
                     android:background="@drawable/rounded_border"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -76,8 +75,8 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/changeImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="246dp"
+                    android:layout_height="43dp"
                     android:layout_marginTop="4dp"
                     android:background="@color/black_v"
                     android:text="@string/changeImageBtn"
@@ -87,6 +86,7 @@
                     android:textSize="@dimen/change_profile_text_size"
                     app:backgroundTint="@color/black_v"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/userImage" />
 
@@ -97,7 +97,7 @@
                     android:layout_marginTop="170dp"
                     android:background="@drawable/rounded_border"
                     android:gravity="center"
-                    android:hint="@string/prompt_email"
+                    android:hint="@string/email_address"
                     android:inputType="textEmailAddress"
                     android:selectAllOnFocus="true"
                     android:textColor="@color/black"
@@ -112,7 +112,7 @@
                     android:layout_width="350dp"
                     android:layout_height="@dimen/buttonHeight"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="110dp"
+                    android:layout_marginTop="115dp"
                     android:background="@drawable/rounded_border"
                     android:gravity="center"
                     android:hint="@string/first_name"
@@ -152,6 +152,7 @@
                     android:inputType="textPassword"
                     android:selectAllOnFocus="true"
                     android:textColor="@color/black"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="@+id/profile_view"
                     app:layout_constraintHorizontal_bias="0.458"
                     app:layout_constraintStart_toStartOf="@+id/profile_view"
@@ -161,7 +162,6 @@
                     android:id="@+id/updateInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/buttonHeight"
-                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="96dp"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/rounded_border"
@@ -171,11 +171,11 @@
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/btnTextSize"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toTopOf="@+id/diamondImageView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.958"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
                     android:id="@+id/diamondImageView"
@@ -183,14 +183,17 @@
                     android:layout_height="80dp"
                     android:layout_marginTop="5dp"
                     android:foregroundGravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.656"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_view"
-                    app:srcCompat="@drawable/diamond_image"
-                    tools:layout_editor_absoluteX="149dp" />
+                    app:srcCompat="@drawable/diamond_image" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/view_rewards_btn"
+                    android:id="@+id/viewRewardsBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="35dp"
                     android:backgroundTint="@color/white"
                     android:text="@string/view_rewards"
                     android:textAlignment="center"
@@ -199,9 +202,11 @@
                     android:textColorLink="@color/white"
                     android:visibility="visible"
                     app:iconTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/diamondImageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/diamondImageView"
+                    tools:visibility="visible" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

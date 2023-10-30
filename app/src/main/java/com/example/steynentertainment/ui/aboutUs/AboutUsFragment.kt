@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentAboutusBinding
+import com.example.steynentertainment.ui.get_in_touch.GetInTouchFragment
 
 class AboutUsFragment : Fragment() {
 
@@ -28,7 +30,17 @@ class AboutUsFragment : Fragment() {
         _binding = FragmentAboutusBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // No need to set text programmatically as it should be already in XML layout
+
+
+       // binding.getInTouchBtn.setOnClickListener {
+         //   findNavController().navigate(R.id.) // Assuming the ID for GetInTouchFragment in your navigation graph is "navigation_get_in_touch"
+       // }
+
+
+
+
+
+
         return root
     }
 
