@@ -10,7 +10,11 @@
     <dimen name="newsMoreTextSize">12sp</dimen>
     <dimen name="loginCardRadius">20dp</dimen>
     <dimen name="loginViewsMargin">20dp</dimen>
-
     <dimen name="signup_text_margin_top">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="btnTextSize">20sp</dimen>
+    <dimen name="change_profile_text_size">12sp</dimen>
+
+    <dimen name="buttonHeight">50dp</dimen>
+    <dimen name="city_margin_top">10dp</dimen>
 </resources>
