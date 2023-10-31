@@ -31,7 +31,6 @@ class AboutUsFragment : Fragment() {
 
         // Set click listener on the button
         daisiesButton.setOnClickListener {
-
             // Navigate to RockingTheDiasiesFragment
             findNavController().navigate(R.id.action_aboutUs_to_rockingTheDaisies)
         }

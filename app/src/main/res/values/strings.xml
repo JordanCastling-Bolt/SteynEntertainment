@@ -101,5 +101,18 @@
     <string name="title_get_in_touch">Get In Touch</string>
     <string name="events_touring">Events and Touring</string>
     <string name="events_and_touring">Events and touring</string>
-
+    <string name="ourServicesTextView">Our Services</string>
+    <string name="musicHeader">Music Festival</string>
+    <string name="musicBodyText">Steyn Entertainment organizes major music festivals in South Africa
+                                like Rocking the Daisies and In the City. These festivals bring together
+                                popular musicians, artists, and attendees.</string>
+    <string name="recordLabelHeader">Record label</string>
+    <string name="recordLabelBody">Steyn Entertainment operates a record label and artist management company called Stay Low that represents South African musical talent.</string>
+    <string name="hospitalityBodyText">Hospitality</string>
+    <string name="hospitalityBody">Steyn Entertainment owns and operates Hallmark House, an art hotel in Johannesburg. Hallmark House includes venues like the Marabi Jazz Club.</string>
+    <string name="creativeAgencyHeader">Creative agency</string>
+    <string name="creativeBody">Steyn Entertainment has an in-house creative and marketing agency that provides branding, content, and campaigns for clients.</string>
+    <string name="investmentHeaderText">Investment</string>
+    <string name="investmentBodyText">The founders have investment companies focused on real estate, private equity, venture capital, healthcare, education technology, and more.</string>
+    <string name="portfolioTitle">Portfolio</string>
 </resources>
