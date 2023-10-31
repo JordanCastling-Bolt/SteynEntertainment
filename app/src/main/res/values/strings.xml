@@ -30,6 +30,7 @@
     <string name="previous">Previous</string>
 
     <string name="lorem_ipsum">
+
     </string>
     <string name="register_failed" />
     <string name="password_mismatch">Passwords Don\'t Match</string>
@@ -39,6 +40,11 @@
     <string name="web_client_id">272896532211-ij5hohp6hk5cnniv2qv45cog3ohrltt7.apps.googleusercontent.com</string>
     <string name="failed_to_update_profile">Failed to update profile</string>
     <string name="failed_to_send_verification_email">Failed to send verification email</string>
+    <string name="firestore_error">Could not add user information</string>
+    <string name="firestore_success">Add user information successfully</string>
+    <string name="email_not_verified">Error logging in</string>
+    <string name="email_not_verified_resend"><![CDATA[Please verify your email address>]]></string>
+    <string name="email_resend_failed">Failed</string>
 
     <!-- Strings for profile and about us fragments-->
     <string name="updateMyInfo">Update my Info</string>
