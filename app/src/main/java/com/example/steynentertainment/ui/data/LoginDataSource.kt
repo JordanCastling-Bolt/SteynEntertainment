@@ -16,13 +16,27 @@ class LoginDataSource {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val firebaseUser = auth.currentUser
-                    val user = LoggedInUser(firebaseUser!!.uid, firebaseUser.email!!)
-                    callback(Result.Success(user))
+                    val isEmailVerified = firebaseUser?.isEmailVerified ?: false
+
+                    // Check if firebaseUser is not null before proceeding
+                    if (firebaseUser != null) {
+                        val user = LoggedInUser(
+                            firebaseUser = firebaseUser,
+                            userId = firebaseUser.uid,
+                            displayName = firebaseUser.email!!,
+                            isEmailVerified = isEmailVerified
+                        )
+                        callback(Result.Success(user))
+                    } else {
+                        // Handle the case where firebaseUser is null
+                        callback(Result.Error(IOException("Firebase user is null")))
+                    }
                 } else {
                     callback(Result.Error(IOException("Error logging in", task.exception)))
                 }
             }
     }
+
 
     fun logout() {
         auth.signOut()

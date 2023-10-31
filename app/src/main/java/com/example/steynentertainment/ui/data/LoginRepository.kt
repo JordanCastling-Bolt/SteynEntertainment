@@ -1,6 +1,7 @@
 package com.example.steynentertainment.ui.data
 
 import com.example.steynentertainment.ui.data.model.LoggedInUser
+import com.google.firebase.auth.FirebaseAuth
 
 /**
  * Class that requests authentication and user information from the remote data source and

@@ -10,20 +10,33 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.steynentertainment.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.NavGraph
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var isLimitedAccess: Boolean = true
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Initialize Firebase Analytics
+        firebaseAnalytics = Firebase.analytics
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val isMember = intent.getBooleanExtra("IS_MEMBER", false)
-        Toast.makeText(this, "isMember: $isMember", Toast.LENGTH_SHORT).show() // Debug line
+
+        // Log the isMember value
+        val bundle = Bundle()
+        bundle.putBoolean("is_member", isMember)
+        firebaseAnalytics.logEvent("is_member_check", bundle)
+
+        Toast.makeText(this, "isMember: $isMember", Toast.LENGTH_SHORT).show()  // Debug line
 
         if (intent.hasExtra("LIMITED_ACCESS")) {
             isLimitedAccess = intent.getBooleanExtra("LIMITED_ACCESS", true)
@@ -32,11 +45,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val navInflater = navController.navInflater
         val graph = navInflater.inflate(R.navigation.mobile_navigation).apply {
-            // Always set the start destination to fragment_home
             setStartDestination(R.id.navigation_home)
         }
 
-        navController.graph = graph // Set the modified NavGraph to the NavController
+        navController.graph = graph  // Set the modified NavGraph to the NavController
 
         val navView: BottomNavigationView = binding.navView
         val appBarConfiguration = AppBarConfiguration(
@@ -56,8 +68,13 @@ class MainActivity : AppCompatActivity() {
         // Conditionally disable or hide navigation items
         if (isLimitedAccess) {
             val menu = navView.menu
-            menu.findItem(R.id.navigation_members)?.isVisible = false // hide Members tab
-            menu.findItem(R.id.navigation_profile)?.isVisible = false // hide Profile tab
+            menu.findItem(R.id.navigation_members)?.isVisible = false  // hide Members tab
+            menu.findItem(R.id.navigation_profile)?.isVisible = false  // hide Profile tab
+
+            // Log limited access
+            val limitedAccessBundle = Bundle()
+            limitedAccessBundle.putBoolean("limited_access", true)
+            firebaseAnalytics.logEvent("limited_access", limitedAccessBundle)
         }
     }
 }

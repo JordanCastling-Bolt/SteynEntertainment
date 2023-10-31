@@ -42,4 +42,7 @@
     <string name="failed_to_send_verification_email">Failed to send verification email</string>
     <string name="firestore_error">Could not add user information</string>
     <string name="firestore_success">Add user information successfully</string>
+    <string name="email_not_verified">Error logging in</string>
+    <string name="email_not_verified_resend"><![CDATA[Please verify your email address>]]></string>
+    <string name="email_resend_failed">Failed</string>
 </resources>

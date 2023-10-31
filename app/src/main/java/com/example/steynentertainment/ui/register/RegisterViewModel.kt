@@ -40,7 +40,10 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                             "email" to email,
                             "firstName" to firstName,
                             "lastName" to lastName,
-                            "role" to "user"
+                            "role" to "user",
+                            "terms_accepted" to true,
+                            "yearlyPayments" to 0,
+                            "subscribed" to "no"
                         )
                         db.collection("Users")
                             .document(user.uid)
