@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentEventsBinding
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -25,11 +27,13 @@ class EventsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("EventsFragment", "onCreateView called")
         val eventsViewModel =
             ViewModelProvider(this).get(EventsViewModel::class.java)
 
         _binding = FragmentEventsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+
+        val navController = findNavController()
 
         val imgRTD = binding.imgRTD
         val rtdImg = eventsViewModel.storageRef.
@@ -45,6 +49,13 @@ class EventsFragment : Fragment() {
             }
         )
 
+        val viewRTD = binding.btnViewRTD
+
+        viewRTD.setOnClickListener {
+            val eventInfo = EventInfo.newInstance("RTD")
+            navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
+        }
+
         val imgITC = binding.imgITC
         val itcImg = eventsViewModel.storageRef.
         child("events/InTheCity/InTheCityLogo.jpg")
@@ -59,6 +70,13 @@ class EventsFragment : Fragment() {
             }
         )
 
+        val viewITC = binding.btnViewITC
+
+        viewITC.setOnClickListener {
+            val eventInfo = EventInfo.newInstance("ITC")
+            navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
+        }
+
         val imgEventsTouring = binding.imgEventsTour
         val eventsTouringImg = eventsViewModel.storageRef.
         child("events/EventsTouring/EventsTouringLogo.png")
@@ -72,6 +90,13 @@ class EventsFragment : Fragment() {
                 Log.e("FirebaseStorage", "Error downloading image: ${exception.message}")
             }
         )
+
+        val viewEventsTouring = binding.btnViewEventsTour
+
+        viewEventsTouring.setOnClickListener {
+            val eventInfo = EventInfo.newInstance("E&T")
+            navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
+        }
 
         val txtRTD = binding.txtRTDPreview
 
@@ -101,7 +126,7 @@ class EventsFragment : Fragment() {
         }
 
 
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
