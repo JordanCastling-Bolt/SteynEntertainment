@@ -4,11 +4,6 @@ plugins {
     id 'com.google.gms.google-services'
     id("io.gitlab.arturbosch.detekt")
 }
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(20))
-    }
-}
 
 android {
     namespace 'com.example.steynentertainment'
