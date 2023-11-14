@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui
+package com.example.steynentertainment.ui.members
 
 data class memberEvents(
     val date: String?="",

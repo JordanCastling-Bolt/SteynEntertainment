@@ -10,16 +10,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentMembersBinding
-import com.example.steynentertainment.ui.Users
-import com.example.steynentertainment.ui.memberEvents
-import com.example.steynentertainment.ui.memberEventsAdapter
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MembersFragment : Fragment() {

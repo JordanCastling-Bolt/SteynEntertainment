@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         bundle.putBoolean("is_member", isMember)
         firebaseAnalytics.logEvent("is_member_check", bundle)
 
-        Toast.makeText(this, "isMember: $isMember", Toast.LENGTH_SHORT).show()  // Debug line
 
         if (intent.hasExtra("LIMITED_ACCESS")) {
             isLimitedAccess = intent.getBooleanExtra("LIMITED_ACCESS", true)

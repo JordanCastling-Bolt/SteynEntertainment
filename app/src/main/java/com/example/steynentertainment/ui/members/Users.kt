@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui
+package com.example.steynentertainment.ui.members
 
 //This is the data class for User's within the Steyn Entertainment Ecosystem, with the relevant attributes
 data class Users(
