@@ -32,4 +32,7 @@ jobs:
        - name: Run Diktat
          run: ./gradlew diktatCheck
 
+       - name: Run Detekt
+         run: ./gradlew detekt
+
        - run: echo "🍏 This job's status is ${{ job.status }}."

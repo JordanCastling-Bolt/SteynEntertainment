@@ -2,6 +2,12 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'io.gitlab.arturbosch.detekt'
+}
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
 }
 
 android {
@@ -30,6 +36,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    detekt {
+        toolVersion = "1.23.3"
+        // Other configuration options
+        config = files("../config/detekt/detekt.yml")
     }
     buildFeatures {
         viewBinding true
