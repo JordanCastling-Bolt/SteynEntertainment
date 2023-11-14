@@ -29,9 +29,6 @@ jobs:
        - name: Build with Gradle
          run: ./gradlew build
 
-       - name: Run Checkstyle
-         run: ./gradlew checkstyleMain checkstyleTest
-
        - name: Run Diktat
          run: ./gradlew diktatCheck
 
