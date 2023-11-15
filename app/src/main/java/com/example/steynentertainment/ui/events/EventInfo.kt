@@ -3,6 +3,7 @@ package com.example.steynentertainment.ui.events
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,9 @@ import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentEventInfoBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class EventInfo : Fragment() {
 
@@ -28,6 +32,7 @@ class EventInfo : Fragment() {
     private lateinit var popupRecyclerView: RecyclerView
     private lateinit var txtEvent: TextView
     private lateinit var newsAdapter: NewsAdapter
+    private lateinit var eventDetailsAdapter: EventDetailsAdapter
 
     private var storageReference = FirebaseStorage.getInstance().reference
 
@@ -84,8 +89,6 @@ class EventInfo : Fragment() {
             else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
         }
 
-
-
         btnVisuals.setOnClickListener {
             // Show the visuals popup
             showPopup()
@@ -123,6 +126,46 @@ class EventInfo : Fragment() {
                 "E&T" -> {
                     fetchNewsArticles("eventsAndTouring")
                     txtEvent.text = "News Articles for \nEvents & Touring"
+                }
+                else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnPreviousEvents.setOnClickListener(){
+            showPopup()
+
+            when (event) {
+                "RTD" -> {
+                    fetchEventDetails("rockingTheDaisies",false)
+                    txtEvent.text = "Previous Events for \nRocking the Daisies"
+                }
+                "ITC" -> {
+                    fetchEventDetails("inTheCity", false)
+                    txtEvent.text = "Previous Events for \nIn The City"
+                }
+                "E&T" -> {
+                    fetchEventDetails("eventsAndTouring", false)
+                    txtEvent.text = "Previous Events for \nEvents & Touring"
+                }
+                else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnUpcomingEvents.setOnClickListener(){
+            showPopup()
+
+            when (event) {
+                "RTD" -> {
+                    fetchEventDetails("rockingTheDaisies",true)
+                    txtEvent.text = "Upcoming Events for \nRocking the Daisies"
+                }
+                "ITC" -> {
+                    fetchEventDetails("inTheCity", true)
+                    txtEvent.text = "Upcoming Events for \nIn The City"
+                }
+                "E&T" -> {
+                    fetchEventDetails("eventsAndTouring", true)
+                    txtEvent.text = "Upcoming Events for \nEvents & Touring"
                 }
                 else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
             }
@@ -223,4 +266,66 @@ class EventInfo : Fragment() {
         popupRecyclerView.layoutManager = LinearLayoutManager(context)
         popupRecyclerView.adapter = newsAdapter
     }
+
+    private fun fetchEventDetails(event: String, upcomingEvents: Boolean) {
+        val firestore = FirebaseFirestore.getInstance()
+        val eventsCollection = firestore.collection("Events")
+
+        val currentDate = getCurrentDate()
+
+        val query = if (upcomingEvents) {
+            // Fetch events in the future or today
+            eventsCollection
+                .whereEqualTo("category", event)
+                .whereGreaterThanOrEqualTo("date", currentDate)
+        } else {
+            // Fetch events in the past
+            eventsCollection
+                .whereEqualTo("category", event)
+                .whereLessThan("date", currentDate)
+        }
+
+        query.get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty) {
+                    // Handle case where no events are found for the specified category
+                    Toast.makeText(popupRecyclerView.context, "No events found", Toast.LENGTH_SHORT).show()
+                    return@addOnSuccessListener
+                }
+
+                val eventDetailsList = mutableListOf<EventDetails>()
+                for (document in documents) {
+                    val title = document.getString("title") ?: ""
+                    val date = document.getString("date") ?: ""
+                    val description = document.getString("description") ?: ""
+                    val picture = document.getString("picture") ?: ""
+                    val url = document.getString("url") ?: ""
+
+                    val eventDetails = EventDetails(title, date, description, picture, url)
+                    eventDetailsList.add(eventDetails)
+                }
+
+                updateEventDetailsRecyclerView(eventDetailsList)
+            }
+            .addOnFailureListener { exception ->
+                // Log the failure reason
+                Log.e("EventInfoFragment", "Failed to fetch events", exception)
+            }
+    }
+
+
+
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
+    }
+
+
+    private fun updateEventDetailsRecyclerView(eventDetailsList: List<EventDetails>) {
+        eventDetailsAdapter = EventDetailsAdapter(eventDetailsList)
+        popupRecyclerView.layoutManager = LinearLayoutManager(context)
+        popupRecyclerView.adapter = eventDetailsAdapter
+    }
+
 }

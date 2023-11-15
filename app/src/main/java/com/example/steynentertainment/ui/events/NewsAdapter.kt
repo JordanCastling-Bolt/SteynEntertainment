@@ -32,8 +32,6 @@ class NewsAdapter(private val newsList: List<NewsArticle>) :
         holder.timestampTextView.text = newsArticle.timestamp
         holder.bodyTextView.text = newsArticle.content
 
-        // Load image using your preferred image-loading library (e.g., Glide, Picasso)
-        // For example, using Glide:
         Glide.with(holder.itemView.context)
             .load(newsArticle.imageUrl)
             .into(holder.imageView)

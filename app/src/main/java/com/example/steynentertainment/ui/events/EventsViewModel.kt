@@ -38,10 +38,10 @@ class EventsViewModel : ViewModel() {
     }
 
     fun getEventDescription(event: String, onCategoryReceived: (String?) -> Unit) {
-        val eventsCollection = dbRef.collection("Events")
+        val eventsCollection = dbRef.collection("Subsidiaries")
 
         val query = eventsCollection
-            .whereEqualTo("category", event)
+            .whereEqualTo("subsidiary", event)
 
         query.get()
             .addOnSuccessListener { documents ->

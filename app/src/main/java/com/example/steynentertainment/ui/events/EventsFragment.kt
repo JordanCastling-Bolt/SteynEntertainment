@@ -35,19 +35,14 @@ class EventsFragment : Fragment() {
 
         val navController = findNavController()
 
-        val imgRTD = binding.imgRTD
-        val rtdImg = eventsViewModel.storageRef.
-        child("events/RockingTheDaisies/RockingTheDaisiesLogo.jpg")
+        //------------------Loading the Rocking The Daisies logo and description--------------------
 
-        eventsViewModel.downloadImage(
-            rtdImg,
-            OnSuccessListener { bitmap ->
-                imgRTD.setImageBitmap(bitmap)
-            },
-            OnFailureListener { exception ->
-                Log.e("FirebaseStorage", "Error downloading image: ${exception.message}")
-            }
-        )
+        val imgRTD = binding.imgRTD
+        imgRTD.setImageResource(R.drawable.rocking_daisies)
+
+        val txtRTD = binding.txtRTDPreview
+        txtRTD.text = "You know the pure, simplistic joy of finding a forgotten loose R100 in the pocket of your old jeans while doing your laundry? " +
+                "Yeah, that feeling is Daisies; but with a lot less detergent, plenty of sun and the best live soundtrack you have ever heard."
 
         val viewRTD = binding.btnViewRTD
 
@@ -55,20 +50,17 @@ class EventsFragment : Fragment() {
             val eventInfo = EventInfo.newInstance("RTD")
             navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
         }
+        //------------------------------------------------------------------------------------------
+
+
+        //-----------------------Loading the In The City logo and description-----------------------
 
         val imgITC = binding.imgITC
-        val itcImg = eventsViewModel.storageRef.
-        child("events/InTheCity/InTheCityLogo.jpg")
+        imgITC.setImageResource(R.drawable.in_the_city)
 
-        eventsViewModel.downloadImage(
-            itcImg,
-            OnSuccessListener { bitmap ->
-                imgITC.setImageBitmap(bitmap)
-            },
-            OnFailureListener { exception ->
-                Log.e("FirebaseStorage", "Error downloading image: ${exception.message}")
-            }
-        )
+        val txtITC = binding.txtITCPreview
+        txtITC.text = "Welcome to ‘In the City’, where the heartbeat of South Africa comes alive through the power of music. No matter how diverse our " +
+                "backgrounds may be, there is a rhythmic thread that binds us together."
 
         val viewITC = binding.btnViewITC
 
@@ -76,20 +68,16 @@ class EventsFragment : Fragment() {
             val eventInfo = EventInfo.newInstance("ITC")
             navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
         }
+        //------------------------------------------------------------------------------------------
+
+
+        //-----------------------Loading the Events & Touring logo and description------------------
 
         val imgEventsTouring = binding.imgEventsTour
-        val eventsTouringImg = eventsViewModel.storageRef.
-        child("events/EventsTouring/EventsTouringLogo.png")
+        imgEventsTouring.setImageResource(R.drawable.steynent_solid_logo)
 
-        eventsViewModel.downloadImage(
-            eventsTouringImg,
-            OnSuccessListener { bitmap ->
-                imgEventsTouring.setImageBitmap(bitmap)
-            },
-            OnFailureListener { exception ->
-                Log.e("FirebaseStorage", "Error downloading image: ${exception.message}")
-            }
-        )
+        val txtEventsTouring = binding.txtEventsTourPreview
+        txtEventsTouring.text = "Steyn Entertainment plays host to various events. Click view the dets to view them all."
 
         val viewEventsTouring = binding.btnViewEventsTour
 
@@ -98,33 +86,7 @@ class EventsFragment : Fragment() {
             navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
         }
 
-        val txtRTD = binding.txtRTDPreview
-
-        eventsViewModel.getEventDescription("rockingTheDaisies") { description ->
-            if (description != null) {
-                Log.d("EventDescription", "Rocking The Daisies: $description")
-                txtRTD.text = description
-            } else {
-                Log.e("EventDescription", "Description is null for Rocking The Daisies")
-            }
-        }
-
-        val txtITC = binding.txtITCPreview
-
-        eventsViewModel.getEventDescription("inTheCity") { description ->
-            if (description != null) {
-                txtITC.text = description
-            }
-        }
-
-        val txtEventsTouring = binding.txtEventsTourPreview
-
-        eventsViewModel.getEventDescription("eventsAndTouring") { description ->
-            if (description != null) {
-                txtEventsTouring.text = description
-            }
-        }
-
+        //------------------------------------------------------------------------------------------
 
         return binding.root
     }
