@@ -5,5 +5,6 @@ data class EventDetails(
     val date: String,
     val description: String,
     val picture: String,
-    val url: String
+    val url: String,
+    val ticketUrl: String
 )

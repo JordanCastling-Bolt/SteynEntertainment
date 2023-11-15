@@ -79,11 +79,17 @@ class EventInfo : Fragment() {
                 storageReference = storageReference.child("visuals/vKsAOo87UEtGiDyGfvIf/rockingTheDaisies")
             }
             "ITC" -> {
+                eventVisual.setImageResource(R.drawable.itc_event_visual)
+                eventSnippet.text = "A series of boutique music and lifestyle events, each curated to tap into the diverse SA soundscape and beyond. " +
+                        "Brought to you by @steynent 🇿🇦"
                 eventLogo.setImageResource(R.drawable.in_the_city)
                 storageReference = storageReference.child("visuals/H5Pm9v6RcRh8EjqUna7N/inTheCity")
             }
             "E&T" -> {
                 eventLogo.setImageResource(R.drawable.steynent_solid_logo)
+                eventVisual.setImageResource(R.drawable.events_touring_event_visual)
+                eventSnippet.text = "Based in Johannesburg, Steyn Entertainment is a global multi-disciplinary organization committed to developing " +
+                        "and connecting Africa to the rest of the world, in the arts and entertainment arenas.🇿🇦"
                 storageReference = storageReference.child("visuals/pLsA5o87UFtGtDyJfkan/eventsAndTouring")
             }
             else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
@@ -300,8 +306,9 @@ class EventInfo : Fragment() {
                     val description = document.getString("description") ?: ""
                     val picture = document.getString("picture") ?: ""
                     val url = document.getString("url") ?: ""
+                    val ticketUrl = document.getString("ticketUrl") ?: ""
 
-                    val eventDetails = EventDetails(title, date, description, picture, url)
+                    val eventDetails = EventDetails(title, date, description, picture, url, ticketUrl)
                     eventDetailsList.add(eventDetails)
                 }
 
