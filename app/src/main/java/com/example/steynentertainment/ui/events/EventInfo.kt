@@ -16,8 +16,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
-import com.example.steynentertainment.VisualsAdapter
 import com.example.steynentertainment.databinding.FragmentEventInfoBinding
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
 class EventInfo : Fragment() {
@@ -25,8 +25,9 @@ class EventInfo : Fragment() {
     private lateinit var visualAdapter: VisualsAdapter
     private var _binding: FragmentEventInfoBinding? = null
     private val binding get() = _binding!!
-    private lateinit var visualRecyclerView: RecyclerView
-    private lateinit var txtEventVisual: TextView
+    private lateinit var popupRecyclerView: RecyclerView
+    private lateinit var txtEvent: TextView
+    private lateinit var newsAdapter: NewsAdapter
 
     private var storageReference = FirebaseStorage.getInstance().reference
 
@@ -53,6 +54,8 @@ class EventInfo : Fragment() {
         val root: View = binding.root
 
         val eventLogo = binding.imgEventLogo
+        val eventVisual = binding.imgEventVisual
+        val eventSnippet = binding.txtEventSnippet
         val btnUpcomingEvents = binding.btnUpcomingEvents
         val btnPreviousEvents = binding.btnPreviousEvents
         val btnNews = binding.btnEventNews
@@ -65,6 +68,9 @@ class EventInfo : Fragment() {
         when (event) {
             "RTD" -> {
                 eventLogo.setImageResource(R.drawable.rocking_daisies)
+                eventVisual.setImageResource(R.drawable.daisies_event_visual)
+                eventSnippet.text = "South Africa's biggest Music and Lifestyle experience is back in November 2023, " +
+                        "brought to you by @steynent and @johnniewalkersa 🌼🇿🇦"
                 storageReference = storageReference.child("visuals/vKsAOo87UEtGiDyGfvIf/rockingTheDaisies")
             }
             "ITC" -> {
@@ -82,20 +88,41 @@ class EventInfo : Fragment() {
 
         btnVisuals.setOnClickListener {
             // Show the visuals popup
-            showVisualsPopup()
+            showPopup()
 
             // Fetch image URLs from Firebase Storage
             fetchImageURLs()
 
             when (event) {
                 "RTD" -> {
-                    txtEventVisual.text = "Visuals for \nRocking the Daisies"
+                    txtEvent.text = "Visuals for \nRocking the Daisies"
                 }
                 "ITC" -> {
-                    txtEventVisual.text = "Visuals for \nIn The City"
+                    txtEvent.text = "Visuals for \nIn The City"
                 }
                 "E&T" -> {
-                    txtEventVisual.text = "Visuals for \nEvents & Touring"
+                    txtEvent.text = "Visuals for \nEvents & Touring"
+                }
+                else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnNews.setOnClickListener(){
+
+            showPopup()
+
+            when (event) {
+                "RTD" -> {
+                    fetchNewsArticles("rockingTheDaisies")
+                    txtEvent.text = "News Articles for \nRocking the Daisies"
+                }
+                "ITC" -> {
+                    fetchNewsArticles("inTheCity")
+                    txtEvent.text = "News Articles for \nIn The City"
+                }
+                "E&T" -> {
+                    fetchNewsArticles("eventsAndTouring")
+                    txtEvent.text = "News Articles for \nEvents & Touring"
                 }
                 else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
             }
@@ -139,29 +166,61 @@ class EventInfo : Fragment() {
 
     private fun updateRecyclerView(visualList: List<String>) {
         visualAdapter = VisualsAdapter(visualList)
-        visualRecyclerView.layoutManager = LinearLayoutManager(context)
-        visualRecyclerView.adapter = visualAdapter
+        popupRecyclerView.layoutManager = LinearLayoutManager(context)
+        popupRecyclerView.adapter = visualAdapter
     }
 
-    private fun showVisualsPopup() {
+    private fun showPopup() {
         // Inflate the popup_events layout
-        val visualsPopupView = layoutInflater.inflate(R.layout.popup_events, null)
+        val popupView = layoutInflater.inflate(R.layout.popup_events, null)
 
-        txtEventVisual = visualsPopupView.findViewById(R.id.txtPopupTitle)
-        visualRecyclerView = visualsPopupView.findViewById(R.id.popupRecyclerView)
+        txtEvent = popupView.findViewById(R.id.txtPopupTitle)
+        popupRecyclerView = popupView.findViewById(R.id.popupRecyclerView)
 
         // Create a PopupWindow
-        val visualsPopup = PopupWindow(
-            visualsPopupView,
+        val popup = PopupWindow(
+            popupView,
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT,
             true
         )
 
         // Set background color for the visuals_popup
-        visualsPopup.setBackgroundDrawable(ColorDrawable(Color.BLACK))
+        popup.setBackgroundDrawable(ColorDrawable(Color.BLACK))
 
         // Display the visuals_popup
-        visualsPopup.showAtLocation(requireView(), Gravity.CENTER, 0, 0)
+        popup.showAtLocation(requireView(), Gravity.CENTER, 0, 0)
+    }
+
+    private fun fetchNewsArticles(event: String) {
+        val firestore = FirebaseFirestore.getInstance()
+        val newsCollection = firestore.collection("NewsArticles")
+
+        newsCollection.whereEqualTo("category", event)
+            .get()
+            .addOnSuccessListener { documents ->
+                val newsList = mutableListOf<NewsArticle>()
+                for (document in documents) {
+                    val category = document.getString("category") ?: ""
+                    val content = document.getString("content") ?: ""
+                    val imageUrl = document.getString("imageUrl") ?: ""
+                    val timestamp = document.getTimestamp("timestamp")?.toDate()?.toString() ?: ""
+                    val title = document.getString("title") ?: ""
+
+                    val newsArticle = NewsArticle(category, content, imageUrl, timestamp, title)
+                    newsList.add(newsArticle)
+                }
+
+                updateNewsRecyclerView(newsList)
+            }
+            .addOnFailureListener { exception ->
+                // Handle failure
+            }
+    }
+
+    private fun updateNewsRecyclerView(newsList: List<NewsArticle>) {
+        newsAdapter = NewsAdapter(newsList)
+        popupRecyclerView.layoutManager = LinearLayoutManager(context)
+        popupRecyclerView.adapter = newsAdapter
     }
 }
