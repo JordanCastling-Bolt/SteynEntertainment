@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
@@ -58,6 +59,8 @@ class EventInfo : Fragment() {
         _binding = FragmentEventInfoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val navController = findNavController()
+
         val eventLogo = binding.imgEventLogo
         val eventVisual = binding.imgEventVisual
         val eventSnippet = binding.txtEventSnippet
@@ -65,6 +68,8 @@ class EventInfo : Fragment() {
         val btnPreviousEvents = binding.btnPreviousEvents
         val btnNews = binding.btnEventNews
         val btnVisuals = binding.btnEventVisuals
+        val btnContactUs = binding.btnContactUs
+        val btnMoreInfo = binding.btnMoreInfo
 
         // Extract event information from arguments
         event = arguments?.getString("event") ?: ""
@@ -174,6 +179,44 @@ class EventInfo : Fragment() {
                     txtEvent.text = "Upcoming Events for \nEvents & Touring"
                 }
                 else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnContactUs.setOnClickListener() {
+            when (event) {
+                "RTD" -> {
+                    navController.navigate(R.id.navigation_getInTouch)
+                }
+
+                "ITC" -> {
+                    navController.navigate(R.id.navigation_getInTouch)
+                }
+
+                "E&T" -> {
+                    navController.navigate(R.id.navigation_getInTouch)
+                }
+
+                else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+        btnMoreInfo.setOnClickListener() {
+            when (event) {
+                "RTD" -> {
+                    navController.navigate(R.id.navigation_rockingTheDaisies)
+                }
+
+                "ITC" -> {
+                    navController.navigate(R.id.navigation_inTheCity)
+                }
+
+                "E&T" -> {
+                    navController.navigate(R.id.navigation_eventsAndTouring)
+                }
+
+                else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
