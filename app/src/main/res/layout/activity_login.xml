@@ -85,31 +85,16 @@
         android:id="@+id/google_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:contentDescription="@string/google_login"
         android:theme="@style/Theme.SteynEntertainment"
         app:backgroundTint="?attr/colorBackgroundFloating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login"
         app:maxImageSize="40dp"
         app:srcCompat="@drawable/ic_google_logo" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/facebook_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:contentDescription="@string/facebook_login"
-        android:theme="@style/Theme.SteynEntertainment"
-        app:backgroundTint="?attr/colorBackgroundFloating"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.856"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:maxImageSize="40dp"
-        app:srcCompat="@drawable/ic_facebook_logo" />
 
     <Button
         android:id="@+id/signUp"
@@ -156,6 +141,18 @@
         app:layout_constraintStart_toEndOf="@+id/login"
         app:layout_constraintTop_toBottomOf="@+id/signUp"
         app:layout_constraintVertical_bias="0.07" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="21dp"
+        android:text="@string/or_continue_with"
+        app:layout_constraintBottom_toTopOf="@+id/google_fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

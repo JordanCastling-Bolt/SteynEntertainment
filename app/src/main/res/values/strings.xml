@@ -125,4 +125,5 @@
     <string name="investmentHeaderText">Investment</string>
     <string name="investmentBodyText">The founders have investment companies focused on real estate, private equity, venture capital, healthcare, education technology, and more.</string>
     <string name="portfolioTitle">Portfolio</string>
+    <string name="or_continue_with">Or Continue With</string>
 </resources>

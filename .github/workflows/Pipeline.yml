@@ -29,10 +29,7 @@ jobs:
        - name: Build with Gradle
          run: ./gradlew build
 
-       - name: Run Diktat
-         run: ./gradlew diktatCheck
-
-       - name: Run Detekt
-         run: ./gradlew detekt
+       - name: Run Checkstyle
+         run: ./gradlew checkstyle
 
        - run: echo "🍏 This job's status is ${{ job.status }}."
