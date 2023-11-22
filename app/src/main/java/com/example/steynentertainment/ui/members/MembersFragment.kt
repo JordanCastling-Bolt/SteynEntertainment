@@ -48,7 +48,6 @@ class MembersFragment : Fragment() {
     private lateinit var profileImage: ImageView
 
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,7 +67,7 @@ class MembersFragment : Fragment() {
         daisyFour = root.findViewById(R.id.daisy4)
         daisyFive = root.findViewById(R.id.daisy5)
         discount = root.findViewById(R.id.txtDiscount)
-
+        profileImage = root.findViewById(R.id.memberPhoto)
         // Gets the logged-in user for FirebaseAuth
         val user = FirebaseAuth.getInstance().currentUser
 
@@ -141,7 +140,8 @@ class MembersFragment : Fragment() {
                 }
                 .addOnFailureListener { exception ->
                     Log.e("Membership Fragment", "Firestore error: ${exception.message}")
-                    Toast.makeText(requireContext(), "Unable to fetch profile.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Unable to fetch profile.", Toast.LENGTH_SHORT)
+                        .show()
                 }
         }
 
@@ -163,184 +163,222 @@ class MembersFragment : Fragment() {
         return root
     }
 
-    private fun fetchDataFromFirestore() {
+    private fun fetchDataFromFirestore(){
         // Fetch data from Firestore and update the adapter with the data
         val firestore = FirebaseFirestore.getInstance()
         val eventsCollection = firestore.collection("Events")
 
-    eventsCollection.get()
-        .addOnSuccessListener { querySnapshot ->
-        val eventsList = mutableListOf<MemberEvents>()
-        for (document in querySnapshot.documents) {
-            val event = document.toObject(MemberEvents::class.java)
-            if (event != null) {
-                eventsList.add(event)
+        eventsCollection.get()
+            .addOnSuccessListener { querySnapshot ->
+                val eventsList = mutableListOf<MemberEvents>()
+                for (document in querySnapshot.documents) {
+                    val event = document.toObject(MemberEvents::class.java)
+                    if (event != null) {
+                        eventsList.add(event)
+                    }
+                }
+                // Update the adapter with the retrieved data
+                eventAdapter.updateData(eventsList)
+            }
+            .addOnFailureListener { exception ->
+                Log.e("MembersFragment", "Firestore error: ${exception.message}")
+                Toast.makeText(requireContext(), "Unable to fetch data.", Toast.LENGTH_SHORT).show()
             }
     }
 
-    .addOnFailureListener { exception ->
-        Log.e("MembersFragment", "Firestore error: ${exception.message}")
-        Toast.makeText(requireContext(), "Unable to fetch data.", Toast.LENGTH_SHORT).show()
-    }
-}
 
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun showPopupInfo(context: Context) {
-        val dialog = Dialog(context)
-        dialog.setContentView(R.layout.memberinfo_layout)
-
-        // Set layout parameters to match the original layout
-        val layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        dialog.window?.setLayout(layoutParams.width, layoutParams.height)
-
-
-        var myCancelButton = dialog.findViewById<Button>(R.id.btnPayMembershipCancel)
-        var myPayButton = dialog.findViewById<Button>(R.id.btnPayMembership)
-
-
-        myCancelButton?.setOnClickListener {
-            dialog.dismiss()
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null
         }
 
-        myPayButton?.setOnClickListener {
-            // Inflate the custom layout
-            val inflater = LayoutInflater.from(requireContext())
-            val view = inflater.inflate(R.layout.mockpayment_portal, null)
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun showPopupInfo(context: Context) {
+            val dialog = Dialog(context)
+            dialog.setContentView(R.layout.memberinfo_layout)
 
-            // Find EditText within the inflated view
-            val editExpiryMonth = view.findViewById<EditText>(R.id.editExpiryMonth)
-            val editCardNumber = view.findViewById<EditText>(R.id.editCardNumber)
+            // Set layout parameters to match the original layout
+            val layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            dialog.window?.setLayout(layoutParams.width, layoutParams.height)
 
 
-            val minMonth = 1
-            val maxMonth = 12
-            val monthInputFilter = InputFilter { source, start, end, dest, dstart, dend ->
-                try {
-                    val input = Integer.parseInt(dest.toString() + source.toString())
-                    if (input in minMonth..maxMonth && input >= minMonth && input <= maxMonth) {
-                        null
-                    } else {
+            var myCancelButton = dialog.findViewById<Button>(R.id.btnPayMembershipCancel)
+            var myPayButton = dialog.findViewById<Button>(R.id.btnPayMembership)
+
+
+            myCancelButton?.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            myPayButton?.setOnClickListener {
+                // Inflate the custom layout
+                val inflater = LayoutInflater.from(requireContext())
+                val view = inflater.inflate(R.layout.mockpayment_portal, null)
+
+                // Find EditText within the inflated view
+                val editExpiryMonth = view.findViewById<EditText>(R.id.editExpiryMonth)
+                val editCardNumber = view.findViewById<EditText>(R.id.editCardNumber)
+
+
+                val minMonth = 1
+                val maxMonth = 12
+                val monthInputFilter = InputFilter { source, start, end, dest, dstart, dend ->
+                    try {
+                        val input = Integer.parseInt(dest.toString() + source.toString())
+                        if (input in minMonth..maxMonth && input >= minMonth && input <= maxMonth) {
+                            null
+                        } else {
+                            ""
+                        }
+                    } catch (e: NumberFormatException) {
                         ""
                     }
-                } catch (e: NumberFormatException) {
-                    ""
                 }
-            }
-            editExpiryMonth.filters = arrayOf(monthInputFilter)
+                editExpiryMonth.filters = arrayOf(monthInputFilter)
 
 
-            // Create an AlertDialog with the custom layout
-            val alertDialog = AlertDialog.Builder(requireContext())
-                .setTitle("Membership Payment Portal")
-                .setView(view)
-                .setPositiveButton("Confirm Payment") { dialog, _ ->
-                    // Retrieve values from the input fields
-                    val cardNumber = view.findViewById<EditText>(R.id.editCardNumber).text.toString()
-                    val cardHolderName = view.findViewById<EditText>(R.id.editCardHolderName).text.toString()
-                    val cvv = view.findViewById<EditText>(R.id.editCVV).text.toString()
-                    val month = view.findViewById<EditText>(R.id.editExpiryMonth).text.toString()
-                    val year = view.findViewById<EditText>(R.id.editExpiryYear).text.toString()
+                // Create an AlertDialog with the custom layout
+                val alertDialog = AlertDialog.Builder(requireContext())
+                    .setTitle("Membership Payment Portal")
+                    .setView(view)
+                    .setPositiveButton("Confirm Payment") { dialog, _ ->
+                        // Retrieve values from the input fields
+                        val cardNumber =
+                            view.findViewById<EditText>(R.id.editCardNumber).text.toString()
+                        val cardHolderName =
+                            view.findViewById<EditText>(R.id.editCardHolderName).text.toString()
+                        val cvv = view.findViewById<EditText>(R.id.editCVV).text.toString()
+                        val month =
+                            view.findViewById<EditText>(R.id.editExpiryMonth).text.toString()
+                        val year = view.findViewById<EditText>(R.id.editExpiryYear).text.toString()
 
-                    if (cardNumber.isEmpty() || cardHolderName.isEmpty() || cvv.isEmpty() || month.isEmpty() || year.isEmpty()) {
-                        Toast.makeText(requireContext(), "Must enter all fields", Toast.LENGTH_SHORT).show()
-                    } else {
-                        val cardType = getCardType(cardNumber)
+                        if (cardNumber.isEmpty() || cardHolderName.isEmpty() || cvv.isEmpty() || month.isEmpty() || year.isEmpty()) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Must enter all fields",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            val cardType = getCardType(cardNumber)
 
-                        // Handle the "Confirm Payment" button click based on the card type
-                        when (cardType) {
-                            "Visa" -> {
-                                updatePaymentStatusInFirestore()
-                                Toast.makeText(requireContext(), "Paid R300 with Visa", Toast.LENGTH_SHORT).show()
+                            // Handle the "Confirm Payment" button click based on the card type
+                            when (cardType) {
+                                "Visa" -> {
+                                    updatePaymentStatusInFirestore()
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Paid R300 with Visa",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
 
-                                val fragmentManager = requireActivity().supportFragmentManager
-                                val transaction = fragmentManager.beginTransaction()
-                                transaction.replace(R.id.fragment_container_member, MembersFragment())
-                                transaction.addToBackStack(null)
-                                transaction.commit()
+                                    val fragmentManager = requireActivity().supportFragmentManager
+                                    val transaction = fragmentManager.beginTransaction()
+                                    transaction.replace(
+                                        R.id.fragment_container_member,
+                                        MembersFragment()
+                                    )
+                                    transaction.addToBackStack(null)
+                                    transaction.commit()
 
+                                }
+
+                                "MasterCard" -> {
+                                    updatePaymentStatusInFirestore()
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Paid R300 with Mastercard",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                    val fragmentManager = requireActivity().supportFragmentManager
+                                    val transaction = fragmentManager.beginTransaction()
+                                    transaction.replace(
+                                        R.id.fragment_container_member,
+                                        MembersFragment()
+                                    )
+                                    transaction.addToBackStack(null)
+                                    transaction.commit()
+                                }
+
+                                "American Express" -> {
+                                    updatePaymentStatusInFirestore()
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Paid R300 with American Express",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                    val fragmentManager = requireActivity().supportFragmentManager
+                                    val transaction = fragmentManager.beginTransaction()
+                                    transaction.replace(
+                                        R.id.fragment_container_member,
+                                        MembersFragment()
+                                    )
+                                    transaction.addToBackStack(null)
+                                    transaction.commit()
+                                }
+
+                                "Unknown" -> {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Invalid card number",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
-                            "MasterCard" -> {
-                                updatePaymentStatusInFirestore()
-                                Toast.makeText(requireContext(), "Paid R300 with Mastercard", Toast.LENGTH_SHORT).show()
 
-                                val fragmentManager = requireActivity().supportFragmentManager
-                                val transaction = fragmentManager.beginTransaction()
-                                transaction.replace(R.id.fragment_container_member, MembersFragment())
-                                transaction.addToBackStack(null)
-                                transaction.commit()
-                            }
-                            "American Express" -> {
-                                updatePaymentStatusInFirestore()
-                                Toast.makeText(requireContext(), "Paid R300 with American Express", Toast.LENGTH_SHORT).show()
-
-                                val fragmentManager = requireActivity().supportFragmentManager
-                                val transaction = fragmentManager.beginTransaction()
-                                transaction.replace(R.id.fragment_container_member, MembersFragment())
-                                transaction.addToBackStack(null)
-                                transaction.commit()
-                            }
-                            "Unknown" -> {
-                                Toast.makeText(requireContext(), "Invalid card number", Toast.LENGTH_SHORT).show()
-                            }
+                            // Dismiss the dialog only if the fields are not empty
+                            dialog.dismiss()
                         }
-
-                        // Dismiss the dialog only if the fields are not empty
+                    }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        // Handle the "Cancel" button click if needed
                         dialog.dismiss()
                     }
-                }
-                .setNegativeButton("Cancel") { dialog, _ ->
-                    // Handle the "Cancel" button click if needed
-                    dialog.dismiss()
-                }
-                .create()
+                    .create()
 
-            // Show the AlertDialog
-            alertDialog.show()
+                // Show the AlertDialog
+                alertDialog.show()
+            }
+            // Show the Dialog
+            dialog.show()
         }
-        // Show the Dialog
-        dialog.show()
-    }
 
-    fun getCardType(cardNumber: String): String {
-        // Remove any spaces or non-digit characters
-        val cleanCardNumber = cardNumber.replace("\\s+".toRegex(), "")
+        fun getCardType(cardNumber: String): String {
+            // Remove any spaces or non-digit characters
+            val cleanCardNumber = cardNumber.replace("\\s+".toRegex(), "")
 
-        // Check the card type based on known patterns
-        return when {
-            cleanCardNumber.matches("^4[0-9]{12}(?:[0-9]{3})?\$".toRegex()) -> "Visa"
-            cleanCardNumber.matches("^5[1-5][0-9]{14}\$".toRegex()) -> "MasterCard"
-            cleanCardNumber.matches("^3[47][0-9]{13}\$".toRegex()) -> "American Express"
-            else -> "Unknown"
+            // Check the card type based on known patterns
+            return when {
+                cleanCardNumber.matches("^4[0-9]{12}(?:[0-9]{3})?\$".toRegex()) -> "Visa"
+                cleanCardNumber.matches("^5[1-5][0-9]{14}\$".toRegex()) -> "MasterCard"
+                cleanCardNumber.matches("^3[47][0-9]{13}\$".toRegex()) -> "American Express"
+                else -> "Unknown"
             }
         }
-    private fun updatePaymentStatusInFirestore() {
-        val user = FirebaseAuth.getInstance().currentUser
-
-        user?.let {
-            val userId = user.uid
-            val firestore = FirebaseFirestore.getInstance()
-            val userDocument = firestore.collection("Users").document(userId)
-
-            // Update the subscribed field to "yes"
-            userDocument.update("subscribed", "yes")
-                .addOnSuccessListener {
-                    Log.d("Firestore", "Subscribed status updated successfully")
-                }
-                .addOnFailureListener { e ->
-                    Log.e("Firestore", "Error updating subscribed status: ${e.message}")
-                }
-        }
     }
-}
+        private fun updatePaymentStatusInFirestore() {
+            val user = FirebaseAuth.getInstance().currentUser
+
+            user?.let {
+                val userId = user.uid
+                val firestore = FirebaseFirestore.getInstance()
+                val userDocument = firestore.collection("Users").document(userId)
+
+                // Update the subscribed field to "yes"
+                userDocument.update("subscribed", "yes")
+                    .addOnSuccessListener {
+                        Log.d("Firestore", "Subscribed status updated successfully")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.e("Firestore", "Error updating subscribed status: ${e.message}")
+                    }
+            }
+        }
+
 
 
     

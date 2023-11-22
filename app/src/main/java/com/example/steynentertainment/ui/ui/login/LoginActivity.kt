@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
@@ -51,11 +52,12 @@ class LoginActivity : AppCompatActivity() {
         val loading = binding.loading
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.web_client_id)) // Replace with your web client ID
+            .requestIdToken(getString(R.string.web_client_id))  // Replace with your web client ID
             .requestEmail()
             .build()
 
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
+
 
         binding.googleFab?.setOnClickListener {
             signIn(googleSignInClient)
@@ -74,43 +76,17 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
-        loginViewModel.loginFormState.observe(
-            this@LoginActivity,
-            Observer {
-                val loginState = it ?: return@Observer
+        loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
+            val loginState = it ?: return@Observer
 
-                // disable login button unless both username / password is valid
-                login.isEnabled = loginState.isDataValid
+            // disable login button unless both username / password is valid
+            login.isEnabled = loginState.isDataValid
 
-                if (loginState.usernameError != null) {
-                    username.error = getString(loginState.usernameError)
-                }
-                if (loginState.passwordError != null) {
-                    password.error = getString(loginState.passwordError)
-                }
+            if (loginState.usernameError != null) {
+                username.error = getString(loginState.usernameError)
             }
-        )
-
-        loginViewModel.loginResult.observe(
-            this@LoginActivity,
-            Observer {
-                val loginResult = it ?: return@Observer
-
-                // Hide ProgressBar
-                binding.loading.visibility = View.GONE
-
-                if (loginResult.error != null) {
-                    showLoginFailed(loginResult.error)
-                }
-                if (loginResult.success != null) {
-                    // Show ProgressBar
-                    binding.loading.visibility = View.VISIBLE
-
-                    updateUiWithUser(loginResult.success)
-                    setResult(Activity.RESULT_OK)
-                    // Check user role and navigate to the corresponding MainActivity
-                    checkUserRoleAndNavigate(auth.currentUser!!.uid)
-                }
+            if (loginState.passwordError != null) {
+                password.error = getString(loginState.passwordError)
             }
         })
 
@@ -131,7 +107,6 @@ class LoginActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK)
                 // Check user role and navigate to the corresponding MainActivity
                 checkUserRoleAndNavigate(auth.currentUser!!.uid)
-
             }
 
         })
@@ -240,8 +215,9 @@ class LoginActivity : AppCompatActivity() {
 
                     // Successfully signed in
                     val user = auth.currentUser
-                    checkIfUserExistsOrCreate(user!!.uid, acct) // new function
-                } else {
+                    checkIfUserExistsOrCreate(user!!.uid, acct)  // new function
+                }
+                else {
                     // Sign-in failed
                     showLoginFailed(R.string.login_failed)
                 }
