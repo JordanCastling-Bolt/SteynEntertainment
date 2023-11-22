@@ -8,7 +8,7 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign In</string>
+    <string name="action_sign_in">Login</string>
     <string name="action_sign_in_short">Login</string>
     <string name="action_sign_up">Sign Up</string>
     <string name="welcome">"Welcome!"</string>
@@ -100,13 +100,13 @@
                                     cultivating quality, multi-sensory cultural experiences, in the interest of
                                     maintaining that R100-laundry type joy through music and love.</string>
     <string name="get_in_touch_header">get in touch</string>
-    <string name="get_in_touch_body">Looking to start a project? Let us know how we can help you</string>
+    <string name="get_in_touch_body">Looking to get in touch with us? Let us know how we can help you!</string>
     <string name="your_name">Your Name</string>
     <string name="email_address">E-mail</string>
     <string name="subject_text">Subject</string>
     <string name="message_text">Message</string>
     <string name="send_message">Send a Message</string>
-    <string name="email_info_text">info@steynentertainment.com</string>
+    <string name="email_info_text">Or send us an email on \ninfo@steynentertainment.com</string>
 
     <string name="view_rewards">View my rewards</string>
     <string name="title_get_in_touch">Get In Touch</string>

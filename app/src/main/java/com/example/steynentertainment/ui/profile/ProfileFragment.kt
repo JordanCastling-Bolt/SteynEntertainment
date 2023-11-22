@@ -52,11 +52,10 @@ class ProfileFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var userImageView: ImageView
     private lateinit var changeImageButton: TextView
-    private lateinit var email: EditText
+    private lateinit var email: TextView
     private lateinit var firstName: EditText
     private lateinit var lastName: EditText
     private lateinit var changePassword: MaterialButton
-    private lateinit var reward: MaterialButton
     private lateinit var update: MaterialButton
     private lateinit var logout: MaterialButton
 
@@ -122,7 +121,6 @@ class ProfileFragment : Fragment() {
         email = _binding?.txtEmail ?: root.findViewById(R.id.txtEmail)
         firstName = _binding?.txtFirstName ?: root.findViewById(R.id.txtFirstName)
         lastName = _binding?.txtLastName ?: root.findViewById(R.id.txtLastName)
-        reward = _binding?.viewRewardsBtn ?: root.findViewById(R.id.viewRewardsBtn)
         update = _binding?.updateInfo ?: root.findViewById(R.id.updateInfo)
         changePassword = _binding?.changePassword ?: root.findViewById(R.id.changePassword)
         logout = _binding?.logout ?: root.findViewById(R.id.logout)
@@ -254,10 +252,13 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
+<<<<<<< Updated upstream
         reward.setOnClickListener() {
             navController.navigate(R.id.navigation_members)
         }
 
+=======
+>>>>>>> Stashed changes
         return root
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

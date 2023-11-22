@@ -31,9 +31,6 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.fab2.setOnClickListener {
-            finish()
-        }
         val firebaseAuth = FirebaseAuth.getInstance()
         val factory = RegisterViewModelFactory(firebaseAuth)
 
@@ -46,6 +43,7 @@ class RegisterActivity : AppCompatActivity() {
         val lastNameEditText = binding.txtLastName
         val signUpButton = binding.login
         val termsAndConditionsCheckBox = binding.termsAndConditionsCheckBox
+        val txtLogin = binding.txtLogin
 
         val termsAndConditionsText = binding.termsAndConditionsText
         termsAndConditionsText.setOnClickListener {
@@ -113,6 +111,12 @@ class RegisterActivity : AppCompatActivity() {
             // Show the dialog
             val dialog = builder.create()
             dialog.show()
+        }
+
+        txtLogin.setOnClickListener(){
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         signUpButton.setOnClickListener {

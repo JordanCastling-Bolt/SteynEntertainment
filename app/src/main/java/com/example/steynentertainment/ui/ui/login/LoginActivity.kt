@@ -50,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
+        val txtSignUp = binding.txtSignUp
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))  // Replace with your web client ID
@@ -68,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.signUp?.setOnClickListener {
+        binding.txtSignUp?.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }

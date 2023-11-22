@@ -18,8 +18,11 @@
 
     <TextView
         android:id="@+id/login_1"
-        android:layout_width="365dp"
+        android:layout_width="350dp"
         android:layout_height="322dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_border"
         android:backgroundTint="@color/black_v"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,9 +31,12 @@
 
     <EditText
         android:id="@+id/txtEmail"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
         android:autofillHints="emailAddress"
-        android:layout_height="65dp"
         android:background="@drawable/rounded_border"
         android:gravity="center"
         android:hint="@string/prompt_email"
@@ -46,10 +52,12 @@
 
     <EditText
         android:id="@+id/password"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:autofillHints="password"
-        android:layout_width="350dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="132dp"
         android:background="@drawable/rounded_border"
         android:gravity="center"
         android:hint="@string/prompt_password"
@@ -59,11 +67,9 @@
         android:selectAllOnFocus="true"
         android:textColor="@color/black"
         android:theme="@style/Theme.SteynEntertainment"
-        app:layout_constraintBottom_toTopOf="@+id/forgotPassword"
         app:layout_constraintEnd_toEndOf="@+id/login_1"
         app:layout_constraintStart_toStartOf="@+id/login_1"
-        app:layout_constraintTop_toTopOf="@+id/login_1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <Button
         android:id="@+id/login"
@@ -76,19 +82,20 @@
         android:text="@string/action_sign_in"
         app:layout_constraintBottom_toBottomOf="@+id/login_1"
         app:layout_constraintEnd_toEndOf="@+id/login_1"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/login_1"
         app:layout_constraintTop_toBottomOf="@+id/login_1"
-        app:layout_constraintVertical_bias="0.479" />
+/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/google_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
+        android:layout_marginBottom="50dp"
         android:contentDescription="@string/google_login"
         android:theme="@style/Theme.SteynEntertainment"
         app:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,17 +103,41 @@
         app:maxImageSize="40dp"
         app:srcCompat="@drawable/ic_google_logo" />
 
-    <Button
-        android:id="@+id/signUp"
+    <TextView
+        android:id="@+id/txtSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="222dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:soundEffectsEnabled="false"
         android:text="@string/action_sign_up"
-        app:layout_constraintBottom_toTopOf="@+id/login"
-        app:layout_constraintEnd_toEndOf="@+id/login_1"
-        app:layout_constraintHorizontal_bias="0.897"
+        android:textColor="@color/hintTextColor_dark"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/login_1"
         app:layout_constraintTop_toTopOf="@+id/login_1" />
+
+    <TextView
+        android:id="@+id/txtLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:soundEffectsEnabled="false"
+        android:text="@string/action_sign_in"
+        android:textColor="@color/yellow"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/login_1"
+        app:layout_constraintTop_toTopOf="@+id/login_1" />
+
+    <View
+        android:layout_width="70dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/yellow"
+        app:layout_constraintEnd_toEndOf="@+id/txtLogin"
+        app:layout_constraintStart_toStartOf="@+id/txtLogin"
+        app:layout_constraintTop_toTopOf="@+id/login_1" />
+
 
     <ImageView
         android:id="@+id/imageView2"
@@ -118,29 +149,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/steynent_212x300" />
 
-    <Button
+    <TextView
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="223dp"
+        android:layout_marginTop="15dp"
         android:text="@string/forgot_password"
-        app:layout_constraintBottom_toTopOf="@+id/login"
-        app:layout_constraintEnd_toStartOf="@+id/signUp"
-        app:layout_constraintStart_toStartOf="@+id/login_1"
-        app:layout_constraintTop_toTopOf="@+id/login_1" />
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="50dp"
         android:layout_height="49dp"
         android:layout_gravity="center"
+        android:layout_marginTop="5dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.243"
-        app:layout_constraintStart_toEndOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/signUp"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
 
     <TextView
         android:id="@+id/textView2"
