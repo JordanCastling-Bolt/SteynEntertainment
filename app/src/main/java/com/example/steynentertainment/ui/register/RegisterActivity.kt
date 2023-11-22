@@ -138,7 +138,7 @@ class RegisterActivity : AppCompatActivity() {
 
         registerViewModel = ViewModelProvider(this, factory).get(RegisterViewModel::class.java)
 
-        registerViewModel.registerFormState.observe(
+        registerViewModel.registerFromState.observe(
             this@RegisterActivity,
             Observer {
                 val registerState = it ?: return@Observer
@@ -156,7 +156,7 @@ class RegisterActivity : AppCompatActivity() {
                     confirmPasswordEditText.error = getString(registerState.confirmPasswordError)
                 }
             }
-        ) // End of registerFormState observer
+        ) // End of registerFromState observer
 
         registerViewModel.registerResult.observe(
             this@RegisterActivity,

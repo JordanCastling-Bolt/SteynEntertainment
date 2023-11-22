@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.steynentertainment.MainActivity
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.ActivityLoginBinding
-import com.example.steynentertainment.ui.forgot_password.ForgotPasswordActivity
+import com.example.steynentertainment.ui.forgotPassword.ForgotPasswordActivity
 import com.example.steynentertainment.ui.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount

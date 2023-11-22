@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui.forgot_password
+package com.example.steynentertainment.ui.forgotPassword
 
 import android.os.Bundle
 import android.text.Editable

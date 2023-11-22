@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui.in_the_city
+package com.example.steynentertainment.ui.inTheCity
 
 import android.os.Bundle
 import android.view.LayoutInflater

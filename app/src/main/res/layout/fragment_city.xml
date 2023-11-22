@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ui.in_the_city.CityFragment">
+    tools:context=".ui.inTheCity.CityFragment">
 
     <ScrollView
         android:id="@+id/cityScrollV"

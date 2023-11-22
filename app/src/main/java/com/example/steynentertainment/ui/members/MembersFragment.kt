@@ -31,7 +31,7 @@ class MembersFragment : Fragment() {
     private lateinit var daisyFour: ImageView
     private lateinit var daisyFive: ImageView
     private lateinit var eventRecyclerView: RecyclerView
-    private lateinit var eventAdapter: memberEventsAdapter
+    private lateinit var eventAdapter: MemberEventsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -118,7 +118,7 @@ class MembersFragment : Fragment() {
 
         eventRecyclerView = root.findViewById(R.id.memberEventsRecyclerView)
         eventRecyclerView.layoutManager = LinearLayoutManager(context)
-        eventAdapter = memberEventsAdapter(emptyList())
+        eventAdapter = MemberEventsAdapter(emptyList())
 
         eventRecyclerView.adapter = eventAdapter
 
@@ -134,9 +134,9 @@ class MembersFragment : Fragment() {
 
         eventsCollection.get()
             .addOnSuccessListener { querySnapshot ->
-                val eventsList = mutableListOf<memberEvents>()
+                val eventsList = mutableListOf<MemberEvents>()
                 for (document in querySnapshot.documents) {
-                    val event = document.toObject(memberEvents::class.java)
+                    val event = document.toObject(MemberEvents::class.java)
                     if (event != null) {
                         eventsList.add(event)
                     }

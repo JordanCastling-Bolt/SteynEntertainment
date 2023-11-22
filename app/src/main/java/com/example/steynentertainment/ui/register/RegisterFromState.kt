@@ -1,6 +1,6 @@
 package com.example.steynentertainment.ui.register
 
-data class RegisterFormState(
+data class RegisterFromState(
     val usernameError: Int? = null,
     val passwordError: Int? = null,
     val confirmPasswordError: Int? = null,

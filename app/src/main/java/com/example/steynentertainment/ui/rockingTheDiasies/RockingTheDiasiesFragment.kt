@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui.rocking_the_diasies
+package com.example.steynentertainment.ui.rockingTheDiasies
 
 import android.os.Bundle
 import android.view.LayoutInflater

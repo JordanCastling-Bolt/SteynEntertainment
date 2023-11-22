@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui.events_touring
+package com.example.steynentertainment.ui.eventsTouring
 
 import android.os.Bundle
 import android.view.LayoutInflater

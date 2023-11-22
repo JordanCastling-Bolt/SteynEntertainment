@@ -11,8 +11,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 
-    private val _registerForm = MutableLiveData<RegisterFormState>()
-    val registerFormState: LiveData<RegisterFormState> = _registerForm
+    private val _registerForm = MutableLiveData<RegisterFromState>()
+    val registerFromState: LiveData<RegisterFromState> = _registerForm
 
     private val _registerResult = MutableLiveData<RegisterResult>()
     val registerResult: LiveData<RegisterResult> = _registerResult
@@ -67,13 +67,13 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 
     fun registerDataChanged(username: String, password: String, confirmPassword: String) {
         if (!isUserNameValid(username)) {
-            _registerForm.value = RegisterFormState(usernameError = R.string.invalid_username)
+            _registerForm.value = RegisterFromState(usernameError = R.string.invalid_username)
         } else if (!isPasswordValid(password)) {
-            _registerForm.value = RegisterFormState(passwordError = R.string.invalid_password)
+            _registerForm.value = RegisterFromState(passwordError = R.string.invalid_password)
         } else if (password != confirmPassword) {
-            _registerForm.value = RegisterFormState(confirmPasswordError = R.string.password_mismatch)
+            _registerForm.value = RegisterFromState(confirmPasswordError = R.string.password_mismatch)
         } else {
-            _registerForm.value = RegisterFormState(isDataValid = true)
+            _registerForm.value = RegisterFromState(isDataValid = true)
         }
     }
     private fun sendEmailVerification() {

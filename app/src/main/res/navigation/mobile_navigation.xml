@@ -62,35 +62,35 @@
     <!-- Add RockingTheDaisiesFragment -->
     <fragment
         android:id="@+id/navigation_rockingTheDaisies"
-        android:name="com.example.steynentertainment.ui.rocking_the_diasies.RockingTheDiasiesFragment"
+        android:name="com.example.steynentertainment.ui.rockingTheDiasies.RockingTheDiasiesFragment"
         android:label="@string/rocking_daisies"
         tools:layout="@layout/fragment_rocking_the_diasies" />
 
     <!-- Add EventsAndTouringFragment -->
     <fragment
         android:id="@+id/navigation_eventsAndTouring"
-        android:name="com.example.steynentertainment.ui.events_touring.EventsAndTouringFragment"
+        android:name="com.example.steynentertainment.ui.eventsTouring.EventsAndTouringFragment"
         android:label="@string/events_and_touring"
         tools:layout="@layout/fragment_events_and_touring" />
 
     <!-- Add InTheCityFragment -->
     <fragment
         android:id="@+id/navigation_inTheCity"
-        android:name="com.example.steynentertainment.ui.in_the_city.CityFragment"
+        android:name="com.example.steynentertainment.ui.inTheCity.CityFragment"
         android:label="@string/city_text2"
         tools:layout="@layout/fragment_city" />
 
     <!-- Add GetInTouchFragment -->
     <fragment
         android:id="@+id/navigation_getInTouch"
-        android:name="com.example.steynentertainment.ui.get_in_touch.GetInTouchFragment"
+        android:name="com.example.steynentertainment.ui.getInTouch.GetInTouchFragment"
         android:label="Get in touch"
         tools:layout="@layout/fragment_get_in_touch" />
 
     <!-- Add CityFragment -->
     <fragment
         android:id="@+id/navigation_city"
-        android:name="com.example.steynentertainment.ui.in_the_city.CityFragment"
+        android:name="com.example.steynentertainment.ui.inTheCity.CityFragment"
         android:label="In The City"
         tools:layout="@layout/fragment_city" />
 

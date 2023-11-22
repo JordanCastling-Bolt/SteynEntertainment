@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui.get_in_touch
+package com.example.steynentertainment.ui.getInTouch
 
 import android.os.Bundle
 import android.view.LayoutInflater
