@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.steynentertainment.databinding.FragmentHomeBinding
 import com.example.steynentertainment.ui.ui.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
 
@@ -26,17 +27,25 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // Set up login button with ViewModel
-        binding.btnLogin.setOnClickListener {
-            homeViewModel.onLoginClicked()
-        }
+        // Check Firebase Authentication status
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            // User is logged in, make the login button invisible
+            binding.btnLogin.visibility = View.GONE
+        } else {
+            // User is not logged in, set up login button
+            binding.btnLogin.visibility = View.VISIBLE
+            binding.btnLogin.setOnClickListener {
+                homeViewModel.onLoginClicked()
+            }
 
-        // Observe navigation event
-        homeViewModel.navigateToLogin.observe(viewLifecycleOwner) { shouldNavigate ->
-            if (shouldNavigate == true) {
-                val intent = Intent(activity, LoginActivity::class.java)
-                startActivity(intent)
-                homeViewModel.onLoginNavigated() // Reset the LiveData
+            // Observe navigation event
+            homeViewModel.navigateToLogin.observe(viewLifecycleOwner) { shouldNavigate ->
+                if (shouldNavigate == true) {
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    startActivity(intent)
+                    homeViewModel.onLoginNavigated() // Reset the LiveData
+                }
             }
         }
 
