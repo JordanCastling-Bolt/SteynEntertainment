@@ -107,6 +107,7 @@ class LoginActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK)
                 // Check user role and navigate to the corresponding MainActivity
                 checkUserRoleAndNavigate(auth.currentUser!!.uid)
+
             }
 
         })

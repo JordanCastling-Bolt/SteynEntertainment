@@ -3,17 +3,16 @@ package com.example.steynentertainment.ui.ui.login
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Patterns
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
-import androidx.annotation.RequiresApi
 import com.example.steynentertainment.R
 import com.example.steynentertainment.ui.data.LoginRepository
 import com.example.steynentertainment.ui.data.Result
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 
 
@@ -45,6 +44,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
             if (result is Result.Success) {
                 val loggedInUser = result.data
                 val firebaseUser = loggedInUser.firebaseUser  // Now you have the FirebaseUser
+
 
                 _loginResult.value = LoginResult(success = LoggedInUserView(displayName = firebaseUser.displayName ?: ""))
                 bundle.putString(FirebaseAnalytics.Param.METHOD, "Google")

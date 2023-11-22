@@ -1,13 +1,9 @@
 package com.example.steynentertainment.ui.members
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MembersViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
+    // Define the MutableLiveData to hold the reference to fragment_container
+    val fragmentContainerId: MutableLiveData<Int> = MutableLiveData()
 }

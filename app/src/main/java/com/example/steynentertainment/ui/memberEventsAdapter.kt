@@ -20,7 +20,6 @@ RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
         val titleTextView: TextView = itemView.findViewById(R.id.txtEventTitle)
         val dateTextView: TextView = itemView.findViewById(R.id.txtEventDate)
         val imageView: ImageView = itemView.findViewById(R.id.txtEventImage)
-        val eventDiscountTextView: TextView = itemView.findViewById(R.id.txtEventDiscountInformation)
         val quicketButton: Button = itemView.findViewById(R.id.btnViewQuicket)
     }
 
@@ -36,7 +35,6 @@ RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
         val event = memberEvent[position]
         holder.titleTextView.text = event.title
         holder.dateTextView.text = event.date
-        holder.eventDiscountTextView.text = "This is your discount"
 
         // Load and display the image using Picasso
         Picasso.get().load(event.picture).into(holder.imageView)
