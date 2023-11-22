@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -14,12 +13,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.ActivityRegisterBinding
 import com.example.steynentertainment.ui.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.example.steynentertainment.ui.register.RegisterResult
-
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -58,7 +54,8 @@ class RegisterActivity : AppCompatActivity() {
 
             // Set dialog properties
             builder.setTitle("Terms and Conditions")
-            builder.setMessage("Steyn Entertainment - Terms and Conditions\n" +
+            builder.setMessage(
+                "Steyn Entertainment - Terms and Conditions\n" +
                     "\n" +
                     "Last Updated: October 30, 2023\n" +
                     "\n" +
@@ -100,7 +97,8 @@ class RegisterActivity : AppCompatActivity() {
                     "\n" +
                     "10. Contact Information\n" +
                     "------------------------\n" +
-                    "For questions or concerns regarding these terms, please contact us at [Your Contact Information].\n")
+                    "For questions or concerns regarding these terms, please contact us at [Your Contact Information].\n"
+            )
             builder.setPositiveButton("Accept") { dialog, _ ->
                 dialog.dismiss()
                 // Set the checkbox to checked
@@ -109,7 +107,7 @@ class RegisterActivity : AppCompatActivity() {
             builder.setNegativeButton("Decline") { dialog, _ ->
                 dialog.dismiss()
                 // Optionally, you can uncheck the checkbox here if you want
-                 termsAndConditionsCheckBox.isChecked = false
+                termsAndConditionsCheckBox.isChecked = false
             }
 
             // Show the dialog
@@ -138,59 +136,65 @@ class RegisterActivity : AppCompatActivity() {
             registerViewModel.register(email, firstName, lastName, password)
         }
 
-
         registerViewModel = ViewModelProvider(this, factory).get(RegisterViewModel::class.java)
 
-        registerViewModel.registerFormState.observe(this@RegisterActivity, Observer {
-            val registerState = it ?: return@Observer
+        registerViewModel.registerFormState.observe(
+            this@RegisterActivity,
+            Observer {
+                val registerState = it ?: return@Observer
 
-            // Enable or disable the sign-up button
-            signUpButton.isEnabled = registerState.isDataValid
+                // Enable or disable the sign-up button
+                signUpButton.isEnabled = registerState.isDataValid
 
-            if (registerState.usernameError != null) {
-                usernameEditText.error = getString(registerState.usernameError)
-            }
-            if (registerState.passwordError != null) {
-                passwordEditText.error = getString(registerState.passwordError)
-            }
-            if (registerState.confirmPasswordError != null) {
-                confirmPasswordEditText.error = getString(registerState.confirmPasswordError)
-            }
-        }) // End of registerFormState observer
-
-        registerViewModel.registerResult.observe(this@RegisterActivity, Observer {
-            val registerResult = it ?: return@Observer
-
-            // Hide progress bar when result received
-            progressBar.visibility = View.GONE
-
-            when (registerResult) {
-                is RegisterResult.Success -> {
-                    Toast.makeText(
-                        applicationContext,
-                        "Registration was successful! Please verify your email.",
-                        Toast.LENGTH_LONG
-                    ).show()
-
+                if (registerState.usernameError != null) {
+                    usernameEditText.error = getString(registerState.usernameError)
                 }
-                is RegisterResult.Error -> {
-                    Toast.makeText(
-                        applicationContext,
-                        getString(registerResult.error),
-                        Toast.LENGTH_LONG
-                    ).show()
+                if (registerState.passwordError != null) {
+                    passwordEditText.error = getString(registerState.passwordError)
+                }
+                if (registerState.confirmPasswordError != null) {
+                    confirmPasswordEditText.error = getString(registerState.confirmPasswordError)
                 }
             }
-        })
+        ) // End of registerFormState observer
 
+        registerViewModel.registerResult.observe(
+            this@RegisterActivity,
+            Observer {
+                val registerResult = it ?: return@Observer
 
-        registerViewModel.navigateToLogin.observe(this@RegisterActivity, Observer { navigate ->
-            if (navigate) {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+                // Hide progress bar when result received
+                progressBar.visibility = View.GONE
+
+                when (registerResult) {
+                    is RegisterResult.Success -> {
+                        Toast.makeText(
+                            applicationContext,
+                            "Registration was successful! Please verify your email.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    is RegisterResult.Error -> {
+                        Toast.makeText(
+                            applicationContext,
+                            getString(registerResult.error),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
             }
-        })
+        )
+
+        registerViewModel.navigateToLogin.observe(
+            this@RegisterActivity,
+            Observer { navigate ->
+                if (navigate) {
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        )
 
         val afterTextChangedListener = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

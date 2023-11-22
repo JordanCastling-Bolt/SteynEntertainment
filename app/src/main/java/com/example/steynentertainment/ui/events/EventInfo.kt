@@ -52,10 +52,10 @@ class EventInfo : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentEventInfoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -74,19 +74,18 @@ class EventInfo : Fragment() {
         // Extract event information from arguments
         event = arguments?.getString("event") ?: ""
 
-
         when (event) {
             "RTD" -> {
                 eventLogo.setImageResource(R.drawable.rocking_daisies)
                 eventVisual.setImageResource(R.drawable.daisies_event_visual)
                 eventSnippet.text = "South Africa's biggest Music and Lifestyle experience is back in November 2023, " +
-                        "brought to you by @steynent and @johnniewalkersa 🌼🇿🇦"
+                    "brought to you by @steynent and @johnniewalkersa 🌼🇿🇦"
                 storageReference = storageReference.child("visuals/vKsAOo87UEtGiDyGfvIf/rockingTheDaisies")
             }
             "ITC" -> {
                 eventVisual.setImageResource(R.drawable.itc_event_visual)
                 eventSnippet.text = "A series of boutique music and lifestyle events, each curated to tap into the diverse SA soundscape and beyond. " +
-                        "Brought to you by @steynent 🇿🇦"
+                    "Brought to you by @steynent 🇿🇦"
                 eventLogo.setImageResource(R.drawable.in_the_city)
                 storageReference = storageReference.child("visuals/H5Pm9v6RcRh8EjqUna7N/inTheCity")
             }
@@ -94,7 +93,7 @@ class EventInfo : Fragment() {
                 eventLogo.setImageResource(R.drawable.steynent_solid_logo)
                 eventVisual.setImageResource(R.drawable.events_touring_event_visual)
                 eventSnippet.text = "Based in Johannesburg, Steyn Entertainment is a global multi-disciplinary organization committed to developing " +
-                        "and connecting Africa to the rest of the world, in the arts and entertainment arenas.🇿🇦"
+                    "and connecting Africa to the rest of the world, in the arts and entertainment arenas.🇿🇦"
                 storageReference = storageReference.child("visuals/pLsA5o87UFtGtDyJfkan/eventsAndTouring")
             }
             else -> Toast.makeText(context, "Error Fetching event info", Toast.LENGTH_SHORT).show()
@@ -121,8 +120,7 @@ class EventInfo : Fragment() {
             }
         }
 
-        btnNews.setOnClickListener(){
-
+        btnNews.setOnClickListener() {
             showPopup()
 
             when (event) {
@@ -142,12 +140,12 @@ class EventInfo : Fragment() {
             }
         }
 
-        btnPreviousEvents.setOnClickListener(){
+        btnPreviousEvents.setOnClickListener() {
             showPopup()
 
             when (event) {
                 "RTD" -> {
-                    fetchEventDetails("rockingTheDaisies",false)
+                    fetchEventDetails("rockingTheDaisies", false)
                     txtEvent.text = "Previous Events for \nRocking the Daisies"
                 }
                 "ITC" -> {
@@ -162,12 +160,12 @@ class EventInfo : Fragment() {
             }
         }
 
-        btnUpcomingEvents.setOnClickListener(){
+        btnUpcomingEvents.setOnClickListener() {
             showPopup()
 
             when (event) {
                 "RTD" -> {
-                    fetchEventDetails("rockingTheDaisies",true)
+                    fetchEventDetails("rockingTheDaisies", true)
                     txtEvent.text = "Upcoming Events for \nRocking the Daisies"
                 }
                 "ITC" -> {
@@ -363,19 +361,15 @@ class EventInfo : Fragment() {
             }
     }
 
-
-
     private fun getCurrentDate(): String {
         val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
         val currentDate = Date()
         return dateFormat.format(currentDate)
     }
 
-
     private fun updateEventDetailsRecyclerView(eventDetailsList: List<EventDetails>) {
         eventDetailsAdapter = EventDetailsAdapter(eventDetailsList)
         popupRecyclerView.layoutManager = LinearLayoutManager(context)
         popupRecyclerView.adapter = eventDetailsAdapter
     }
-
 }

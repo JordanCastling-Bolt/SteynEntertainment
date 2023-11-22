@@ -1,0 +1,24 @@
+# Top-most EditorConfig file
+root = true
+
+# Kotlin files
+[*.{kt,kts}]
+indent_style = space
+indent_size = 4
+max_line_length = 120
+# Add more Kotlin-specific rules if needed
+
+# XML files
+[*.xml]
+indent_style = space
+indent_size = 2
+# Add more XML-specific rules if needed
+# Kotlin-specific rules
+android {
+# Include any custom rules specific to Kotlin files
+}
+
+# XML-specific rules
+xml {
+# Include any custom rules specific to XML files
+}

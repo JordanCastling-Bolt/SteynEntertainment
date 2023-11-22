@@ -50,7 +50,6 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                             .document(user.uid)
                             .set(userData)
                             .addOnSuccessListener {
-
                             }
                             .addOnFailureListener { e ->
                                 // Handle failure

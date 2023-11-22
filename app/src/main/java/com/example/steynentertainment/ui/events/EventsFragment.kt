@@ -5,14 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentEventsBinding
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 
 class EventsFragment : Fragment() {
 
@@ -35,14 +32,14 @@ class EventsFragment : Fragment() {
 
         val navController = findNavController()
 
-        //------------------Loading the Rocking The Daisies logo and description--------------------
+        // ------------------Loading the Rocking The Daisies logo and description--------------------
 
         val imgRTD = binding.imgRTD
         imgRTD.setImageResource(R.drawable.rocking_daisies)
 
         val txtRTD = binding.txtRTDPreview
         txtRTD.text = "You know the pure, simplistic joy of finding a forgotten loose R100 in the pocket of your old jeans while doing your laundry? " +
-                "Yeah, that feeling is Daisies; but with a lot less detergent, plenty of sun and the best live soundtrack you have ever heard."
+            "Yeah, that feeling is Daisies; but with a lot less detergent, plenty of sun and the best live soundtrack you have ever heard."
 
         val viewRTD = binding.btnViewRTD
 
@@ -50,17 +47,16 @@ class EventsFragment : Fragment() {
             val eventInfo = EventInfo.newInstance("RTD")
             navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
         }
-        //------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
 
-
-        //-----------------------Loading the In The City logo and description-----------------------
+        // -----------------------Loading the In The City logo and description-----------------------
 
         val imgITC = binding.imgITC
         imgITC.setImageResource(R.drawable.in_the_city)
 
         val txtITC = binding.txtITCPreview
         txtITC.text = "Welcome to ‘In the City’, where the heartbeat of South Africa comes alive through the power of music. No matter how diverse our " +
-                "backgrounds may be, there is a rhythmic thread that binds us together."
+            "backgrounds may be, there is a rhythmic thread that binds us together."
 
         val viewITC = binding.btnViewITC
 
@@ -68,10 +64,9 @@ class EventsFragment : Fragment() {
             val eventInfo = EventInfo.newInstance("ITC")
             navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
         }
-        //------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
 
-
-        //-----------------------Loading the Events & Touring logo and description------------------
+        // -----------------------Loading the Events & Touring logo and description------------------
 
         val imgEventsTouring = binding.imgEventsTour
         imgEventsTouring.setImageResource(R.drawable.steynent_solid_logo)
@@ -86,7 +81,7 @@ class EventsFragment : Fragment() {
             navController.navigate(R.id.navigation_eventInfo, eventInfo.arguments)
         }
 
-        //------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
 
         return binding.root
     }

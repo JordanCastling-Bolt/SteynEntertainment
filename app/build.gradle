@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
     id 'checkstyle'
+    id 'org.jlleitschuh.gradle.ktlint' version '11.6.1'
 }
 checkstyle {
     toolVersion = '10.5.0'

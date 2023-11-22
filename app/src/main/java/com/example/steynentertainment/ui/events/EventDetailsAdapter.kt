@@ -2,14 +2,12 @@ package com.example.steynentertainment.ui.events
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.steynentertainment.R
@@ -72,7 +70,6 @@ class EventDetailsAdapter(private val eventDetailsList: List<EventDetails>) :
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(eventDetails.ticketUrl))
             holder.itemView.context.startActivity(intent)
         }
-
     }
 
     // Helper function to get the current date in the same format as event dates
@@ -81,7 +78,6 @@ class EventDetailsAdapter(private val eventDetailsList: List<EventDetails>) :
         val currentDate = Date()
         return dateFormat.format(currentDate)
     }
-
 
     override fun getItemCount(): Int {
         // Return the size of the dataset

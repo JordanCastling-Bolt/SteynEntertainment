@@ -18,4 +18,3 @@ class RegisterViewModelFactory(private val firebaseAuth: FirebaseAuth) : ViewMod
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
-

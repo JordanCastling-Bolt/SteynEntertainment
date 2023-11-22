@@ -8,8 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -31,16 +29,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentProfileBinding
-import com.example.steynentertainment.ui.members.MembersFragment
 import com.example.steynentertainment.ui.members.Users
 import com.example.steynentertainment.ui.ui.login.LoginActivity
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import java.io.ByteArrayOutputStream
 
 class ProfileFragment : Fragment() {
 
@@ -64,6 +59,7 @@ class ProfileFragment : Fragment() {
     private lateinit var reward: MaterialButton
     private lateinit var update: MaterialButton
     private lateinit var logout: MaterialButton
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -83,7 +79,7 @@ class ProfileFragment : Fragment() {
 
         progressBar = binding.progressBar
 
-        //Used to get the user to add a photo to the entry
+        // Used to get the user to add a photo to the entry
         imagePickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
@@ -121,7 +117,6 @@ class ProfileFragment : Fragment() {
             }
         }
 
-
         userImageView = _binding?.userImage ?: root.findViewById(R.id.userImage)
         changeImageButton = _binding?.changeImage ?: root.findViewById(R.id.changeImage)
         email = _binding?.txtEmail ?: root.findViewById(R.id.txtEmail)
@@ -132,10 +127,10 @@ class ProfileFragment : Fragment() {
         changePassword = _binding?.changePassword ?: root.findViewById(R.id.changePassword)
         logout = _binding?.logout ?: root.findViewById(R.id.logout)
 
-        //Gets the logged in user
+        // Gets the logged in user
         val user = FirebaseAuth.getInstance().currentUser
 
-        //If there is a logged in user
+        // If there is a logged in user
         if (user != null) {
             val userId = FirebaseAuth.getInstance().currentUser?.uid
             val firestore = FirebaseFirestore.getInstance()
@@ -215,10 +210,11 @@ class ProfileFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            //checks if textboxes aren't empty
+            // checks if textboxes aren't empty
             if (!(firstName.text.isNotEmpty() && lastName.text.isNotEmpty())) {
                 Toast.makeText(
-                    requireContext(), "Please fill in the first name and last name fields",
+                    requireContext(),
+                    "Please fill in the first name and last name fields",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
@@ -246,8 +242,8 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        changePassword.setOnClickListener(){
-            showPopupPassword(requireContext())//calls pop up
+        changePassword.setOnClickListener() {
+            showPopupPassword(requireContext()) // calls pop up
         }
 
         logout.setOnClickListener {
@@ -258,7 +254,7 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        reward.setOnClickListener(){
+        reward.setOnClickListener() {
             navController.navigate(R.id.navigation_members)
         }
 
@@ -266,7 +262,6 @@ class ProfileFragment : Fragment() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
     }
 
     override fun onDestroyView() {
@@ -274,8 +269,8 @@ class ProfileFragment : Fragment() {
         _binding = null
     }
 
-    //Popup for changing password
-    fun showPopupPassword(context: Context){
+    // Popup for changing password
+    fun showPopupPassword(context: Context) {
         val builder = AlertDialog.Builder(context)
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.popup_changepassword_layout, null)
@@ -293,7 +288,7 @@ class ProfileFragment : Fragment() {
         }
 
         confirmButton.setOnClickListener {
-            if(password.text.isEmpty() || retypepassword.text.isEmpty()){
+            if (password.text.isEmpty() || retypepassword.text.isEmpty()) {
                 Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -301,7 +296,7 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if(password.text.contains(" ") || retypepassword.text.contains(" ")){
+            if (password.text.contains(" ") || retypepassword.text.contains(" ")) {
                 Toast.makeText(context, "No spaces allowed in password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -324,7 +319,6 @@ class ProfileFragment : Fragment() {
             } else {
                 Toast.makeText(context, "User is not signed in", Toast.LENGTH_SHORT).show()
             }
-
         }
 
         dialog.show()

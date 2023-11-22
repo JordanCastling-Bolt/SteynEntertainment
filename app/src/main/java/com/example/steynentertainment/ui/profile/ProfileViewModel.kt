@@ -15,13 +15,11 @@ import java.io.ByteArrayOutputStream
 
 class ProfileViewModel : ViewModel() {
 
-    private var photoReference : String  = ""
+    private var photoReference: String = ""
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
     }
     val text: LiveData<String> = _text
-
-
 
     fun updateProfile(firstName: String, lastName: String, newPhoto: Boolean, newPhotoRef: String, context: Context) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid

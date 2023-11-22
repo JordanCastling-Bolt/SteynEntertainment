@@ -22,7 +22,7 @@ class MembersFragment : Fragment() {
     private var _binding: FragmentMembersBinding? = null
     private val binding get() = _binding!!
 
-    //Settings Global variables of the various components in the fragment
+    // Settings Global variables of the various components in the fragment
     private lateinit var usernameView: TextView
     private lateinit var daisyInformation: TextView
     private lateinit var daisyOne: ImageView
@@ -33,7 +33,6 @@ class MembersFragment : Fragment() {
     private lateinit var eventRecyclerView: RecyclerView
     private lateinit var eventAdapter: memberEventsAdapter
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +41,7 @@ class MembersFragment : Fragment() {
         _binding = FragmentMembersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        //Setting the global variables to the various components
+        // Setting the global variables to the various components
         usernameView = root.findViewById(R.id.txtwelcometwo)
         daisyInformation = root.findViewById(R.id.txtsecondwelcomeone)
         daisyOne = root.findViewById(R.id.daisy1)
@@ -51,11 +50,10 @@ class MembersFragment : Fragment() {
         daisyFour = root.findViewById(R.id.daisy4)
         daisyFive = root.findViewById(R.id.daisy5)
 
-
-        //Gets the logged-in user for FirebaseAuth
+        // Gets the logged-in user for FirebaseAuth
         val user = FirebaseAuth.getInstance().currentUser
 
-        //Checks if the user is null
+        // Checks if the user is null
         if (user != null) {
             val userId = user.uid
             val firestore = FirebaseFirestore.getInstance()
@@ -66,34 +64,34 @@ class MembersFragment : Fragment() {
                     if (documentSnapshot.exists()) {
                         val userData = documentSnapshot.toObject(Users::class.java)
 
-                        //Sets username to relevant profile name
+                        // Sets username to relevant profile name
                         usernameView.text = userData?.firstName
 
-                        //If the user is not subscribed
-                        if(userData?.subscribed == "no"){
+                        // If the user is not subscribed
+                        if (userData?.subscribed == "no") {
                             val myPayments = userData?.yearlyPayments
 
-                            //Then depending on their purchase, will get various daisies.
+                            // Then depending on their purchase, will get various daisies.
                             if (myPayments != null) {
-                                if(myPayments in 0..700){
+                                if (myPayments in 0..700) {
                                     daisyThree.isVisible = true
                                     daisyInformation.text = "Right now, you have 1 daisy"
-                                }else if(myPayments in 0..700){
+                                } else if (myPayments in 0..700) {
                                     daisyTwo.isVisible = true
                                     daisyThree.isVisible = true
                                     daisyInformation.text = "Right now, you have 2 daisies"
-                                }else if(myPayments in 1401..2100){
+                                } else if (myPayments in 1401..2100) {
                                     daisyOne.isVisible = true
                                     daisyTwo.isVisible = true
                                     daisyThree.isVisible = true
                                     daisyInformation.text = "Right now, you have 3 daisies"
-                                }else if(myPayments in 2101..2800){
+                                } else if (myPayments in 2101..2800) {
                                     daisyOne.isVisible = true
                                     daisyTwo.isVisible = true
                                     daisyThree.isVisible = true
                                     daisyFour.isVisible = true
                                     daisyInformation.text = "Right now, you have 4 daisies"
-                                }else if(myPayments in 2801..3500){
+                                } else if (myPayments in 2801..3500) {
                                     daisyOne.isVisible = true
                                     daisyTwo.isVisible = true
                                     daisyThree.isVisible = true
@@ -102,8 +100,8 @@ class MembersFragment : Fragment() {
                                     daisyInformation.text = "Right now, you have 5 daisies"
                                 }
                             }
-                        }else{
-                            //Else if subscribed they will have 5 stars.
+                        } else {
+                            // Else if subscribed they will have 5 stars.
                             daisyOne.isVisible = true
                             daisyTwo.isVisible = true
                             daisyThree.isVisible = true
@@ -118,8 +116,7 @@ class MembersFragment : Fragment() {
                 }
         }
 
-
-        eventRecyclerView =  root.findViewById(R.id.memberEventsRecyclerView)
+        eventRecyclerView = root.findViewById(R.id.memberEventsRecyclerView)
         eventRecyclerView.layoutManager = LinearLayoutManager(context)
         eventAdapter = memberEventsAdapter(emptyList())
 
@@ -130,30 +127,28 @@ class MembersFragment : Fragment() {
         return root
     }
 
-    private fun fetchDataFromFirestore(){
-    // Fetch data from Firestore and update the adapter with the data
-    val firestore = FirebaseFirestore.getInstance()
-    val eventsCollection = firestore.collection("Events")
+    private fun fetchDataFromFirestore() {
+        // Fetch data from Firestore and update the adapter with the data
+        val firestore = FirebaseFirestore.getInstance()
+        val eventsCollection = firestore.collection("Events")
 
-    eventsCollection.get()
-        .addOnSuccessListener { querySnapshot ->
-        val eventsList = mutableListOf<memberEvents>()
-        for (document in querySnapshot.documents) {
-            val event = document.toObject(memberEvents::class.java)
-            if (event != null) {
-                eventsList.add(event)
+        eventsCollection.get()
+            .addOnSuccessListener { querySnapshot ->
+                val eventsList = mutableListOf<memberEvents>()
+                for (document in querySnapshot.documents) {
+                    val event = document.toObject(memberEvents::class.java)
+                    if (event != null) {
+                        eventsList.add(event)
+                    }
+                }
+                // Update the adapter with the retrieved data
+                eventAdapter.updateData(eventsList)
             }
-        }
-        // Update the adapter with the retrieved data
-        eventAdapter.updateData(eventsList)
+            .addOnFailureListener { exception ->
+                Log.e("MembersFragment", "Firestore error: ${exception.message}")
+                Toast.makeText(requireContext(), "Unable to fetch data.", Toast.LENGTH_SHORT).show()
+            }
     }
-    .addOnFailureListener { exception ->
-        Log.e("MembersFragment", "Firestore error: ${exception.message}")
-        Toast.makeText(requireContext(), "Unable to fetch data.", Toast.LENGTH_SHORT).show()
-    }
-}
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

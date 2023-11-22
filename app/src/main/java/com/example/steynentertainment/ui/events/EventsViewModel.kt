@@ -1,19 +1,14 @@
 package com.example.steynentertainment.ui.events
 
-import android.content.ContentValues
-import androidx.lifecycle.ViewModel
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.ViewModel
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import java.io.File
 
 class EventsViewModel : ViewModel() {
@@ -58,5 +53,4 @@ class EventsViewModel : ViewModel() {
                 onCategoryReceived(null)
             }
     }
-
 }

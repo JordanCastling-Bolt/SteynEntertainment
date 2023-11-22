@@ -37,7 +37,6 @@ class LoginDataSource {
             }
     }
 
-
     fun logout() {
         auth.signOut()
     }

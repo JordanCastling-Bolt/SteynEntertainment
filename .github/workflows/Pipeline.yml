@@ -32,8 +32,7 @@ jobs:
        - name: Run Checkstyle
          run: ./gradlew checkstyle
 
-       - name: SonarQube Scan
-         uses: kitabisa/sonarqube-action@v1.2.1
-
+       - name: Run ktlint
+         run: ./gradlew ktlintCheck
 
        - run: echo "🍏 This job's status is ${{ job.status }}."

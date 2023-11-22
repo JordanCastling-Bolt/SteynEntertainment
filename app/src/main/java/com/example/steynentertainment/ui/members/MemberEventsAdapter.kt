@@ -12,10 +12,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.squareup.picasso.Picasso
-class memberEventsAdapter(private var memberEvent: List<memberEvents>):
-RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
+class memberEventsAdapter(private var memberEvent: List<memberEvents>) :
+    RecyclerView.Adapter<memberEventsAdapter.ViewHolder>() {
 
-    //viewHolder Method Header
+    // viewHolder Method Header
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.txtEventTitle)
         val dateTextView: TextView = itemView.findViewById(R.id.txtEventDate)
@@ -24,14 +24,14 @@ RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
         val quicketButton: Button = itemView.findViewById(R.id.btnViewQuicket)
     }
 
-    //onCreateViewHolder Method Header
+    // onCreateViewHolder Method Header
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.member_event_recylcer_layout, parent, false)
         return ViewHolder(itemView)
     }
 
-    //onBindViewHolder Method Header
+    // onBindViewHolder Method Header
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = memberEvent[position]
         holder.titleTextView.text = event.title
@@ -59,11 +59,8 @@ RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
         notifyDataSetChanged()
     }
 
-    //getItemCount Method Header
+    // getItemCount Method Header
     override fun getItemCount(): Int {
         return memberEvent.size
     }
 }
-
-
-

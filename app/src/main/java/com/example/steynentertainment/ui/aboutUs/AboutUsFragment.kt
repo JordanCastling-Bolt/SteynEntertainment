@@ -19,7 +19,6 @@ class AboutUsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         // Inflate the layout
         val view = inflater.inflate(R.layout.fragment_aboutus, container, false)
 
@@ -37,21 +36,18 @@ class AboutUsFragment : Fragment() {
 
         // Set click listener in the city button
         inTheCityButton.setOnClickListener {
-
             // Navigate to InTheCityFragment
             findNavController().navigate(R.id.action_aboutUs_to_inTheCity)
         }
 
         // Set click listener in the EventsAndTours button
         eventToursButton.setOnClickListener {
-
             // Navigate to EventsAndTouringFragment
             findNavController().navigate(R.id.action_aboutUs_to_eventsAndTouring)
         }
 
         // Set click listener on get in touch button
         getInTouchButton.setOnClickListener {
-
             // Navigate to GetInTouchFragment
             findNavController().navigate(R.id.action_aboutUs_to_getInTouch)
         }
