@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui
+package com.example.steynentertainment.ui.members
 
 import android.content.Context
 import android.content.Intent

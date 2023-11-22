@@ -22,9 +22,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentMembersBinding
-import com.example.steynentertainment.ui.Users
-import com.example.steynentertainment.ui.MemberEvents
-import com.example.steynentertainment.ui.MemberEventsAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
