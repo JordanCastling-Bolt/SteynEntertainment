@@ -32,8 +32,8 @@ jobs:
        - name: Run Checkstyle
          run: ./gradlew checkstyle
 
-       - name: SecurityCodeScan
-         uses: security-code-scan/security-code-scan-results-action@v1.3
+       - name: SonarQube Scan
+         uses: kitabisa/sonarqube-action@v1.2.1
 
 
        - run: echo "🍏 This job's status is ${{ job.status }}."
