@@ -5,6 +5,7 @@ data class Users(
     val email: String?="",
     val firstName: String?= "",
     val lastName: String?= "",
+    val profilePicture: String?= "",
     val role: String?="",
     val subscribed: String?="",
     val yearlyPayments: Int?=null

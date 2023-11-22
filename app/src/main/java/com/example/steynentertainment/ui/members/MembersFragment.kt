@@ -27,6 +27,7 @@ import com.example.steynentertainment.ui.memberEvents
 import com.example.steynentertainment.ui.memberEventsAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 
 
 class MembersFragment : Fragment() {
@@ -47,6 +48,7 @@ class MembersFragment : Fragment() {
     private lateinit var eventRecyclerView: RecyclerView
     private lateinit var eventAdapter: memberEventsAdapter
     private lateinit var viewModel: MembersViewModel
+    private lateinit var profileImage: ImageView
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -83,8 +85,8 @@ class MembersFragment : Fragment() {
                     if (documentSnapshot.exists()) {
                         val userData = documentSnapshot.toObject(Users::class.java)
 
-//                        // Load and display the image using Picasso
-//                        Picasso.get().load(userData.picture).into(holder.imageView)
+                        // Load and display the image using Picasso
+                        Picasso.get().load(userData?.profilePicture).into(profileImage)
                         //Sets username to relevant profile name
                         usernameView.text = "Welcome, " + userData?.firstName
 
