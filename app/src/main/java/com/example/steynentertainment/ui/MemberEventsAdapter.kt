@@ -12,8 +12,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.squareup.picasso.Picasso
-class memberEventsAdapter(private var memberEvent: List<memberEvents>):
-RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
+class MemberEventsAdapter(private var memberEvent: List<MemberEvents>):
+RecyclerView.Adapter<MemberEventsAdapter.ViewHolder>(){
 
     //viewHolder Method Header
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -52,7 +52,7 @@ RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
         context.startActivity(intent)
     }
 
-    fun updateData(newData: List<memberEvents>) {
+    fun updateData(newData: List<MemberEvents>) {
         memberEvent = newData
         notifyDataSetChanged()
     }

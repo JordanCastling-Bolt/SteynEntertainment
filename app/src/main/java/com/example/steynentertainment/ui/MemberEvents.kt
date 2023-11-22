@@ -1,6 +1,6 @@
 package com.example.steynentertainment.ui
 
-data class memberEvents(
+data class MemberEvents(
     val category: String?="",
     val date: String?="",
     val description: String?="",

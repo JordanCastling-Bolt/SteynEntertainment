@@ -23,8 +23,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentMembersBinding
 import com.example.steynentertainment.ui.Users
-import com.example.steynentertainment.ui.memberEvents
-import com.example.steynentertainment.ui.memberEventsAdapter
+import com.example.steynentertainment.ui.MemberEvents
+import com.example.steynentertainment.ui.MemberEventsAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
@@ -46,7 +46,7 @@ class MembersFragment : Fragment() {
     private lateinit var daisyFive: ImageView
     private lateinit var infoButton: Button
     private lateinit var eventRecyclerView: RecyclerView
-    private lateinit var eventAdapter: memberEventsAdapter
+    private lateinit var eventAdapter: MemberEventsAdapter
     private lateinit var viewModel: MembersViewModel
     private lateinit var profileImage: ImageView
 
@@ -149,7 +149,7 @@ class MembersFragment : Fragment() {
 
         eventRecyclerView =  root.findViewById(R.id.memberEventsRecyclerView)
         eventRecyclerView.layoutManager = LinearLayoutManager(context)
-        eventAdapter = memberEventsAdapter(emptyList())
+        eventAdapter = MemberEventsAdapter(emptyList())
 
         eventRecyclerView.adapter = eventAdapter
 
@@ -172,9 +172,9 @@ class MembersFragment : Fragment() {
 
     eventsCollection.get()
         .addOnSuccessListener { querySnapshot ->
-        val eventsList = mutableListOf<memberEvents>()
+        val eventsList = mutableListOf<MemberEvents>()
         for (document in querySnapshot.documents) {
-            val event = document.toObject(memberEvents::class.java)
+            val event = document.toObject(MemberEvents::class.java)
             if (event != null) {
                 eventsList.add(event)
             }
