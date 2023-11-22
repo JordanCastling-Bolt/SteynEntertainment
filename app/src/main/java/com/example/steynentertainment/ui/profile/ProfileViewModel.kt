@@ -61,7 +61,7 @@ class ProfileViewModel : ViewModel() {
     fun uploadPhoto(photo: Any, context: Context, onPhotoUploaded: (String) -> Unit) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
-        val photoName = "photos/${System.currentTimeMillis()}.jpg"
+        val photoName = "user/image/${System.currentTimeMillis()}.jpg"
         val photoRef = storageRef.child(photoName)
 
         val uploadTask = when (photo) {

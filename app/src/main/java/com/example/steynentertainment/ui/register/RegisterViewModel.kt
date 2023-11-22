@@ -43,7 +43,8 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                             "role" to "user",
                             "terms_accepted" to true,
                             "yearlyPayments" to 0,
-                            "subscribed" to "no"
+                            "subscribed" to "no",
+                            "profilePicture" to "https://firebasestorage.googleapis.com/v0/b/steynentertainment-800ea.appspot.com/o/user%2Fimage%2FDefault_Profile_Picture.jpeg?alt=media&token=6fbd2675-bb34-45a3-8912-c663320d85ea"
                         )
                         db.collection("Users")
                             .document(user.uid)
