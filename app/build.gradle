@@ -19,6 +19,11 @@ tasks.register('checkstyle', Checkstyle) {
     exclude '**/gen/**'
     classpath = files()
 }
+ktlint {
+    reporters {
+        reporter "html"
+    }
+}
 
 android {
     namespace 'com.example.steynentertainment'
