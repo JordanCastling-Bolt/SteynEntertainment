@@ -12,15 +12,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.squareup.picasso.Picasso
-class MemberEventsAdapter(private var memberEvent: List<MemberEvents>) :
-    RecyclerView.Adapter<MemberEventsAdapter.ViewHolder>() {
+
+class MemberEventsAdapter(private var memberEvent: List<MemberEvents>):
+RecyclerView.Adapter<MemberEventsAdapter.ViewHolder>(){
+
 
     // viewHolder Method Header
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.txtEventTitle)
         val dateTextView: TextView = itemView.findViewById(R.id.txtEventDate)
         val imageView: ImageView = itemView.findViewById(R.id.txtEventImage)
-        val eventDiscountTextView: TextView = itemView.findViewById(R.id.txtEventDiscountInformation)
         val quicketButton: Button = itemView.findViewById(R.id.btnViewQuicket)
     }
 
@@ -36,7 +37,6 @@ class MemberEventsAdapter(private var memberEvent: List<MemberEvents>) :
         val event = memberEvent[position]
         holder.titleTextView.text = event.title
         holder.dateTextView.text = event.date
-        holder.eventDiscountTextView.text = "This is your discount"
 
         // Load and display the image using Picasso
         Picasso.get().load(event.picture).into(holder.imageView)

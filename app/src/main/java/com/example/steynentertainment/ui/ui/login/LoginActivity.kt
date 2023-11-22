@@ -112,7 +112,29 @@ class LoginActivity : AppCompatActivity() {
                     checkUserRoleAndNavigate(auth.currentUser!!.uid)
                 }
             }
-        )
+        })
+
+        loginViewModel.loginResult.observe(this@LoginActivity, Observer {
+            val loginResult = it ?: return@Observer
+
+            // Hide ProgressBar
+            binding.loading.visibility = View.GONE
+
+            if (loginResult.error != null) {
+                showLoginFailed(loginResult.error)
+            }
+            if (loginResult.success != null) {
+                // Show ProgressBar
+                binding.loading.visibility = View.VISIBLE
+
+                updateUiWithUser(loginResult.success)
+                setResult(Activity.RESULT_OK)
+                // Check user role and navigate to the corresponding MainActivity
+                checkUserRoleAndNavigate(auth.currentUser!!.uid)
+
+            }
+
+        })
 
         username.afterTextChanged {
             loginViewModel.loginDataChanged(

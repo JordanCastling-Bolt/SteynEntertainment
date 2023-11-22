@@ -1,0 +1,102 @@
+<!-- payment_portal_layout.xml -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Card Logos -->
+    <ImageView
+        android:id="@+id/imageVisa"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:src="@drawable/visa"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"/>
+
+    <ImageView
+        android:id="@+id/imageMasterCard"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:src="@drawable/mastercard"
+        android:layout_toEndOf="@id/imageVisa"
+        android:layout_alignTop="@id/imageVisa"
+        android:layout_marginEnd="8dp"/>
+
+    <ImageView
+        android:id="@+id/imageAmex"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:src="@drawable/american_express_logo_wine"
+        android:layout_toEndOf="@id/imageMasterCard"
+        android:layout_alignTop="@id/imageMasterCard"/>
+
+    <!-- Card Input Fields -->
+    <EditText
+        android:id="@+id/editCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Card Number"
+        android:layout_below="@id/imageVisa"
+        android:layout_marginTop="16dp"
+        android:inputType="number"
+        android:digits="0123456789 "
+        android:maxLines="1"
+        android:maxLength="16"
+        />
+
+    <EditText
+        android:id="@+id/editCardHolderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cardholder Name"
+        android:layout_below="@id/editCardNumber"
+        android:layout_marginTop="8dp"
+        android:inputType="textCapCharacters"/>
+
+    <LinearLayout
+        android:id="@+id/expiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editCardHolderName"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editExpiryMonth"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="MM"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:maxLines="1"
+            android:maxLength="2"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/editExpiryYear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="YY"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:maxLines="1"
+            android:maxLength="2"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editCVV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CVV"
+        android:layout_below="@id/expiry"
+        android:layout_marginTop="8dp"
+        android:inputType="number"
+        android:digits="0123456789"
+        android:maxLines="1"
+        android:maxLength="3"/>
+</RelativeLayout>
