@@ -15,6 +15,7 @@
         android:name="com.example.steynentertainment.ui.admin_home.AdminHomeFragment"
         android:label="Admin Home"
         tools:layout="@layout/fragment_admin_home"/>
+
     <fragment
         android:id="@+id/navigation_events"
         android:name="com.example.steynentertainment.ui.events.EventsFragment"
@@ -98,4 +99,10 @@
         android:name="com.example.steynentertainment.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_eventInfo"
+        android:name="com.example.steynentertainment.ui.events.EventInfo"
+        android:label="@string/eventInfo"
+        tools:layout="@layout/fragment_event_info" />
 </navigation>
