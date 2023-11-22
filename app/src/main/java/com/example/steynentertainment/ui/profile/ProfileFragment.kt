@@ -251,14 +251,11 @@ class ProfileFragment : Fragment() {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
-
-<<<<<<< Updated upstream
+        /*
         reward.setOnClickListener() {
             navController.navigate(R.id.navigation_members)
         }
-
-=======
->>>>>>> Stashed changes
+        */
         return root
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

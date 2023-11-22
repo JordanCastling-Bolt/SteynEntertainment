@@ -6,12 +6,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.example.steynentertainment.databinding.ActivityForgotPasswordBinding
-<<<<<<< Updated upstream:app/src/main/java/com/example/steynentertainment/ui/forgotPassword/ForgotPasswordActivity.kt
 import com.google.android.material.snackbar.Snackbar
-=======
 import com.example.steynentertainment.ui.register.RegisterActivity
 import com.example.steynentertainment.ui.ui.login.LoginActivity
->>>>>>> Stashed changes:app/src/main/java/com/example/steynentertainment/ui/forgot_password/ForgotPasswordActivity.kt
+
 import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -24,11 +22,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-<<<<<<< Updated upstream:app/src/main/java/com/example/steynentertainment/ui/forgotPassword/ForgotPasswordActivity.kt
-        binding.fab.setOnClickListener {
+
+       /* binding.fab.setOnClickListener {
             finish()
         }
-
+*/
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val email = binding.email.text.toString()
@@ -37,8 +35,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 // Enable the button only if both email fields contain a valid email and are identical
                 binding.resetPassword.isEnabled = isValidEmail(email) && email == confirmEmail
             }
-=======
->>>>>>> Stashed changes:app/src/main/java/com/example/steynentertainment/ui/forgot_password/ForgotPasswordActivity.kt
 
             override fun beforeTextChanged(
                 s: CharSequence?,
