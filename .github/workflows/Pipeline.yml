@@ -35,4 +35,10 @@ jobs:
        - name: Run ktlint
          run: ./gradlew ktlintCheck
 
+       - name: Upload Ktlint Report
+         uses: actions/upload-artifact@v2
+         with:
+          name: ktlint-report
+          path: app/build/reports/ktlint/*.html
+
        - run: echo "🍏 This job's status is ${{ job.status }}."
