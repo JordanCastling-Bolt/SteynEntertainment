@@ -9,7 +9,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.steynentertainment.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.navigation.NavGraph
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
@@ -47,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         val graph = navInflater.inflate(R.navigation.mobile_navigation).apply {
             setStartDestination(R.id.navigation_home)
         }
-
         navController.graph = graph  // Set the modified NavGraph to the NavController
 
         val navView: BottomNavigationView = binding.navView
@@ -60,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_profile
             )
         )
-
         // Setup action bar and bottom navigation
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)

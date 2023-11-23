@@ -47,15 +47,16 @@
         <action
             android:id="@+id/action_aboutUs_to_getInTouch"
             app:destination="@id/navigation_getInTouch" />
+        <!-- Add action to GetInTouchFragment -->
+
+        <action
+            android:id="@+id/action_inTheCity_to_getInTouch"
+            app:destination="@id/navigation_getInTouch" />
 
         <!-- Add action to EventsAndTouringFragment -->
         <action
             android:id="@+id/action_aboutUs_to_eventsAndTouring"
             app:destination="@id/navigation_eventsAndTouring" />
-        <!-- Add action to EventsAndTouringFragment -->
-        <action
-            android:id="@+id/action_city_to_getInTouch"
-            app:destination="@id/navigation_getInTouch" />
     </fragment>
 
     <!-- Add RockingTheDaisiesFragment -->
@@ -77,7 +78,7 @@
         android:id="@+id/navigation_inTheCity"
         android:name="com.example.steynentertainment.ui.in_the_city.CityFragment"
         android:label="@string/city_text2"
-        tools:layout="@layout/fragment_city" />
+        tools:layout="@layout/fragment_city"/>
 
     <!-- Add GetInTouchFragment -->
     <fragment
@@ -99,3 +100,8 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
+
+
+
+
+

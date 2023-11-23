@@ -28,9 +28,13 @@ class CityFragment : Fragment() {
 
         // Set click listener on the button
         getInTouchButton.setOnClickListener {
-
-            findNavController().navigate(R.id.action_city_to_getInTouch)
+            navigateToGetInTouch()
         }
         return view
     }
+    private fun navigateToGetInTouch() {
+        // Navigate to GetInTouchFragment
+        findNavController().navigate(R.id.navigation_getInTouch)
+    }
+
 }
