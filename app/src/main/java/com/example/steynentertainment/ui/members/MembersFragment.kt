@@ -25,6 +25,9 @@ import com.example.steynentertainment.databinding.FragmentMembersBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 class MembersFragment : Fragment() {
@@ -163,12 +166,21 @@ class MembersFragment : Fragment() {
         return root
     }
 
-    private fun fetchDataFromFirestore(){
-        // Fetch data from Firestore and update the adapter with the data
+    private fun fetchDataFromFirestore() {
         val firestore = FirebaseFirestore.getInstance()
         val eventsCollection = firestore.collection("Events")
 
-        eventsCollection.get()
+        // Get tomorrow's date
+        val tomorrow = Calendar.getInstance()
+        tomorrow.add(Calendar.DAY_OF_MONTH, 1)
+
+        // Format tomorrow's date in yyyy/MM/dd format
+        val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+        val tomorrowDateString = dateFormat.format(tomorrow.time)
+
+        // Fetch data from Firestore and filter events for the future
+        eventsCollection.whereGreaterThanOrEqualTo("date", tomorrowDateString)
+            .get()
             .addOnSuccessListener { querySnapshot ->
                 val eventsList = mutableListOf<MemberEvents>()
                 for (document in querySnapshot.documents) {
