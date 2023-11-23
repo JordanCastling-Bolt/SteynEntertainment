@@ -244,6 +244,7 @@ class LoginActivity : AppCompatActivity() {
                     "role" to "user",
                     "terms_accepted" to false,
                     "yearlyPayments" to 0,
+                    "profilePicture" to acct.photoUrl,
                     "subscribed" to "no"
                 )
                 db.collection("Users").document(uid).set(newUser).addOnSuccessListener {
