@@ -70,14 +70,13 @@
                                 its unique in-house offerings MARABI CLUB,
                                 THORN, CUTTERS and ROOFTOP at
                                 HALLMARK venue. </string>
-    <string name="rocking_daisies">rocking the daisies</string>
+    <string name="rocking_daisies_info">Rocking the Daisies Info</string>
+    <string name="events_touring_info">Events and Touring Info</string>
     <string name="get_intouch_text">Get in touch</string>
     <string name="city_text">In The City was established in 2012 and has evolved
-                             over the \nthe years into more than just a music festival.
-                             It is the \ncultural intersection where street culture, inclusivity,
-                             self\nexpression and good vibes meet.</string>
-    <string name="city_text2">In The City</string>
-    <string name="city_text3">No matter how different we are from each other, there is a rhythm that unifies us.
+                             over the the years into more than just a music festival.
+                             It is the cultural intersection where street culture, inclusivity,
+                             self\nexpression and good vibes meet.\n\nNo matter how different we are from each other, there is a rhythm that unifies us.
                             It is in the neighbourhood hadeda alarm clock that we all love to hate it’s in the
                             sounds of the ever-bustling streets, and the roaring laughter and chatter that comes
                             from our pubs, clubs and shebeens.\n\n
@@ -90,15 +89,31 @@
                             music lovers with an immersive music and cultural experience. Each event will
                             represent a different genre of music which will be dictated by the selected
                             International headliner.</string>
-    <string name="city_text4">+27 (0)10 591 2879\n
-                             4 Siemert Road,\n
+    <string name="city_text2">In The City Info</string>
+    <string name="city_text4">+27 10 591 2879\n
+                             54 Siemert Road,\n
+                             New Doornfontein,\n
+                             Johannesburg</string>
+
+    <string name="daisies_contact_info">+27 82 443 5025\n
+                             54 Siemert Road,\n
                              New Doornfontein,\n
                              Johannesburg</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="rock_daisies_text">Reflecting the present and curating the future, Steyn Entertainment – the company
-                                    behind Rocking the Daisies – is committed to developing, supporting and
-                                    cultivating quality, multi-sensory cultural experiences, in the interest of
-                                    maintaining that R100-laundry type joy through music and love.</string>
+    <string name="rock_daisies_text">Rocking Since Since…\n\n
+        You know the pure, simplistic joy of finding a forgotten loose R100 in the pocket of your old jeans
+        while doing your laundry? Yeah, that feeling is Daisies; but with a lot less detergent,
+        plenty of sun and the best live soundtrack you have ever heard.\n\nStarting out in the world-
+        famous winelands of the Western Cape in South Africa back when Diddy was still Puff Daddy,
+        over the span of almost two decades our three-day festival has expanded to include Johannesburg.\n\nThrough it all, we’ve always been about the music.\n\n
+        Skinny jeans came, left and returned again; Barney the Dinosaur had enough and called it quits;
+        we’ve even found a way to send pizza to the moon. But whether it was giving a platform to a
+        promising hometown garage band, or capturing the biggest artist in the world during their iconic
+        run, we’ve always just been about the music… and its magically transcendent ability to unify
+        people of all walks of life from every corner of the world.\n\nReflecting the present and
+        curating the future, Steyn Entertainment – the company behind Rocking the Daisies – is committed
+        to developing, supporting and cultivating quality, multi-sensory cultural experiences, in the
+        interest of maintaining that R100-laundry type joy through music and love.  </string>
     <string name="get_in_touch_header">get in touch</string>
     <string name="get_in_touch_body">Looking to get in touch with us? Let us know how we can help you!</string>
     <string name="your_name">Your Name</string>
@@ -117,14 +132,10 @@
     <string name="musicBodyText">Steyn Entertainment organizes major music festivals in South Africa
                                 like Rocking the Daisies and In the City. These festivals bring together
                                 popular musicians, artists, and attendees.</string>
-    <string name="recordLabelHeader">Record label</string>
-    <string name="recordLabelBody">Steyn Entertainment operates a record label and artist management company called Stay Low that represents South African musical talent.</string>
-    <string name="hospitalityBodyText">Hospitality</string>
-    <string name="hospitalityBody">Steyn Entertainment owns and operates Hallmark House, an art hotel in Johannesburg. Hallmark House includes venues like the Marabi Jazz Club.</string>
-    <string name="creativeAgencyHeader">Creative agency</string>
-    <string name="creativeBody">Steyn Entertainment has an in-house creative and marketing agency that provides branding, content, and campaigns for clients.</string>
-    <string name="investmentHeaderText">Investment</string>
-    <string name="investmentBodyText">The founders have investment companies focused on real estate, private equity, venture capital, healthcare, education technology, and more.</string>
+    <string name="recordLabelInfo">Record label \n\nSteyn Entertainment operates a record label and artist management company called Stay Low that represents South African musical talent.</string>
+    <string name="hospitalityInfo">Hospitality\n\nSteyn Entertainment owns and operates Hallmark House, an art hotel in Johannesburg. Hallmark House includes venues like the Marabi Jazz Club.</string>
+    <string name="creativeAgencyInfo">Creative agency\n\nSteyn Entertainment has an in-house creative and marketing agency that provides branding, content, and campaigns for clients.</string>
+    <string name="investmentInfo">Investment\n\nThe founders have investment companies focused on real estate, private equity, venture capital, healthcare, education technology, and more.</string>
     <string name="portfolioTitle">Portfolio</string>
 
     <string name="or_continue_with">Or Continue With</string>

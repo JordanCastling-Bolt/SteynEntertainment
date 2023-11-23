@@ -22,11 +22,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-       /* binding.fab.setOnClickListener {
-            finish()
-        }
-*/
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val email = binding.email.text.toString()

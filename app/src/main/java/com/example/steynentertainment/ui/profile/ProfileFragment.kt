@@ -71,8 +71,6 @@ class ProfileFragment : Fragment() {
         val viewModel =
             ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        val navController = findNavController()
-
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -251,11 +249,7 @@ class ProfileFragment : Fragment() {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
-        /*
-        reward.setOnClickListener() {
-            navController.navigate(R.id.navigation_members)
-        }
-        */
+
         return root
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

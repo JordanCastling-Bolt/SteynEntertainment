@@ -58,7 +58,7 @@
     <fragment
         android:id="@+id/navigation_rockingTheDaisies"
         android:name="com.example.steynentertainment.ui.rockingTheDiasies.RockingTheDiasiesFragment"
-        android:label="@string/rocking_daisies"
+        android:label="Rocking the Daisies"
         tools:layout="@layout/fragment_rocking_the_diasies" >
         <action
             android:id="@+id/action_navigation_rockingTheDaisies_pop"

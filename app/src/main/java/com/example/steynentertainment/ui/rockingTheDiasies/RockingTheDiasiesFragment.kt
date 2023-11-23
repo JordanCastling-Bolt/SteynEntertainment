@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
+import com.google.android.material.button.MaterialButton
 
 class RockingTheDiasiesFragment : Fragment() {
 
@@ -14,7 +16,13 @@ class RockingTheDiasiesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rocking_the_diasies, container, false)
+        val view = inflater.inflate(R.layout.fragment_rocking_the_diasies, container, false)
+        val getInTouchButton = view.findViewById<MaterialButton>(R.id.getInTouchBtn)
+
+        // Set click listener on the button
+        getInTouchButton.setOnClickListener {
+            findNavController().navigate(R.id.navigation_getInTouch)
+        }
+        return view
     }
 }
