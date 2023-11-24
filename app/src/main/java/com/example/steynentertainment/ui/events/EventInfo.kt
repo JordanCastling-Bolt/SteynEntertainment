@@ -247,11 +247,13 @@ class EventInfo : Fragment() {
                     if (visualList.size == result.items.size) {
                         updateRecyclerView(visualList)
                     }
+                    progressBar.visibility = View.GONE
                 }.addOnFailureListener {
                     // Handle failure to get download URL
                 }
             }
         }.addOnFailureListener {
+            progressBar.visibility = View.GONE
             // Handle failure to list items in the specified folder
         }
     }
@@ -266,27 +268,27 @@ class EventInfo : Fragment() {
         // Inflate the popup_events layout
         val popupView = layoutInflater.inflate(R.layout.popup_events, null)
 
+        // Initialize views from the popup layout
         txtEvent = popupView.findViewById(R.id.txtPopupTitle)
         popupRecyclerView = popupView.findViewById(R.id.popupRecyclerView)
         progressBar = popupView.findViewById(R.id.progressBar)
 
-        // Create a PopupWindow
+        // Make sure the progress bar is visible
+        progressBar.visibility = View.VISIBLE
+
+        // Create and display the PopupWindow
         val popup = PopupWindow(
             popupView,
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT,
             true
         )
-
-        // Set background color for the visuals_popup
         popup.setBackgroundDrawable(ColorDrawable(Color.BLACK))
-
-        // Display the visuals_popup
         popup.showAtLocation(requireView(), Gravity.CENTER, 0, 0)
     }
 
+
     private fun fetchNewsArticles(event: String) {
-        progressBar.visibility = View.VISIBLE // Show progress bar
 
         val firestore = FirebaseFirestore.getInstance()
         val newsCollection = firestore.collection("NewsArticles")
@@ -345,6 +347,7 @@ class EventInfo : Fragment() {
                 if (documents.isEmpty) {
                     // Handle case where no events are found for the specified category
                     Toast.makeText(popupRecyclerView.context, "No events found", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.GONE
                     return@addOnSuccessListener
                 }
 
@@ -362,10 +365,12 @@ class EventInfo : Fragment() {
                 }
 
                 updateEventDetailsRecyclerView(eventDetailsList)
+                progressBar.visibility = View.GONE
             }
             .addOnFailureListener { exception ->
                 // Log the failure reason
                 Log.e("EventInfoFragment", "Failed to fetch events", exception)
+                progressBar.visibility = View.GONE
             }
     }
 

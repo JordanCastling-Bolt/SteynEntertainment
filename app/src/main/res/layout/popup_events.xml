@@ -29,11 +29,11 @@
         <ProgressBar
             android:id="@+id/progressBar"
             style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="invisible"
-            android:layout_marginBottom="5dp"/>
+            android:visibility="invisible" />
+
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -50,4 +50,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>
