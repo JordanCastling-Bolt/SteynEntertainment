@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.squareup.picasso.Picasso
 
+// MemberEventsAdapter is a RecyclerView adapter for displaying a list of member events.
 class MemberEventsAdapter(private var memberEvent: List<MemberEvents>) :
     RecyclerView.Adapter<MemberEventsAdapter.ViewHolder>() {
 
@@ -48,17 +49,20 @@ class MemberEventsAdapter(private var memberEvent: List<MemberEvents>) :
         }
     }
 
+    // Helper function to open URLs in a web browser.
     private fun openUrlInBrowser(context: Context, url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         context.startActivity(intent)
     }
 
+    // updateData updates the memberEvent list with new data and notifies the RecyclerView to refresh.
     fun updateData(newData: List<MemberEvents>) {
         memberEvent = newData
         notifyDataSetChanged()
     }
 
-    // getItemCount Method Header
+    // getItemCount returns the total number of items in the memberEvent list.
+    // This method is called by RecyclerView to get the size of the dataset.
     override fun getItemCount(): Int {
         return memberEvent.size
     }

@@ -11,14 +11,18 @@ import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentEventsBinding
 
+// EventsFragment is a Fragment class responsible for displaying information about various events.
 class EventsFragment : Fragment() {
 
+    // A non-null getter for the binding which is valid between onCreateView and onDestroyView.
     private var _binding: FragmentEventsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
+    // onCreateView is called to create and return the view hierarchy associated with the fragment.
+    // This method initializes UI components and sets up event-specific UI elements and data.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -86,6 +90,8 @@ class EventsFragment : Fragment() {
         return binding.root
     }
 
+    // onDestroyView is called when the view hierarchy associated with the fragment is being removed.
+    // It's used here to clean up the binding reference.
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

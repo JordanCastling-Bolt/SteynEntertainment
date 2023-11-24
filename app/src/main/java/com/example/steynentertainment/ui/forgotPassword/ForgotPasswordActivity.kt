@@ -11,10 +11,13 @@ import com.example.steynentertainment.ui.ui.login.LoginActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
+// ForgotPasswordActivity is an AppCompatActivity that handles the password reset functionality.
 class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgotPasswordBinding
 
+    // onCreate is called when the activity is starting.
+    // This method initializes the activity, inflates its UI, and sets up listeners.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,6 +66,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
             sendPasswordResetEmail(email)
         }
     }
+
+    // sendPasswordResetEmail sends a password reset email to the given email address.
     private fun sendPasswordResetEmail(email: String) {
         val auth = FirebaseAuth.getInstance()
 
@@ -75,6 +80,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 }
             }
     }
+
+    // isValidEmail checks if the provided email string is a valid email format.
     private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }

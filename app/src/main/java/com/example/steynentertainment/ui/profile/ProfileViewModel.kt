@@ -13,14 +13,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 
+// ProfileViewModel is a ViewModel class designed for managing UI-related data and interactions in the ProfileFragment.
 class ProfileViewModel : ViewModel() {
 
+    // photoReference is used to store the reference to the user's profile photo in Firebase Storage.
     private var photoReference: String = ""
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
     }
     val text: LiveData<String> = _text
 
+    // updateProfile updates the user's profile information in Firestore.
     fun updateProfile(firstName: String, lastName: String, newPhoto: Boolean, newPhotoRef: String, context: Context) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         val firestore = FirebaseFirestore.getInstance()
@@ -55,7 +58,8 @@ class ProfileViewModel : ViewModel() {
             }
     }
 
-    // Used to upload the selected photo to Firebase Storage
+    // uploadPhoto uploads a selected photo to Firebase Storage.
+    // It can handle both Uri and Bitmap types and notifies via callback when the upload is complete.
     fun uploadPhoto(photo: Any, context: Context, onPhotoUploaded: (String) -> Unit) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference

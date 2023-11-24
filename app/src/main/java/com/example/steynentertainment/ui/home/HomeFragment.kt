@@ -11,11 +11,14 @@ import com.example.steynentertainment.databinding.FragmentHomeBinding
 import com.example.steynentertainment.ui.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
+// HomeFragment is a Fragment class responsible for displaying the home screen of the application.
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    // onCreateView is called to create and return the view hierarchy associated with the fragment.
+    // This method initializes UI components and sets up user authentication status checks and login functionality.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,6 +55,8 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    // onDestroyView is called when the view hierarchy associated with the fragment is being removed.
+    // It's used here to clean up the binding reference.
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

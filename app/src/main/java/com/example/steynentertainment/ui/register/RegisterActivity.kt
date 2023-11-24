@@ -17,8 +17,10 @@ import com.example.steynentertainment.databinding.ActivityRegisterBinding
 import com.example.steynentertainment.ui.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
+// RegisterActivity is an AppCompatActivity that handles the user registration process.
 class RegisterActivity : AppCompatActivity() {
 
+    // Variable declarations for binding, ViewModel, LiveData, and UI components.
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var registerViewModel: RegisterViewModel
     private val _registerResult = MutableLiveData<RegisterResult>()
@@ -200,6 +202,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         )
 
+        // TextWatcher for handling text changes and form validation.
         val afterTextChangedListener = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 registerViewModel.registerDataChanged(
@@ -214,6 +217,7 @@ class RegisterActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
 
+        // Add TextWatcher to the relevant EditTexts.
         usernameEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditText.addTextChangedListener(afterTextChangedListener)
         confirmPasswordEditText.addTextChangedListener(afterTextChangedListener)

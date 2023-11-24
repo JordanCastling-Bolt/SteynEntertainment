@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+// MembersFragment is a Fragment class responsible for displaying member-specific information and handling membership interactions.
 class MembersFragment : Fragment() {
 
     private var _binding: FragmentMembersBinding? = null
@@ -161,6 +162,7 @@ class MembersFragment : Fragment() {
         return root
     }
 
+    // fetchDataFromFirestore fetches event data from Firestore and updates the RecyclerView.
     private fun fetchDataFromFirestore() {
         val firestore = FirebaseFirestore.getInstance()
         val eventsCollection = firestore.collection("Events")
@@ -193,11 +195,14 @@ class MembersFragment : Fragment() {
             }
     }
 
+    // onDestroyView is called when the view hierarchy associated with the fragment is being removed.
+    // It's used here to clean up the binding reference.
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    // showPopupInfo displays a popup dialog for membership information.
     @RequiresApi(Build.VERSION_CODES.O)
     fun showPopupInfo(context: Context) {
         val dialog = Dialog(context)
@@ -348,6 +353,7 @@ class MembersFragment : Fragment() {
         dialog.show()
     }
 
+    // getCardType determines the type of credit card based on the card number.
     fun getCardType(cardNumber: String): String {
         // Remove any spaces or non-digit characters
         val cleanCardNumber = cardNumber.replace("\\s+".toRegex(), "")
@@ -361,6 +367,8 @@ class MembersFragment : Fragment() {
         }
     }
 }
+
+// updatePaymentStatusInFirestore updates the payment status of the user in Firestore.
 private fun updatePaymentStatusInFirestore() {
     val user = FirebaseAuth.getInstance().currentUser
 

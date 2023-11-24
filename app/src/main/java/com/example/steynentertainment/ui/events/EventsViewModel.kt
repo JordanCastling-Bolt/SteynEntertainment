@@ -11,11 +11,17 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 
+// EventsViewModel is a ViewModel class designed for handling data and business logic associated with events.
 class EventsViewModel : ViewModel() {
 
+    // Storage reference for accessing Firebase Storage
     val storageRef: StorageReference = FirebaseStorage.getInstance().reference
+
+    // Firestore database reference
     val dbRef = FirebaseFirestore.getInstance()
 
+    // downloadImage downloads an image from Firebase Storage.
+    // It takes a StorageReference to the image and listeners for success and failure events.
     fun downloadImage(
         imageRef: StorageReference,
         onSuccessListener: OnSuccessListener<Bitmap>,
@@ -32,6 +38,8 @@ class EventsViewModel : ViewModel() {
             }
     }
 
+    // getEventDescription fetches the description of an event from Firestore.
+    // It takes an event identifier and a callback function to handle the received data.
     fun getEventDescription(event: String, onCategoryReceived: (String?) -> Unit) {
         val eventsCollection = dbRef.collection("Subsidiaries")
 

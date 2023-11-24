@@ -10,6 +10,7 @@ import java.io.File
 
 class EventInfoViewModel : ViewModel() {
 
+    // EventInfoViewModel is a ViewModel class used for handling data and business logic for the EventInfo Fragment.
     fun downloadImage(
         imageRef: StorageReference,
         onSuccessListener: OnSuccessListener<Bitmap>,

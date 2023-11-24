@@ -36,8 +36,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
+// ProfileFragment is a Fragment class responsible for displaying and managing the user's profile.
 class ProfileFragment : Fragment() {
 
+    // Binding and other UI components for the fragment
     private var _binding: FragmentProfileBinding? = null
 
     private val CAMERA_PERMISSION_REQUEST = 100
@@ -260,7 +262,7 @@ class ProfileFragment : Fragment() {
         _binding = null
     }
 
-    // Popup for changing password
+    // showPopupPassword displays a popup dialog for changing the user's password.
     fun showPopupPassword(context: Context) {
         val builder = AlertDialog.Builder(context)
         val inflater = LayoutInflater.from(context)

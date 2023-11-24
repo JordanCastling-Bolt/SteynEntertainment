@@ -18,6 +18,8 @@ class AboutUsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    // onCreateView is called to create the view hierarchy associated with the fragment.
+    // In this method, we inflate the fragment's layout, find and initialize buttons, and set their click listeners.
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout
         val view = inflater.inflate(R.layout.fragment_aboutus, container, false)
@@ -53,6 +55,9 @@ class AboutUsFragment : Fragment() {
         }
         return view
     }
+
+    // onDestroyView is called when the view hierarchy associated with the fragment is being removed.
+    // Here, we clean up resources by setting the binding object back to null.
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

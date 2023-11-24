@@ -26,8 +26,10 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+// EventInfo is a Fragment class that handles displaying information about specific events.
 class EventInfo : Fragment() {
 
+    // Various member variables for the fragment, including adapters for RecyclerViews, Firebase references, and UI components.
     private lateinit var visualAdapter: VisualsAdapter
     private var _binding: FragmentEventInfoBinding? = null
     private val binding get() = _binding!!
@@ -42,6 +44,7 @@ class EventInfo : Fragment() {
     private lateinit var viewModel: EventInfoViewModel
     var event: String = ""
 
+    // Companion object to create a new instance of EventInfo with a specific event.
     companion object {
         fun newInstance(event: String): EventInfo {
             val fragment = EventInfo()
@@ -53,6 +56,8 @@ class EventInfo : Fragment() {
         }
     }
 
+    // onCreateView is called to create and return the view hierarchy associated with the fragment.
+    // It initializes UI components and sets up event-specific UI elements and data.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -223,17 +228,22 @@ class EventInfo : Fragment() {
         return root
     }
 
+    // onActivityCreated is called when the fragment's activity has been created and the fragment's view hierarchy instantiated.
+    // It's used here to initialize the ViewModel.
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(EventInfoViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
+    // onDestroyView is called when the view hierarchy associated with the fragment is being removed.
+    // It's used here to clean up the binding reference.
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    // fetchImageURLs retrieves image URLs from Firebase Storage and updates the RecyclerView.
     private fun fetchImageURLs() {
         // Assuming you want to fetch URLs of all images in the specified folder
         storageReference.listAll().addOnSuccessListener { result ->
@@ -258,12 +268,14 @@ class EventInfo : Fragment() {
         }
     }
 
+    // updateRecyclerView updates the RecyclerView with the list of image URLs.
     private fun updateRecyclerView(visualList: List<String>) {
         visualAdapter = VisualsAdapter(visualList)
         popupRecyclerView.layoutManager = LinearLayoutManager(context)
         popupRecyclerView.adapter = visualAdapter
     }
 
+    // showPopup displays a popup window with a RecyclerView for showing visuals, news, or event details.
     private fun showPopup() {
         // Inflate the popup_events layout
         val popupView = layoutInflater.inflate(R.layout.popup_events, null)
@@ -287,6 +299,7 @@ class EventInfo : Fragment() {
         popup.showAtLocation(requireView(), Gravity.CENTER, 0, 0)
     }
 
+    // fetchNewsArticles retrieves news articles from Firestore and updates the RecyclerView.
     private fun fetchNewsArticles(event: String) {
         val firestore = FirebaseFirestore.getInstance()
         val newsCollection = firestore.collection("NewsArticles")
@@ -315,12 +328,14 @@ class EventInfo : Fragment() {
             }
     }
 
+    // updateNewsRecyclerView updates the RecyclerView with the list of news articles.
     private fun updateNewsRecyclerView(newsList: List<NewsArticle>) {
         newsAdapter = NewsAdapter(newsList)
         popupRecyclerView.layoutManager = LinearLayoutManager(context)
         popupRecyclerView.adapter = newsAdapter
     }
 
+    // fetchEventDetails retrieves event details from Firestore and updates the RecyclerView.
     private fun fetchEventDetails(event: String, upcomingEvents: Boolean) {
         val firestore = FirebaseFirestore.getInstance()
         val eventsCollection = firestore.collection("Events")
@@ -371,12 +386,14 @@ class EventInfo : Fragment() {
             }
     }
 
+    // getCurrentDate returns the current date formatted as a string.
     private fun getCurrentDate(): String {
         val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
         val currentDate = Date()
         return dateFormat.format(currentDate)
     }
 
+    // updateEventDetailsRecyclerView updates the RecyclerView with the list of event details.
     private fun updateEventDetailsRecyclerView(eventDetailsList: List<EventDetails>) {
         eventDetailsAdapter = EventDetailsAdapter(eventDetailsList)
         popupRecyclerView.layoutManager = LinearLayoutManager(context)

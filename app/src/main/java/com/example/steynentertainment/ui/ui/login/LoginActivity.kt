@@ -29,8 +29,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 
+// LoginActivity is an AppCompatActivity that handles the user login process, including Google Sign-In.
 class LoginActivity : AppCompatActivity() {
 
+    // Variable declarations for ViewModel, binding, FirebaseAuth, and Firestore
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
@@ -51,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
         val loading = binding.loading
         val txtSignUp = binding.txtSignUp
 
+        // Setup for Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id)) // Replace with your web client ID
             .requestEmail()
@@ -152,6 +155,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+    // checkUserRoleAndNavigate checks the user's role in Firestore and navigates to the appropriate activity
     private fun checkUserRoleAndNavigate(uid: String) {
         val docRef = db.collection("Users").document(uid)
         docRef.get().addOnSuccessListener { document ->
@@ -189,11 +194,13 @@ class LoginActivity : AppCompatActivity() {
         binding.loading.visibility = View.GONE
     }
 
+    // signIn function handles Google Sign-In logic
     private fun signIn(googleSignInClient: GoogleSignInClient) {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
+    // onActivityResult handles the result of the Google Sign-In intent
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -209,6 +216,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    // firebaseAuthWithGoogle authenticates the user with Firebase using Google credentials
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         auth.signInWithCredential(credential)
@@ -262,10 +270,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    // Companion object for constants
     companion object {
         private const val RC_SIGN_IN = 9001
     }
 
+    // updateUiWithUser updates the UI with the user's information after a successful login
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
@@ -279,6 +289,7 @@ class LoginActivity : AppCompatActivity() {
         // Complete and destroy login activity
     }
 
+    // showLoginFailed shows a Toast message if the login fails
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }

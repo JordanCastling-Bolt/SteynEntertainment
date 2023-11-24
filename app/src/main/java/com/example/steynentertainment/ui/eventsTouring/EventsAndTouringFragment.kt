@@ -9,8 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
 import com.google.android.material.button.MaterialButton
 
+// EventsAndTouringFragment is a Fragment class responsible for displaying information about events and touring.
 class EventsAndTouringFragment : Fragment() {
 
+    // onCreateView is called to create and return the view hierarchy associated with the fragment.
+    // This method initializes UI components and sets up event-specific UI elements and data.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

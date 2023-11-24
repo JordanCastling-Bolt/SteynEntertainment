@@ -15,6 +15,7 @@ import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 
+// MainActivity is an AppCompatActivity that serves as the main activity for the application, handling navigation and user access.
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -80,6 +81,8 @@ class MainActivity : AppCompatActivity() {
             onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
         }
     }
+
+    // onSupportNavigateUp handles navigation when the action bar's Up button is pressed.
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }

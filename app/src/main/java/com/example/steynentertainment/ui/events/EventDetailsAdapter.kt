@@ -15,9 +15,12 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+// EventDetailsAdapter is a RecyclerView adapter for displaying a list of event details.
 class EventDetailsAdapter(private val eventDetailsList: List<EventDetails>) :
     RecyclerView.Adapter<EventDetailsAdapter.EventDetailsViewHolder>() {
 
+    // EventDetailsViewHolder is a ViewHolder for each item in the RecyclerView.
+    // It holds references to all the views in each item of the RecyclerView.
     inner class EventDetailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.txtEventTitle)
         val dateTextView: TextView = itemView.findViewById(R.id.txtEventDate)
@@ -27,6 +30,8 @@ class EventDetailsAdapter(private val eventDetailsList: List<EventDetails>) :
         val purchaseTickets: Button = itemView.findViewById(R.id.btnPurchaseTicket)
     }
 
+    // onCreateViewHolder is called by the RecyclerView to create new ViewHolder objects.
+    // It inflates the layout for each item of the RecyclerView.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventDetailsViewHolder {
         // Create and return a new ViewHolder
         val itemView = LayoutInflater.from(parent.context)
@@ -34,6 +39,8 @@ class EventDetailsAdapter(private val eventDetailsList: List<EventDetails>) :
         return EventDetailsViewHolder(itemView)
     }
 
+    // onBindViewHolder binds the data from the eventDetailsList to the views in the ViewHolder.
+    // This method is called by RecyclerView to display the data at the specified position.
     override fun onBindViewHolder(holder: EventDetailsViewHolder, position: Int) {
         val eventDetails = eventDetailsList[position]
 
@@ -79,6 +86,8 @@ class EventDetailsAdapter(private val eventDetailsList: List<EventDetails>) :
         return dateFormat.format(currentDate)
     }
 
+    // getItemCount returns the total number of items in the data list.
+    // This method is called by RecyclerView to get the size of the dataset.
     override fun getItemCount(): Int {
         // Return the size of the dataset
         return eventDetailsList.size
