@@ -225,17 +225,15 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/getInTouchBtn"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="100dp"
             android:background="@drawable/rounded_border"
-            android:text="@string/get_intouch_text"
-            android:textAllCaps="false"
-            android:visibility="visible"
+            android:text="Get In Touch"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
