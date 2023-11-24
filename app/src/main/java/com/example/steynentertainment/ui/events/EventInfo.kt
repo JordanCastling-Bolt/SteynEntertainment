@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.PopupWindow
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -32,6 +33,7 @@ class EventInfo : Fragment() {
     private val binding get() = _binding!!
     private lateinit var popupRecyclerView: RecyclerView
     private lateinit var txtEvent: TextView
+    private lateinit var progressBar : ProgressBar
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var eventDetailsAdapter: EventDetailsAdapter
 
@@ -266,6 +268,7 @@ class EventInfo : Fragment() {
 
         txtEvent = popupView.findViewById(R.id.txtPopupTitle)
         popupRecyclerView = popupView.findViewById(R.id.popupRecyclerView)
+        progressBar = popupView.findViewById(R.id.progressBar)
 
         // Create a PopupWindow
         val popup = PopupWindow(
@@ -283,6 +286,8 @@ class EventInfo : Fragment() {
     }
 
     private fun fetchNewsArticles(event: String) {
+        progressBar.visibility = View.VISIBLE // Show progress bar
+
         val firestore = FirebaseFirestore.getInstance()
         val newsCollection = firestore.collection("NewsArticles")
 
@@ -302,11 +307,14 @@ class EventInfo : Fragment() {
                 }
 
                 updateNewsRecyclerView(newsList)
+                progressBar.visibility = View.GONE // Hide progress bar after loading
             }
             .addOnFailureListener { exception ->
                 // Handle failure
+                progressBar.visibility = View.GONE // Hide progress bar on failure
             }
     }
+
 
     private fun updateNewsRecyclerView(newsList: List<NewsArticle>) {
         newsAdapter = NewsAdapter(newsList)
