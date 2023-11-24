@@ -44,7 +44,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                 val loggedInUser = result.data
                 val firebaseUser = loggedInUser.firebaseUser // Now you have the FirebaseUser
 
-
                 _loginResult.value = LoginResult(success = LoggedInUserView(displayName = firebaseUser.displayName ?: ""))
                 bundle.putString(FirebaseAnalytics.Param.METHOD, "Google")
                 firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)

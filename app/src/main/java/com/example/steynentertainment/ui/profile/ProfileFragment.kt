@@ -26,7 +26,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentProfileBinding
 import com.example.steynentertainment.ui.members.Users

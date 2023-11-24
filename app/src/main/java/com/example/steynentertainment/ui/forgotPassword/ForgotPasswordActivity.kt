@@ -6,10 +6,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.example.steynentertainment.databinding.ActivityForgotPasswordBinding
-import com.google.android.material.snackbar.Snackbar
 import com.example.steynentertainment.ui.register.RegisterActivity
 import com.example.steynentertainment.ui.ui.login.LoginActivity
-
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -47,13 +46,13 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding.email.addTextChangedListener(textWatcher)
         binding.retypeEmail.addTextChangedListener(textWatcher)
 
-        binding.txtLogin.setOnClickListener(){
+        binding.txtLogin.setOnClickListener() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        binding.txtSignUp.setOnClickListener(){
+        binding.txtSignUp.setOnClickListener() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             finish()

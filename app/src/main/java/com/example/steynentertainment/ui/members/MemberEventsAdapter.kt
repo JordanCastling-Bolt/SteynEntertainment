@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.squareup.picasso.Picasso
 
-class MemberEventsAdapter(private var memberEvent: List<MemberEvents>):
-RecyclerView.Adapter<MemberEventsAdapter.ViewHolder>(){
-
+class MemberEventsAdapter(private var memberEvent: List<MemberEvents>) :
+    RecyclerView.Adapter<MemberEventsAdapter.ViewHolder>() {
 
     // viewHolder Method Header
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

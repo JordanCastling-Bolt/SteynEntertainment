@@ -33,7 +33,7 @@ class EventInfo : Fragment() {
     private val binding get() = _binding!!
     private lateinit var popupRecyclerView: RecyclerView
     private lateinit var txtEvent: TextView
-    private lateinit var progressBar : ProgressBar
+    private lateinit var progressBar: ProgressBar
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var eventDetailsAdapter: EventDetailsAdapter
 
@@ -287,9 +287,7 @@ class EventInfo : Fragment() {
         popup.showAtLocation(requireView(), Gravity.CENTER, 0, 0)
     }
 
-
     private fun fetchNewsArticles(event: String) {
-
         val firestore = FirebaseFirestore.getInstance()
         val newsCollection = firestore.collection("NewsArticles")
 
@@ -316,7 +314,6 @@ class EventInfo : Fragment() {
                 progressBar.visibility = View.GONE // Hide progress bar on failure
             }
     }
-
 
     private fun updateNewsRecyclerView(newsList: List<NewsArticle>) {
         newsAdapter = NewsAdapter(newsList)

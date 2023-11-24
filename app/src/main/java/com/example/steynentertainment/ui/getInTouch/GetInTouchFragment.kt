@@ -3,17 +3,16 @@ package com.example.steynentertainment.ui.getInTouch
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.steynentertainment.R
 import com.google.android.material.textfield.TextInputEditText
 
-class GetInTouchFragment : Fragment()
-{
+class GetInTouchFragment : Fragment() {
     private lateinit var name: TextInputEditText
     private lateinit var email: TextInputEditText
     private lateinit var subject: TextInputEditText
@@ -21,7 +20,8 @@ class GetInTouchFragment : Fragment()
     private lateinit var sendMessageBtn: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_get_in_touch, container, false)
@@ -33,62 +33,48 @@ class GetInTouchFragment : Fragment()
         sendMessageBtn = view.findViewById(R.id.sendMessageBtn)
 
         sendMessageBtn.setOnClickListener {
-            if (validateFields())
-            {
+            if (validateFields()) {
                 sendEmail()
             }
         }
         return view
     }
 
-    //Validating user inputs
-    private fun validateFields(): Boolean
-    {
+    // Validating user inputs
+    private fun validateFields(): Boolean {
         var isValid = true
 
-        if (name.text.isNullOrBlank())
-        {
+        if (name.text.isNullOrBlank()) {
             name.error = "Name cannot be empty"
             isValid = false
-        }
-        else
-        {
+        } else {
             name.error = null
         }
 
-        if (email.text.isNullOrBlank() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches())
-        {
+        if (email.text.isNullOrBlank() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
             email.error = "Enter a valid and registered email"
             isValid = false
-        }
-        else
-        {
+        } else {
             email.error = null
         }
 
-        if (subject.text.isNullOrBlank())
-        {
+        if (subject.text.isNullOrBlank()) {
             subject.error = "Subject cannot be empty"
             isValid = false
-        }
-        else
-        {
+        } else {
             subject.error = null
         }
 
-        if (message.text.isNullOrBlank())
-        {
+        if (message.text.isNullOrBlank()) {
             message.error = "Message cannot be empty"
             isValid = false
-        }
-        else
-        {
+        } else {
             message.error = null
         }
         return isValid
     }
 
-    //This method uses an intent to send email to the user
+    // This method uses an intent to send email to the user
     private fun sendEmail() {
         val recipientEmail = "info@steynentertainment.com" // Predefined recipient email address
         val senderName = name.text.toString()
@@ -111,4 +97,4 @@ class GetInTouchFragment : Fragment()
         }
     }
 }
-////////////////////////////////////////////////// END OF CLASS //////////////////////////////////////////////////
+// //////////////////////////////////////////////// END OF CLASS //////////////////////////////////////////////////

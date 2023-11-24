@@ -113,7 +113,7 @@ class RegisterActivity : AppCompatActivity() {
             dialog.show()
         }
 
-        txtLogin.setOnClickListener(){
+        txtLogin.setOnClickListener() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
