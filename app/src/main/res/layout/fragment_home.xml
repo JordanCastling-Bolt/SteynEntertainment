@@ -43,7 +43,7 @@
         android:id="@+id/homeSteyEntLogo"
         android:layout_width="145dp"
         android:layout_height="182dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/steyentw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,31 +66,46 @@
 
             <ImageView
                 android:id="@+id/rtdlogo"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="40dp"
-                android:src="@drawable/rtdlogo" />
+                android:layout_gravity="center"
+                android:src="@drawable/rocking_daisies" />
 
             <ImageView
                 android:id="@+id/inthecitylogo"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="150dp"
-                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/inthecity" />
+                android:layout_gravity="center"
+                android:src="@drawable/in_the_city" />
 
-            <ImageView
-                android:id="@+id/eventtouringlogo"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:layout_marginLeft="4dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/events_touring" />
+                android:layout_marginBottom="80dp">
 
+                <ImageView
+                    android:id="@+id/eventtouringlogo"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
+                    android:contentDescription="Hello"
+                    android:src="@drawable/steynent_rounded_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Events and Touring"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/eventtouringlogo"
+                    app:layout_constraintStart_toStartOf="@+id/eventtouringlogo"
+                    app:layout_constraintTop_toBottomOf="@+id/eventtouringlogo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.getInTouch.GetInTouchFragment">
+    tools:context=".ui.getInTouch.GetInTouchFragment"
+    android:background="@color/black">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -51,7 +52,7 @@
                     android:text="@string/get_in_touch_body"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/headerTextSize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +65,7 @@
                     android:layout_marginTop="55dp"
                     android:text="Your Name"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/headerTextSize"
                     app:layout_constraintStart_toStartOf="@+id/nameEditText"
                     app:layout_constraintTop_toBottomOf="@id/findUsText" />
@@ -86,6 +87,7 @@
                     android:layout_height="46dp"
                     android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/emailTextV" />
 
@@ -95,6 +97,7 @@
                     android:layout_height="46dp"
                     android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/messageTextV" />
 
@@ -105,7 +108,7 @@
                     android:layout_marginTop="15dp"
                     android:text="@string/email_address"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/headerTextSize"
                     app:layout_constraintStart_toStartOf="@+id/emailText"
                     app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
@@ -118,7 +121,7 @@
                     android:layout_marginBottom="100dp"
                     android:text="@string/email_info_text"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textAlignment="center"
                     android:textSize="@dimen/headerTextSize"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -133,7 +136,7 @@
                     android:layout_marginTop="15dp"
                     android:text="@string/message_text"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/headerTextSize"
                     app:layout_constraintStart_toStartOf="@+id/messageText"
                     app:layout_constraintTop_toBottomOf="@id/subjectText" />
@@ -144,6 +147,7 @@
                     android:layout_height="46dp"
                     android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/subjectTextV" />
 
@@ -152,6 +156,7 @@
                     android:layout_width="300dp"
                     android:layout_height="46dp"
                     android:layout_marginTop="4dp"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/yourName" />
@@ -179,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="@string/subject_text"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/headerTextSize"
                     app:layout_constraintStart_toStartOf="@+id/subjectText"
                     app:layout_constraintTop_toBottomOf="@+id/emailText" />
@@ -191,7 +196,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/get_in_touch_header"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/headerTextSize"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"

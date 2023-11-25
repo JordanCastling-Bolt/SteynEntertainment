@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout2"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,6 +38,7 @@
                     android:id="@+id/image_logo"
                     android:layout_width="180dp"
                     android:layout_height="150dp"
+                    android:layout_marginTop="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -86,8 +88,8 @@
                     android:layout_marginTop="15dp"
                     android:background="@color/black_v"
                     android:text="Change Profile Picture"
+                    android:textAllCaps="true"
                     android:textAlignment="center"
-                    android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="17dp"
                     app:backgroundTint="@color/black_v"
@@ -176,7 +178,6 @@
                     android:background="@drawable/rounded_border"
                     android:foreground="?attr/selectableItemBackground"
                     android:text="@string/updateMyInfo"
-                    android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/btnTextSize"
                     android:visibility="visible"
@@ -192,7 +193,6 @@
                     android:background="@drawable/rounded_border"
                     android:foreground="?attr/selectableItemBackground"
                     android:text="Change Password"
-                    android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/btnTextSize"
                     android:visibility="visible"
@@ -208,7 +208,6 @@
                     android:background="@drawable/rounded_border"
                     android:foreground="?attr/selectableItemBackground"
                     android:text="Logout"
-                    android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/btnTextSize"
                     android:visibility="visible"

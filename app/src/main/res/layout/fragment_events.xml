@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/black">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         android:layout_width="180dp"
         android:layout_height="150dp"
         android:layout_marginStart="125dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="125dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,37 +45,37 @@
 
         <ImageView
             android:id="@+id/imgRTD"
-            android:layout_width="110dp"
-            android:layout_height="112dp"
+            android:layout_width="180dp"
+            android:layout_height="120dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@color/white" />
 
-        <TextView
-            android:id="@+id/txtRTDPreview"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="30dp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgRTD" />
+            <TextView
+                android:id="@+id/txtRTDPreview"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgRTD" />
 
-        <Button
-            android:id="@+id/btnViewRTD"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_border"
-            android:text="View The Dets"
-            android:textSize="9sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtRTDPreview" />
+            <Button
+                android:id="@+id/btnViewRTD"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_border"
+                android:text="View The Dets"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtRTDPreview" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -100,8 +102,8 @@
 
         <ImageView
             android:id="@+id/imgITC"
-            android:layout_width="110dp"
-            android:layout_height="112dp"
+            android:layout_width="180dp"
+            android:layout_height="120dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -112,22 +114,22 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
+            android:textAlignment="center"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgITC"
-            android:textAlignment="center"/>
+            app:layout_constraintTop_toBottomOf="@+id/imgITC" />
 
         <Button
             android:id="@+id/btnViewITC"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rounded_border"
             android:text="View The Dets"
-            android:textSize="9sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtITCPreview" />
@@ -159,8 +161,8 @@
 
             <ImageView
                 android:id="@+id/imgEventsTour"
-                android:layout_width="110dp"
-                android:layout_height="112dp"
+                android:layout_width="180dp"
+                android:layout_height="120dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -171,7 +173,7 @@
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
@@ -181,12 +183,12 @@
 
             <Button
                 android:id="@+id/btnViewEventsTour"
-                android:layout_width="110dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_border"
                 android:text="View The Dets"
-                android:textSize="9sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

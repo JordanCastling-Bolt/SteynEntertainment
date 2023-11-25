@@ -218,7 +218,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/steynent_212x300" />
+                android:padding="2dp"
+                app:srcCompat="@drawable/steyn_white_logo" />
 
             <ProgressBar
                 android:id="@+id/loading"

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
@@ -25,10 +27,10 @@ class AboutUsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_aboutus, container, false)
 
         // Get reference to the daisies button
-        val daisiesButton = view.findViewById<MaterialButton>(R.id.daisiesBtn)
-        val inTheCityButton = view.findViewById<MaterialButton>(R.id.inTheCityBtn)
-        val getInTouchButton = view.findViewById<MaterialButton>(R.id.getInTouchBtn)
-        val eventToursButton = view.findViewById<MaterialButton>(R.id.eventsAndTouringBtn)
+        val daisiesButton = view.findViewById<Button>(R.id.daisiesBtn)
+        val inTheCityButton = view.findViewById<Button>(R.id.inTheCityBtn)
+        val getInTouchButton = view.findViewById<AppCompatButton>(R.id.getInTouchBtn)
+        val eventToursButton = view.findViewById<Button>(R.id.eventsAndTouringBtn)
 
         // Set click listener on the button
         daisiesButton.setOnClickListener {
