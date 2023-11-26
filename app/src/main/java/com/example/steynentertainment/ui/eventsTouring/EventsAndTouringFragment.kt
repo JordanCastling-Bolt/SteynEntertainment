@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
-import com.google.android.material.button.MaterialButton
 
 // EventsAndTouringFragment is a Fragment class responsible for displaying information about events and touring.
 class EventsAndTouringFragment : Fragment() {

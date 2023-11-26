@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.FragmentAboutusBinding
-import com.google.android.material.button.MaterialButton
 
 class AboutUsFragment : Fragment() {
 
