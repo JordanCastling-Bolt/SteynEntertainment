@@ -3,20 +3,19 @@ package com.example.steynentertainment.ui.ui.login
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Patterns
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
-import androidx.annotation.RequiresApi
 import com.example.steynentertainment.R
 import com.example.steynentertainment.ui.data.LoginRepository
 import com.example.steynentertainment.ui.data.Result
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 
-
+// LoginViewModel is a ViewModel class designed for managing the login logic and UI state in the LoginActivity.
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
@@ -44,7 +43,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
             if (result is Result.Success) {
                 val loggedInUser = result.data
-                val firebaseUser = loggedInUser.firebaseUser  // Now you have the FirebaseUser
+                val firebaseUser = loggedInUser.firebaseUser // Now you have the FirebaseUser
 
                 _loginResult.value = LoginResult(success = LoggedInUserView(displayName = firebaseUser.displayName ?: ""))
                 bundle.putString(FirebaseAnalytics.Param.METHOD, "Google")
@@ -71,6 +70,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         }
     }
 
+    // loginDataChanged checks if the form data is valid and updates the login form's LiveData.
     fun loginDataChanged(username: String, password: String) {
         if (!isUserNameValid(username)) {
             _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)

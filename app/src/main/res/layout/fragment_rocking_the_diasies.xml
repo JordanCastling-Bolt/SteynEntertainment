@@ -1,59 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
-    <ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        tools:context=".ui.rockingTheDaisies.RockingTheDaisiesFragment">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/rockingTheDaisiesImage"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="125dp"
+            android:layout_marginEnd="125dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/rocking_daisies" />
+
+        <TextView
+            android:id="@+id/daisiesHeader"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:text="@string/rocking_daisies_info"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/headerTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rockingTheDaisiesImage" />
 
-            <ImageView
-                android:id="@+id/rockingTheDaisiesImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                tools:src="@drawable/rocking_daisies" />
+        <TextView
+            android:id="@+id/daisiesText1"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/rounded_border"
+            android:padding="10dp"
+            android:text="@string/rock_daisies_text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/getInTouchBtn" />
 
-            <TextView
-                android:id="@+id/rockDaisiesText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="@string/rock_daisies_text"
-                android:textColor="@color/black"
-                android:textSize="@dimen/headerTextSize" />
-            <ImageView
-                android:id="@+id/daisiesImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                tools:src="@drawable/rock_daisies_image1" />
-        </LinearLayout>
-    </ScrollView>
+        <TextView
+            android:id="@+id/contactInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autoLink="all"
+            android:background="@drawable/rounded_border"
+            android:padding="15dp"
+            android:text="@string/daisies_contact_info"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/daisiesHeader" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/contactUsBtn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_border"
-        android:textAllCaps="false"
-        android:layout_gravity="right"
-        android:textColor="@color/yellow"
-        android:text="@string/get_intouch_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/getInTouchBtn"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_border"
+            android:text="@string/get_intouch_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contactInfo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,26 +1,27 @@
 package com.example.steynentertainment.ui.events
 
-import android.content.ContentValues
-import androidx.lifecycle.ViewModel
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.ViewModel
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import java.io.File
 
+// EventsViewModel is a ViewModel class designed for handling data and business logic associated with events.
 class EventsViewModel : ViewModel() {
 
+    // Storage reference for accessing Firebase Storage
     val storageRef: StorageReference = FirebaseStorage.getInstance().reference
+
+    // Firestore database reference
     val dbRef = FirebaseFirestore.getInstance()
 
+    // downloadImage downloads an image from Firebase Storage.
+    // It takes a StorageReference to the image and listeners for success and failure events.
     fun downloadImage(
         imageRef: StorageReference,
         onSuccessListener: OnSuccessListener<Bitmap>,
@@ -37,11 +38,13 @@ class EventsViewModel : ViewModel() {
             }
     }
 
+    // getEventDescription fetches the description of an event from Firestore.
+    // It takes an event identifier and a callback function to handle the received data.
     fun getEventDescription(event: String, onCategoryReceived: (String?) -> Unit) {
-        val eventsCollection = dbRef.collection("Events")
+        val eventsCollection = dbRef.collection("Subsidiaries")
 
         val query = eventsCollection
-            .whereEqualTo("category", event)
+            .whereEqualTo("subsidiary", event)
 
         query.get()
             .addOnSuccessListener { documents ->
@@ -58,5 +61,4 @@ class EventsViewModel : ViewModel() {
                 onCategoryReceived(null)
             }
     }
-
 }

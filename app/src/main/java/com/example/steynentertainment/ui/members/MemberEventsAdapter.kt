@@ -1,4 +1,4 @@
-package com.example.steynentertainment.ui
+package com.example.steynentertainment.ui.members
 
 import android.content.Context
 import android.content.Intent
@@ -12,31 +12,31 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.steynentertainment.R
 import com.squareup.picasso.Picasso
-class memberEventsAdapter(private var memberEvent: List<memberEvents>):
-RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
 
-    //viewHolder Method Header
+// MemberEventsAdapter is a RecyclerView adapter for displaying a list of member events.
+class MemberEventsAdapter(private var memberEvent: List<MemberEvents>) :
+    RecyclerView.Adapter<MemberEventsAdapter.ViewHolder>() {
+
+    // viewHolder Method Header
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.txtEventTitle)
         val dateTextView: TextView = itemView.findViewById(R.id.txtEventDate)
         val imageView: ImageView = itemView.findViewById(R.id.txtEventImage)
-        val eventDiscountTextView: TextView = itemView.findViewById(R.id.txtEventDiscountInformation)
         val quicketButton: Button = itemView.findViewById(R.id.btnViewQuicket)
     }
 
-    //onCreateViewHolder Method Header
+    // onCreateViewHolder Method Header
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.member_event_recylcer_layout, parent, false)
         return ViewHolder(itemView)
     }
 
-    //onBindViewHolder Method Header
+    // onBindViewHolder Method Header
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = memberEvent[position]
         holder.titleTextView.text = event.title
         holder.dateTextView.text = event.date
-        holder.eventDiscountTextView.text = "This is your discount"
 
         // Load and display the image using Picasso
         Picasso.get().load(event.picture).into(holder.imageView)
@@ -49,21 +49,21 @@ RecyclerView.Adapter<memberEventsAdapter.ViewHolder>(){
         }
     }
 
+    // Helper function to open URLs in a web browser.
     private fun openUrlInBrowser(context: Context, url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         context.startActivity(intent)
     }
 
-    fun updateData(newData: List<memberEvents>) {
+    // updateData updates the memberEvent list with new data and notifies the RecyclerView to refresh.
+    fun updateData(newData: List<MemberEvents>) {
         memberEvent = newData
         notifyDataSetChanged()
     }
 
-    //getItemCount Method Header
+    // getItemCount returns the total number of items in the memberEvent list.
+    // This method is called by RecyclerView to get the size of the dataset.
     override fun getItemCount(): Int {
         return memberEvent.size
     }
 }
-
-
-

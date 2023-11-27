@@ -9,19 +9,25 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 
+// RegisterViewModel is a ViewModel class designed for managing the registration logic and UI state in the RegisterActivity.
 class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 
-    private val _registerForm = MutableLiveData<RegisterFormState>()
-    val registerFormState: LiveData<RegisterFormState> = _registerForm
+    // LiveData for holding and observing the state of the registration form.
+    private val _registerForm = MutableLiveData<RegisterFromState>()
+    val registerFromState: LiveData<RegisterFromState> = _registerForm
 
+    // LiveData for holding and observing the result of the registration process.
     private val _registerResult = MutableLiveData<RegisterResult>()
     val registerResult: LiveData<RegisterResult> = _registerResult
 
+    // Firebase Firestore instance for storing user data.
     private val db = FirebaseFirestore.getInstance()
 
+    // LiveData for navigating to the login screen after successful registration.
     private val _navigateToLogin = MutableLiveData<Boolean>()
     val navigateToLogin: LiveData<Boolean> get() = _navigateToLogin
 
+    // register function handles the user registration process using Firebase Authentication.
     fun register(email: String, firstName: String, lastName: String, password: String) {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -43,13 +49,13 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                             "role" to "user",
                             "terms_accepted" to true,
                             "yearlyPayments" to 0,
-                            "subscribed" to "no"
+                            "subscribed" to "no",
+                            "profilePicture" to "https://firebasestorage.googleapis.com/v0/b/steynentertainment-800ea.appspot.com/o/user%2Fimage%2FDefault_Profile_Picture.jpeg?alt=media&token=6fbd2675-bb34-45a3-8912-c663320d85ea"
                         )
                         db.collection("Users")
                             .document(user.uid)
                             .set(userData)
                             .addOnSuccessListener {
-
                             }
                             .addOnFailureListener { e ->
                                 // Handle failure
@@ -65,17 +71,20 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
         }
     }
 
+    // registerDataChanged function validates the registration form data and updates the form state.
     fun registerDataChanged(username: String, password: String, confirmPassword: String) {
         if (!isUserNameValid(username)) {
-            _registerForm.value = RegisterFormState(usernameError = R.string.invalid_username)
+            _registerForm.value = RegisterFromState(usernameError = R.string.invalid_username)
         } else if (!isPasswordValid(password)) {
-            _registerForm.value = RegisterFormState(passwordError = R.string.invalid_password)
+            _registerForm.value = RegisterFromState(passwordError = R.string.invalid_password)
         } else if (password != confirmPassword) {
-            _registerForm.value = RegisterFormState(confirmPasswordError = R.string.password_mismatch)
+            _registerForm.value = RegisterFromState(confirmPasswordError = R.string.password_mismatch)
         } else {
-            _registerForm.value = RegisterFormState(isDataValid = true)
+            _registerForm.value = RegisterFromState(isDataValid = true)
         }
     }
+
+    // sendEmailVerification function sends an email verification to the newly registered user.
     private fun sendEmailVerification() {
         val user = firebaseAuth.currentUser
         user?.sendEmailVerification()?.addOnCompleteListener { task ->
@@ -88,7 +97,7 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
         }
     }
 
-    // Validation checks similar to the login page
+    // Helper functions for validating username (email) and password.
     private fun isUserNameValid(username: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(username).matches()
     }

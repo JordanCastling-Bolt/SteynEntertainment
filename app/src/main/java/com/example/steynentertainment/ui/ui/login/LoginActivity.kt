@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.steynentertainment.MainActivity
 import com.example.steynentertainment.R
 import com.example.steynentertainment.databinding.ActivityLoginBinding
-import com.example.steynentertainment.ui.forgot_password.ForgotPasswordActivity
+import com.example.steynentertainment.ui.forgotPassword.ForgotPasswordActivity
 import com.example.steynentertainment.ui.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -29,9 +29,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 
-
+// LoginActivity is an AppCompatActivity that handles the user login process, including Google Sign-In.
 class LoginActivity : AppCompatActivity() {
 
+    // Variable declarations for ViewModel, binding, FirebaseAuth, and Firestore
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
@@ -50,14 +51,15 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
+        val txtSignUp = binding.txtSignUp
 
+        // Setup for Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.web_client_id))  // Replace with your web client ID
+            .requestIdToken(getString(R.string.web_client_id)) // Replace with your web client ID
             .requestEmail()
             .build()
 
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
-
 
         binding.googleFab?.setOnClickListener {
             signIn(googleSignInClient)
@@ -68,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.signUp?.setOnClickListener {
+        binding.txtSignUp?.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
@@ -76,40 +78,45 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
-        loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
-            val loginState = it ?: return@Observer
+        loginViewModel.loginFormState.observe(
+            this@LoginActivity,
+            Observer {
+                val loginState = it ?: return@Observer
 
-            // disable login button unless both username / password is valid
-            login.isEnabled = loginState.isDataValid
+                // disable login button unless both username / password is valid
+                login.isEnabled = loginState.isDataValid
 
-            if (loginState.usernameError != null) {
-                username.error = getString(loginState.usernameError)
+                if (loginState.usernameError != null) {
+                    username.error = getString(loginState.usernameError)
+                }
+                if (loginState.passwordError != null) {
+                    password.error = getString(loginState.passwordError)
+                }
             }
-            if (loginState.passwordError != null) {
-                password.error = getString(loginState.passwordError)
+        )
+
+        loginViewModel.loginResult.observe(
+            this@LoginActivity,
+            Observer {
+                val loginResult = it ?: return@Observer
+
+                // Hide ProgressBar
+                binding.loading.visibility = View.GONE
+
+                if (loginResult.error != null) {
+                    showLoginFailed(loginResult.error)
+                }
+                if (loginResult.success != null) {
+                    // Show ProgressBar
+                    binding.loading.visibility = View.VISIBLE
+
+                    updateUiWithUser(loginResult.success)
+                    setResult(Activity.RESULT_OK)
+                    // Check user role and navigate to the corresponding MainActivity
+                    checkUserRoleAndNavigate(auth.currentUser!!.uid)
+                }
             }
-        })
-
-        loginViewModel.loginResult.observe(this@LoginActivity, Observer {
-            val loginResult = it ?: return@Observer
-
-            // Hide ProgressBar
-            binding.loading.visibility = View.GONE
-
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
-            }
-            if (loginResult.success != null) {
-                // Show ProgressBar
-                binding.loading.visibility = View.VISIBLE
-
-                updateUiWithUser(loginResult.success)
-                setResult(Activity.RESULT_OK)
-                // Check user role and navigate to the corresponding MainActivity
-                checkUserRoleAndNavigate(auth.currentUser!!.uid)
-            }
-
-        })
+        )
 
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
@@ -148,6 +155,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+    // checkUserRoleAndNavigate checks the user's role in Firestore and navigates to the appropriate activity
     private fun checkUserRoleAndNavigate(uid: String) {
         val docRef = db.collection("Users").document(uid)
         docRef.get().addOnSuccessListener { document ->
@@ -185,11 +194,13 @@ class LoginActivity : AppCompatActivity() {
         binding.loading.visibility = View.GONE
     }
 
+    // signIn function handles Google Sign-In logic
     private fun signIn(googleSignInClient: GoogleSignInClient) {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
+    // onActivityResult handles the result of the Google Sign-In intent
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -205,6 +216,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    // firebaseAuthWithGoogle authenticates the user with Firebase using Google credentials
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         auth.signInWithCredential(credential)
@@ -215,9 +227,8 @@ class LoginActivity : AppCompatActivity() {
 
                     // Successfully signed in
                     val user = auth.currentUser
-                    checkIfUserExistsOrCreate(user!!.uid, acct)  // new function
-                }
-                else {
+                    checkIfUserExistsOrCreate(user!!.uid, acct) // new function
+                } else {
                     // Sign-in failed
                     showLoginFailed(R.string.login_failed)
                 }
@@ -243,6 +254,7 @@ class LoginActivity : AppCompatActivity() {
                     "role" to "user",
                     "terms_accepted" to false,
                     "yearlyPayments" to 0,
+                    "profilePicture" to acct.photoUrl,
                     "subscribed" to "no"
                 )
                 db.collection("Users").document(uid).set(newUser).addOnSuccessListener {
@@ -258,10 +270,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    // Companion object for constants
     companion object {
         private const val RC_SIGN_IN = 9001
     }
 
+    // updateUiWithUser updates the UI with the user's information after a successful login
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
@@ -275,6 +289,7 @@ class LoginActivity : AppCompatActivity() {
         // Complete and destroy login activity
     }
 
+    // showLoginFailed shows a Toast message if the login fails
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }

@@ -1,7 +1,6 @@
 package com.example.steynentertainment.ui.data
 
 import com.example.steynentertainment.ui.data.model.LoggedInUser
-import com.google.firebase.auth.FirebaseAuth
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -32,8 +31,6 @@ class LoginRepository(val dataSource: LoginDataSource) {
         // Delegate the call to the data source
         dataSource.login(username, password, callback)
     }
-
-
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser

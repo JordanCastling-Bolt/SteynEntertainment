@@ -10,11 +10,7 @@
         android:name="com.example.steynentertainment.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/fragment_admin_home"
-        android:name="com.example.steynentertainment.ui.admin_home.AdminHomeFragment"
-        android:label="Admin Home"
-        tools:layout="@layout/fragment_admin_home"/>
+
     <fragment
         android:id="@+id/navigation_events"
         android:name="com.example.steynentertainment.ui.events.EventsFragment"
@@ -61,41 +57,72 @@
     <!-- Add RockingTheDaisiesFragment -->
     <fragment
         android:id="@+id/navigation_rockingTheDaisies"
-        android:name="com.example.steynentertainment.ui.rocking_the_diasies.RockingTheDiasiesFragment"
-        android:label="@string/rocking_daisies"
-        tools:layout="@layout/fragment_rocking_the_diasies" />
+        android:name="com.example.steynentertainment.ui.rockingTheDiasies.RockingTheDiasiesFragment"
+        android:label="Rocking the Daisies"
+        tools:layout="@layout/fragment_rocking_the_diasies" >
+        <action
+            android:id="@+id/action_navigation_rockingTheDaisies_pop"
+            app:popUpTo="@id/navigation_rockingTheDaisies"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <!-- Add EventsAndTouringFragment -->
     <fragment
         android:id="@+id/navigation_eventsAndTouring"
-        android:name="com.example.steynentertainment.ui.events_touring.EventsAndTouringFragment"
+        android:name="com.example.steynentertainment.ui.eventsTouring.EventsAndTouringFragment"
         android:label="@string/events_and_touring"
-        tools:layout="@layout/fragment_events_and_touring" />
+        tools:layout="@layout/fragment_events_and_touring" >
+        <action
+            android:id="@+id/action_navigation_eventsAndTouring_pop"
+            app:popUpTo="@id/navigation_eventsAndTouring"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <!-- Add InTheCityFragment -->
     <fragment
         android:id="@+id/navigation_inTheCity"
-        android:name="com.example.steynentertainment.ui.in_the_city.CityFragment"
+        android:name="com.example.steynentertainment.ui.inTheCity.CityFragment"
         android:label="@string/city_text2"
-        tools:layout="@layout/fragment_city" />
+        tools:layout="@layout/fragment_city" >
+        <action
+            android:id="@+id/action_navigation_inTheCity_pop"
+            app:popUpTo="@id/navigation_inTheCity"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <!-- Add GetInTouchFragment -->
     <fragment
         android:id="@+id/navigation_getInTouch"
-        android:name="com.example.steynentertainment.ui.get_in_touch.GetInTouchFragment"
+        android:name="com.example.steynentertainment.ui.getInTouch.GetInTouchFragment"
         android:label="Get in touch"
-        tools:layout="@layout/fragment_get_in_touch" />
+        tools:layout="@layout/fragment_get_in_touch" >
+        <action
+            android:id="@+id/action_navigation_getInTouch_pop"
+            app:popUpTo="@id/navigation_getInTouch"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <!-- Add CityFragment -->
     <fragment
         android:id="@+id/navigation_city"
-        android:name="com.example.steynentertainment.ui.in_the_city.CityFragment"
+        android:name="com.example.steynentertainment.ui.inTheCity.CityFragment"
         android:label="In The City"
-        tools:layout="@layout/fragment_city" />
+        tools:layout="@layout/fragment_city" >
+        <action
+            android:id="@+id/action_navigation_city_pop2"
+            app:popUpTo="@id/navigation_city"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.steynentertainment.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_eventInfo"
+        android:name="com.example.steynentertainment.ui.events.EventInfo"
+        android:label="@string/eventInfo"
+        tools:layout="@layout/fragment_event_info" />
 </navigation>
